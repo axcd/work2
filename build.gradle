@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.mao.work2"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
     }

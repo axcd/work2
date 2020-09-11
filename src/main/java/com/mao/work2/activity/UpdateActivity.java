@@ -11,10 +11,11 @@ import com.mao.work2.bean.*;
 import com.mao.work2.io.*;
 import com.mao.work2.enum.*;
 import android.widget.*;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.CompoundButton.*;
 import android.icu.util.*;
 
-public class UpdateActivity extends Activity
+public class UpdateActivity extends AppCompatActivity
 {
 	private Shift shift = Shift.DAY;
 	private Rate rate = Rate.ONE_AND_HALF;
@@ -37,11 +38,7 @@ public class UpdateActivity extends Activity
 		setContentView(R.layout.page_two_update);
 
 		//从下面插入效果
-		Display display = getWindowManager().getDefaultDisplay(); 
 		Window window = getWindow();	
-		LayoutParams windowLayoutParams = window.getAttributes(); 
-		windowLayoutParams.width = (int) (display.getWidth() * 1.0); 
-		windowLayoutParams.height = (int) (display.getHeight() * 0.65); 	
 		window.setGravity(Gravity.BOTTOM);	
 		window.setWindowAnimations(R.style.MyDialogAnimation);
 

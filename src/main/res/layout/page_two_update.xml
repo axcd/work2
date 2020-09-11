@@ -5,7 +5,9 @@
 	android:layout_width="match_parent"
 	android:orientation="vertical"
 	android:layout_gravity="center"
-	android:background="#FFC1E8BD">
+	android:background="#FFC1E8BD"
+	android:layout_marginTop="10dp"
+	android:layout_marginBottom="10dp">
 
 	<TextView
 		android:id="@+id/txt_topbar"
@@ -164,12 +166,12 @@
 				android:layout_margin="10dp"/>
 
 		</RadioGroup>
-		
+
 		<View
 			android:layout_width="match_parent"
 			android:layout_height="3px"
 			android:background="@color/pink"/>
-		
+
 		<ScrollView
 			android:layout_height="110dp"
 			android:layout_width="match_parent"
@@ -580,7 +582,7 @@
 			</com.mao.work2.layout.MyRadioGroup>
 
 		</ScrollView>
-		
+
 		<View
 			android:layout_width="match_parent"
 			android:layout_height="3px"

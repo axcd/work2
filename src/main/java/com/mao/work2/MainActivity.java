@@ -18,6 +18,7 @@ import android.support.v7.appcompat.*;
 import com.mao.work2.page.*;
 import com.mao.work2.config.*;
 import com.mao.work2.util.*;
+import com.mao.work2.adapter.*;
 
 /**
  * Created by Jay on 2015/10/8 0008.
@@ -79,9 +80,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		listViews.add(new PageTwo().onCreateView(mInflater,null));
 		listViews.add(new PageThree().onCreateView(mInflater,null));
 		
-//        listViews.add(mInflater.inflate(R.layout.view_one, null, false));
-//        listViews.add(mInflater.inflate(R.layout.view_two, null, false));
-//        listViews.add(mInflater.inflate(R.layout.view_three, null, false));
         vpager.setAdapter(new MyPagerAdapter(listViews));
 		currIndex=1;
         vpager.setCurrentItem(1);          //设置ViewPager当前页，从0开始算

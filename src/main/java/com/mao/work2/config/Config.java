@@ -47,7 +47,8 @@ public class Config
 	{
 		new ObjectIO<Settings>().out(settings,"settings");
 		setConfig();
-		PageOne.setView();
+		//PageOne.setView();
+		PageTwo.updateView();
 	}
 	
 	//设置Config

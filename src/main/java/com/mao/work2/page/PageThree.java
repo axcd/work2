@@ -45,9 +45,9 @@ public class PageThree
 	{
 		//数组置零,获取数据
 		String[] companies = new String[] {
-			"周期开始日", "基本工资", "本月绩效", "中班补贴", "夜班补贴" ,
-			"岗位补贴", "高温补贴","交通补贴", "社会保险", "公积金",
-			"其他补贴", "其他扣款", "专项扣除" };
+			"周期开始(日期)", "基本工资(元)", "本月绩效(元)", "中班补贴(元/天)", "夜班补贴(元/天)" ,
+			"岗位补贴(元)", "高温补贴(元)","交通补贴(元)", "社会保险(元)", "公积金(元)",
+			"其他补贴(元)", "其他扣款(元)", "专项扣除(元)" };
 		ListAdapter adapter = new MyAdapter(view.getContext(), companies);
 		getData();
 
@@ -89,7 +89,7 @@ public class PageThree
 		Config.getSettings().setOtherSubsidy(data[10]);
 		Config.getSettings().setOtherDeductions(data[11]);
 		Config.getSettings().setSpecialDeduction(data[12]);
-
+		
 		Config.save();
 	}
 	//设置保留位数
@@ -121,6 +121,7 @@ public class PageThree
 			final EditText textView2 = (EditText) view.findViewById(R.id.entryEditText);
 			textView2.setText(data[position] + "");
 			//textView2.setTag(position + "");
+			if (position == 0)textView2.setText((int)data[position] + "");
 
 			textView2.setOnClickListener(new View.OnClickListener(){
 					public void onClick(View view)
@@ -128,7 +129,7 @@ public class PageThree
 						AlertDialog aldg;
 						AlertDialog.Builder adBd=new AlertDialog.Builder(getContext());
 
-						final LinearLayout dialogv = (LinearLayout)LayoutInflater.from(getContext()).inflate(R.layout.dialog, null);
+						final LinearLayout dialogv = (LinearLayout)LayoutInflater.from(getContext()).inflate(R.layout.page_three_dialog, null);
 						adBd.setTitle(text);
 						adBd.setView(dialogv);
 
@@ -149,11 +150,8 @@ public class PageThree
 											data[position] = Float.parseFloat(ett.getText().toString());
 											textView2.setText((int)data[position] + "");
 										}
-
 									}
-
 									saveSettings();
-
 								}
 							});
 						adBd.setNegativeButton("取消", null);

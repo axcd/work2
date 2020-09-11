@@ -29,8 +29,8 @@ import com.mao.work2.util.*;
 public class PageTwo
 {
 
-	private GridView gv;
-	private View view;
+	private static GridView gv;
+	private static View view;
 
 	static TextView mtv;
 
@@ -69,7 +69,7 @@ public class PageTwo
     }
 
 	//更新日历和统计
-	public void updateView()
+	public static void updateView()
 	{
 		//添加canlendar配置
 		Config.setConfig();
@@ -77,7 +77,7 @@ public class PageTwo
 		PageOne.setView();
 	}
 
-	public void getCalendarView()
+	public static void getCalendarView()
 	{
 
 		//设置显示年月		
@@ -116,14 +116,14 @@ class DayAdapter extends ArrayAdapter<Date>
 {
 	public DayAdapter(Context context, List<Date> values) 
 	{
-		super(context, R.layout.day_view, values);
+		super(context, R.layout.page_two_day_view, values);
 	}
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent)
 	{
 		LayoutInflater inflater = LayoutInflater.from(getContext());
-		View view = inflater.inflate(R.layout.day_view, parent, false);
+		View view = inflater.inflate(R.layout.page_two_day_view, parent, false);
 
 		final Date date = getItem(position);
 

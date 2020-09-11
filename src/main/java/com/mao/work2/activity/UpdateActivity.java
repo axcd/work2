@@ -34,7 +34,7 @@ public class UpdateActivity extends Activity
 	{
 		// TODO: Implement this method
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.update);
+		setContentView(R.layout.page_two_update);
 
 		//从下面插入效果
 		Display display = getWindowManager().getDefaultDisplay(); 

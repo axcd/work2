@@ -16,7 +16,8 @@
 		android:layout_alignParentLeft="true"
 		android:layout_marginLeft="20dp"
 		android:layout_marginBottom="5dp"
-		android:gravity="bottom"/>
+		android:gravity="bottom"
+		android:textSize="16sp"/>
 
 	<EditText
 		android:layout_width="100dp"
@@ -28,8 +29,9 @@
 		android:layout_alignParentRight="true"
 		android:layout_marginRight="15dp"
 		android:layout_marginBottom="0dp"
-		android:gravity="center_horizontal"
-		android:text="Medium Text"/>
+		android:gravity="bottom|center_horizontal"
+		android:text="Medium Text"
+		android:textSize="16sp"/>
 
 </RelativeLayout>
 

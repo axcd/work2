@@ -64,24 +64,21 @@
 # view res/layout/abc_screen_toolbar.xml #generated:36
 -keep class android.support.v7.widget.Toolbar { <init>(...); }
 
-# view res/layout/activity_main.xml #generated:80
--keep class com.mao.work.layout.MyViewPager { <init>(...); }
-
 # view AndroidManifest.xml #generated:20
 -keep class com.mao.work2.MainActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:29
 -keep class com.mao.work2.activity.UpdateActivity { <init>(...); }
 
-# view res/layout/update.xml #generated:181
+# view res/layout/page_two_update.xml #generated:181
 -keep class com.mao.work2.layout.MyRadioGroup { <init>(...); }
 
-# view res/layout/day_view.xml #generated:9
+# view res/layout/page_two_day_view.xml #generated:9
 -keep class com.mao.work2.view.DayView { <init>(...); }
 
-# onClick res/layout/update.xml #generated:598
+# onClick res/layout/page_two_update.xml #generated:598
 -keepclassmembers class * { *** onDelete(...); }
 
-# onClick res/layout/update.xml #generated:609
+# onClick res/layout/page_two_update.xml #generated:609
 -keepclassmembers class * { *** onInsert(...); }
 

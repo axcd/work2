@@ -219,14 +219,14 @@ class MyAdapter extends ArrayAdapter<String>
 {
 	public MyAdapter(Context context, String[] values) 
 	{
-		super(context, R.layout.page_two_entry, values);
+		super(context, R.layout.page_one_entry, values);
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
 		LayoutInflater inflater = LayoutInflater.from(getContext());
-		View view = inflater.inflate(R.layout.page_two_entry, parent, false);
+		View view = inflater.inflate(R.layout.page_one_entry, parent, false);
 
 		String text = getItem(position);
 

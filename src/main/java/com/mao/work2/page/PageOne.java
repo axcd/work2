@@ -118,7 +118,7 @@ public class PageOne
 					}
 					else
 					{
-						if (hour > 4)
+						if (hour >= 4)
 						{
 
 							//中班天数

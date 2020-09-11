@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center_horizontal"
+	android:orientation="vertical"
+	android:layout_gravity="center_horizontal"
+	android:paddingLeft="12dp"
+	android:paddingRight="12dp"
+	android:background="#FFFFFFFF">
+
+	<RelativeLayout
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_marginTop="10dp"
+		android:layout_marginLeft="50dp"
+		android:layout_marginRight="50dp"
+		android:layout_marginBottom="10dp"
+		android:gravity="center">
+
+		<TextView
+			android:id="@+id/premonth"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:text="«"
+			android:layout_weight="1.0"
+			android:padding="5dp"
+			android:textSize="20sp"
+			android:gravity="bottom|center_horizontal"/>
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_centerInParent="true"
+			android:text="2020年9月"
+			android:layout_weight="1.0"
+			android:padding="5dp"
+			android:textSize="20sp"
+			android:gravity="center"
+			android:id="@+id/yyyyMM"/>
+
+		<TextView
+			android:id="@+id/nextmonth"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:text="»"
+			android:layout_weight="1.0"
+			android:padding="5dp"
+			android:textSize="20sp"
+			android:gravity="bottom|center_horizontal"/>
+
+	</RelativeLayout>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:gravity="center"
+		android:background="#FFF8B7F8"
+		android:paddingTop="5dp"
+		android:paddingBottom="5dp"
+		android:layout_marginBottom="2dp">
+
+		<TextView
+			android:text="日"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:gravity="center"
+			android:textSize="14sp"/>
+
+		<TextView
+			android:text="一"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:gravity="center"
+			android:textSize="14sp"/>
+
+		<TextView
+			android:text="二"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:gravity="center"
+			android:textSize="14sp"/>
+
+		<TextView
+			android:text="三"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:gravity="center"
+			android:textSize="14sp"/>
+
+		<TextView
+			android:text="四"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:gravity="center"
+			android:textSize="14sp"/>
+
+		<TextView
+			android:text="五"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:gravity="center"
+			android:textSize="14sp"/>
+
+		<TextView
+			android:text="六"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:gravity="center"
+			android:textSize="14sp"/>
+
+	</LinearLayout>
+
+	<GridView
+		android:id="@+id/mainGridView"
+		android:numColumns="7"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+</LinearLayout>
+

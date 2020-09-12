@@ -5,7 +5,7 @@
 	android:layout_width="match_parent"
 	android:orientation="vertical"
 	android:layout_gravity="center"
-	android:background="#FFC1E8BD"
+	android:background="@drawable/update_bkg"
 	android:layout_marginTop="12dp"
 	android:layout_marginBottom="12dp">
 
@@ -38,40 +38,60 @@
 			android:background="#FFF9F7E3">
 
 			<RadioButton
-				android:layout_height="25dp"
-				android:layout_width="50dp"
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
 				android:gravity="center"
 				android:button="@null"
 				android:background="@drawable/shift1"
 				android:text="白班"
-				android:layout_margin="10dp"/>
+				android:layout_weight="1.0"
+				android:layout_marginLeft="12dp"
+				android:layout_marginRight="12dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"
+				android:padding="5dp"/>
 
 			<RadioButton
-				android:layout_height="25dp"
-				android:layout_width="50dp"
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
 				android:gravity="center"
 				android:button="@null"
 				android:background="@drawable/shift2"
 				android:text="中班"
-				android:layout_margin="10dp"/>
+				android:layout_weight="1.0"
+				android:layout_marginLeft="12dp"
+				android:layout_marginRight="12dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"
+				android:padding="5dp"/>
 
 			<RadioButton
-				android:layout_height="25dp"
-				android:layout_width="50dp"
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
 				android:gravity="center"
 				android:button="@null"
 				android:background="@drawable/shift3"
 				android:text="夜班"
-				android:layout_margin="10dp"/>
+				android:layout_weight="1.0"
+				android:layout_marginLeft="12dp"
+				android:layout_marginRight="12dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"
+				android:padding="5dp"/>
 
 			<RadioButton
-				android:layout_height="25dp"
-				android:layout_width="50dp"
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
 				android:gravity="center"
 				android:button="@null"
 				android:background="@drawable/shift4"
 				android:text="休班"
-				android:layout_margin="10dp"/>
+				android:layout_weight="1.0"
+				android:layout_marginLeft="12dp"
+				android:layout_marginRight="12dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"
+				android:padding="5dp"/>
 
 		</RadioGroup>
 
@@ -81,34 +101,40 @@
 			android:gravity="center"
 			android:orientation="horizontal"
 			android:background="#FFE3FEFE"
-			android:id="@+id/rateRadioGroup">
+			android:id="@+id/rateRadioGroup"
+			android:paddingLeft="50dp"
+			android:paddingRight="50dp">
 
 			<RadioButton
-				android:layout_height="25dp"
-				android:layout_width="50dp"
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
 				android:gravity="center"
 				android:button="@null"
 				android:background="@drawable/rate1"
 				android:text="1.5倍"
-				android:layout_margin="10dp"/>
+				android:layout_margin="10dp"
+				android:layout_weight="1.0"/>
 
 			<RadioButton
-				android:layout_height="25dp"
-				android:layout_width="50dp"
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
 				android:gravity="center"
 				android:button="@null"
 				android:background="@drawable/rate2"
 				android:text="2倍"
-				android:layout_margin="10dp"/>
+				android:layout_margin="10dp"
+				android:layout_weight="1.0"/>
 
 			<RadioButton
-				android:layout_height="25dp"
-				android:layout_width="50dp"
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
 				android:gravity="center"
 				android:button="@null"
 				android:background="@drawable/rate3"
 				android:text="3倍"
-				android:layout_margin="10dp"/>
+				android:layout_margin="10dp"
+				android:layout_weight="1.0"
+				android:padding="5dp"/>
 
 		</RadioGroup>
 
@@ -121,49 +147,74 @@
 			android:id="@+id/fakeRadioGroup">
 
 			<RadioButton
-				android:layout_height="25dp"
-				android:layout_width="50dp"
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
 				android:gravity="center"
 				android:button="@null"
 				android:background="@drawable/fake1"
 				android:text="加班"
-				android:layout_margin="10dp"/>
+				android:layout_weight="1.0"
+				android:padding="5dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"/>
 
 			<RadioButton
-				android:layout_height="25dp"
-				android:layout_width="50dp"
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
 				android:gravity="center"
 				android:button="@null"
 				android:background="@drawable/fake2"
 				android:text="事假"
-				android:layout_margin="10dp"/>
+				android:layout_weight="1.0"
+				android:padding="5dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"/>
 
 			<RadioButton
-				android:layout_height="25dp"
-				android:layout_width="50dp"
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
 				android:gravity="center"
 				android:button="@null"
 				android:background="@drawable/fake3"
 				android:text="病假"
-				android:layout_margin="10dp"/>
+				android:layout_weight="1.0"
+				android:padding="5dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"/>
 
 			<RadioButton
-				android:layout_height="25dp"
-				android:layout_width="50dp"
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
 				android:gravity="center"
 				android:button="@null"
 				android:background="@drawable/fake3"
 				android:text="调休"
-				android:layout_margin="10dp"/>
+				android:layout_weight="1.0"
+				android:padding="5dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"/>
 
 			<RadioButton
-				android:layout_height="25dp"
-				android:layout_width="50dp"
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
 				android:gravity="center"
 				android:button="@null"
 				android:background="@drawable/fake4"
 				android:text="年假"
-				android:layout_margin="10dp"/>
+				android:layout_weight="1.0"
+				android:padding="5dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"/>
 
 		</RadioGroup>
 

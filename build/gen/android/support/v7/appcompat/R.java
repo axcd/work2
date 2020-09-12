@@ -2016,7 +2016,7 @@ containing a value of this type.
         public static final int fbkg3=0x7f020047;
         public static final int fbkg4=0x7f020048;
         public static final int my_bg=0x7f020049;
-        public static final int notification_template_icon_bg=0x7f02005b;
+        public static final int notification_template_icon_bg=0x7f02005c;
         public static final int radio=0x7f02004a;
         public static final int rate1=0x7f02004b;
         public static final int rate2=0x7f02004c;
@@ -2034,6 +2034,7 @@ containing a value of this type.
         public static final int shift2=0x7f020058;
         public static final int shift3=0x7f020059;
         public static final int shift4=0x7f02005a;
+        public static final int update_bkg=0x7f02005b;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f0c004d;

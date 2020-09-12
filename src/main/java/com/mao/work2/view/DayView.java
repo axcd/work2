@@ -93,6 +93,7 @@ public class DayView extends TextView
 
 		Paint paint = new Paint();
 		paint.setAntiAlias(true);
+		int R = getHeight()<getWidth() ? getHeight():getWidth();
 
 		if (isDraw())
 		{
@@ -102,14 +103,14 @@ public class DayView extends TextView
 			{
 				setTextColor(Color.RED);
 				paint.setColor(Color.parseColor("#4000FF00"));
-				canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() > getHeight() ?(getHeight() / 2 - 2): (getWidth() / 2 - 2), paint);
+				canvas.drawCircle(getWidth() / 2, getHeight() / 2, R/2-2, paint);
 			}
 
 			//绘制选中
 			if (isSelected())
 			{
 				paint.setColor(Color.parseColor("#30000FF0"));
-				canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() > getHeight() ?(getHeight() / 2 - 2): (getWidth() / 2 - 2), paint);
+				canvas.drawCircle(getWidth() / 2, getHeight() / 2, R/2-2, paint);
 			}
 
 			//绘制加班信息
@@ -152,11 +153,11 @@ public class DayView extends TextView
 
 					//开始绘制加班班别
 					paint.setColor(shift_color);
-					canvas.drawCircle(getWidth() / 6, getWidth() / 6 + 2, getWidth() / 6 - 1, paint);
-					Rect rect = new Rect(0, -6, getWidth() / 3, getHeight() / 3);//画一个矩形
+					canvas.drawCircle( R / 6 + 1, R / 6 + 1, R / 6 - 1, paint );
+					Rect rect = new Rect(2, 2, R / 3, R / 3-2);//画一个矩形
 
 					paint.setColor(Color.parseColor("#FFFFFFFF"));
-					paint.setTextSize(22);
+					paint.setTextSize(R/4-1);
 					paint.setTextAlign(Paint.Align.CENTER);//该方法即为设置基线上那个点究竟是left,center,还是right  这里我设置为center
 
 					Paint.FontMetrics fontMetrics = paint.getFontMetrics();
@@ -213,7 +214,7 @@ public class DayView extends TextView
 					canvas.drawRect(rect, paint);
 
 					paint.setColor(hour_color);
-					paint.setTextSize(25);
+					paint.setTextSize(R/3-2);
 					paint.setTextAlign(Paint.Align.CENTER);//该方法即为设置基线上那个点究竟是left,center,还是right  这里我设置为center
 
 					Paint.FontMetrics fontMetrics = paint.getFontMetrics();

@@ -37,12 +37,12 @@ public class PageOne
 
 		view = inflater.inflate(R.layout.page_two, container, false);
 		context = view.getContext();
-		setView();
+		updateView();
         return view;
     }
 
 
-	public static void setView()
+	public static void updateView()
 	{
 		//数组置零,获取数据
 		String[] companies = new String[] {

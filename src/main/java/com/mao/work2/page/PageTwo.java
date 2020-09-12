@@ -74,7 +74,7 @@ public class PageTwo
 		//添加canlendar配置
 		Config.setConfig();
 		getCalendarView();
-		PageOne.setView();
+		PageOne.updateView();
 	}
 
 	public static void getCalendarView()

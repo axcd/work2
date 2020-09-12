@@ -47,7 +47,6 @@ public class Config
 	{
 		new ObjectIO<Settings>().out(settings,"settings");
 		setConfig();
-		//PageOne.setView();
 		PageTwo.updateView();
 	}
 	

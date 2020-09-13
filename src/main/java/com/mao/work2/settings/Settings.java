@@ -4,19 +4,19 @@ import java.io.*;
 
 public class Settings implements Serializable
 {
-	private float basePay = 2200;
-	private int startDay =24;
-	private float performance =1200;
-	private float middleShiftSubsidy =10;
-	private float nightShiftSubsidy =15;
-	private float socialInsurance =600;
-	private float housingFund =600;
-	private float temperatureSubsidy =200;
-	private float transportationSubsidy =5;
-	private float postSubsidy =100;
-	private float otherSubsidy =0;
-	private float otherDeductions=0;
-	private float specialDeduction =0;
+	private float basePay = 2000;
+	private int startDay = 1;
+	private float performance = 1000;
+	private float middleShiftSubsidy = 10;
+	private float nightShiftSubsidy = 15;
+	private float socialInsurance = 400;
+	private float housingFund = 400;
+	private float temperatureSubsidy = 0;
+	private float transportationSubsidy = 0;
+	private float postSubsidy = 100;
+	private float otherSubsidy = 0;
+	private float otherDeductions = 0;
+	private float specialDeduction = 0;
 
 	public void setSpecialDeduction(float specialDeduction)
 	{

@@ -22,7 +22,6 @@ import android.app.*;
  */
 public class PageOne 
 {
-
 	public static View view;
 	private static Context context;
 	public static float[] data = new float[25];
@@ -234,8 +233,15 @@ class MyAdapter extends ArrayAdapter<String>
 		textView1.setText(text);
 
 		TextView textView2 = (TextView) view.findViewById(R.id.entryTextView2);
-		textView2.setText(PageOne. data[position] + "");
+		textView2.setText(PageOne.data[position] + "");
 
+//		if(position==3 || position==4)
+//		{
+//			textView2.setText((int)PageOne.data[position] + "");
+//		}else{
+//
+//			textView2.setText(PageOne.data[position] + "");
+//		}
 		return view;
 	}
 }

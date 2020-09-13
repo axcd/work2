@@ -3,7 +3,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <!-- solid指定形状的填充色，只有android:color一个属性 -->
-    <solid android:color="#4097e6" />
+    <solid android:color="#F94097e6" />
     <!-- padding设置内容区域离边界的间距 -->
     <padding
         android:bottom="15dp"
@@ -13,8 +13,8 @@
 
     <!--渐变设置-->
     <gradient
-        android:endColor="#FFFFFF"
-        android:startColor="#4097e6"
+        android:endColor="#F9FFFFFF"
+        android:startColor="#F94097e6"
         android:angle="270"
         android:type="linear" />
 

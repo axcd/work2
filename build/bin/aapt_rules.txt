@@ -70,15 +70,15 @@
 # view AndroidManifest.xml #generated:28
 -keep class com.mao.work2.activity.UpdateActivity { <init>(...); }
 
-# view res/layout/page_two_update.xml #generated:234
+# view res/layout/page_two_update.xml #generated:232
 -keep class com.mao.work2.layout.MyRadioGroup { <init>(...); }
 
 # view res/layout/page_two_day_view.xml #generated:9
 -keep class com.mao.work2.view.DayView { <init>(...); }
 
-# onClick res/layout/page_two_update.xml #generated:651
+# onClick res/layout/page_two_update.xml #generated:649
 -keepclassmembers class * { *** onDelete(...); }
 
-# onClick res/layout/page_two_update.xml #generated:662
+# onClick res/layout/page_two_update.xml #generated:660
 -keepclassmembers class * { *** onInsert(...); }
 

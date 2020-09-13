@@ -5,9 +5,7 @@
 	android:layout_width="match_parent"
 	android:orientation="vertical"
 	android:layout_gravity="center"
-	android:background="@drawable/update_bkg"
-	android:layout_marginTop="12dp"
-	android:layout_marginBottom="12dp">
+	android:background="@drawable/update_bkg">
 
 	<TextView
 		android:id="@+id/txt_topbar"
@@ -15,7 +13,7 @@
 		android:layout_height="40dp"
 		android:gravity="center"
 		android:text="加班信息"
-		android:textColor="@color/blue"
+		android:textColor="#FF4A3D9D"
 		android:textSize="18sp"/>
 
 	<View

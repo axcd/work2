@@ -18,6 +18,7 @@ import java.math.*;
 import android.widget.*;
 import android.app.*;
 import android.content.*;
+import android.text.*;
 
 /**
  * Created by Jay on 2015/8/28 0028.
@@ -121,7 +122,10 @@ public class PageThree
 			final EditText textView2 = (EditText) view.findViewById(R.id.entryEditText);
 			textView2.setText(data[position] + "");
 			//textView2.setTag(position + "");
-			if (position == 0)textView2.setText((int)data[position] + "");
+			if (position == 0)
+			{
+				textView2.setText((int)data[position] + "");
+			}
 
 			textView2.setOnClickListener(new View.OnClickListener(){
 					public void onClick(View view)

@@ -81,12 +81,18 @@ public class PageOne
 			month.setDay(i, Config.getNextMonth().getDay(i));
 		}
 
+		//调休倍率*小时，可以选择调休倍率
+		float rateXhour = 0;
 		//遍历该周期
 		for (int i=1; i <= 31; i++)
 		{
 
 			if (null != month.getDay(i))
 			{
+				//获取小时
+				String rate_str = month.getDay(i).getRate().getRateName();
+				int rate_length = rate_str.length();
+				float rate = Float.parseFloat(rate_str.substring(0, rate_length - 1));
 				//获取小时
 				String shour = month.getDay(i).getHour().getHourName();
 				int length = shour.length();
@@ -147,6 +153,7 @@ public class PageOne
 					if (Fake.TAKEOFF.equals(month.getDay(i).getFake()))
 					{
 						data[5] += hour;
+						rateXhour += rate*hour;
 					}
 					//事假
 					if (Fake.LEAVE.equals(month.getDay(i).getFake()))
@@ -201,7 +208,7 @@ public class PageOne
 			//应发工资
 			data[23] = F((base + data[3] * middle + data[4] * night + data[18] + data[20] + data[22] + data[9] + data[10] + data[12] + data[15]), 1);
 			//实发工资
-			data[24] = F((data[23] - (float)(base / 21.75 / 8 * 1.5 * data[5]) - (float)(base / 21.75 / 8 * data[6]) - (float)(base / 21.75 / 8 * 0.3 * data[7]) - data[13] - data[14] - data[16]), 1);
+			data[24] = F((data[23] - (float)(base / 21.75 / 8  * rateXhour) - (float)(base / 21.75 / 8 * data[6]) - (float)(base / 21.75 / 8 * 0.3 * data[7]) - data[13] - data[14] - data[16]), 1);
 		}
 	}
 

@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.CompoundButton.*;
 import android.icu.util.*;
 import android.graphics.drawable.*;
+import com.mao.work2.page.*;
 
 public class UpdateActivity extends AppCompatActivity
 {
@@ -227,16 +228,16 @@ public class UpdateActivity extends AppCompatActivity
 			{
 				break;
 			}
-		}
-
-		//如果该月为空
-		if (i == month.getDays().length)
-		{
-			month = null;
+			
+			if(i==30)
+			{
+				month = null;
+			}	
 		}
 
 		//保存
 		io.outObject(month, m);
+		PageOne.updateView();
 
 		finish();
 	}
@@ -248,6 +249,7 @@ public class UpdateActivity extends AppCompatActivity
 		Config.getSelectedView().setDay(day);
 		month.setDay(d, day);
 		io.outObject(month, m);
+		PageOne.updateView();
 		finish();
 	}
 

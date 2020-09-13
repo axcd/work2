@@ -221,18 +221,18 @@ public class UpdateActivity extends AppCompatActivity
 		month.setDay(d, null);
 
 		//判断month是否为空
-		int i;
-		for (i = 0;i < month.getDays().length;i++)
+		int length = month.getDays().length;
+		for (int i = 0;i < length;i++)
 		{
 			if (month.getDay(i) != null)
 			{
 				break;
 			}
-			
-			if(i==30)
+		
+			if(i == length-1)
 			{
 				month = null;
-			}	
+			}
 		}
 
 		//保存

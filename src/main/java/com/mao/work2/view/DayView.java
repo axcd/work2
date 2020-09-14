@@ -214,7 +214,7 @@ public class DayView extends TextView
 					canvas.drawRect(rect, paint);
 
 					paint.setColor(hour_color);
-					paint.setTextSize(R/3-2);
+					paint.setTextSize(30);
 					paint.setTextAlign(Paint.Align.CENTER);//该方法即为设置基线上那个点究竟是left,center,还是right  这里我设置为center
 
 					Paint.FontMetrics fontMetrics = paint.getFontMetrics();

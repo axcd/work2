@@ -229,7 +229,7 @@
 			android:background="#7FF7F78C"
 			android:id="@+id/hourScrollView">
 
-			<com.mao.work2.layout.MyRadioGroup
+			<com.mao.work.layout.MyRadioGroup
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
 				android:gravity="center"
@@ -628,7 +628,7 @@
 					android:background="@drawable/radio"
 					android:text="24h"/>
 
-			</com.mao.work2.layout.MyRadioGroup>
+			</com.mao.work.layout.MyRadioGroup>
 
 		</ScrollView>
 

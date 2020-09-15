@@ -65,16 +65,16 @@
 -keep class android.support.v7.widget.Toolbar { <init>(...); }
 
 # view AndroidManifest.xml #generated:19
--keep class com.mao.work2.MainActivity { <init>(...); }
+-keep class com.mao.work.MainActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:28
--keep class com.mao.work2.activity.UpdateActivity { <init>(...); }
+-keep class com.mao.work.activity.UpdateActivity { <init>(...); }
 
 # view res/layout/page_two_update.xml #generated:232
--keep class com.mao.work2.layout.MyRadioGroup { <init>(...); }
+-keep class com.mao.work.layout.MyRadioGroup { <init>(...); }
 
 # view res/layout/page_two_day_view.xml #generated:9
--keep class com.mao.work2.view.DayView { <init>(...); }
+-keep class com.mao.work.view.DayView { <init>(...); }
 
 # onClick res/layout/page_two_update.xml #generated:649
 -keepclassmembers class * { *** onDelete(...); }

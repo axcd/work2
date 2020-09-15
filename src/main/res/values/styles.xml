@@ -1,9 +1,13 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-    </style>
+		<item name="windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowBackground">@drawable/jb</item>
+	</style>
 
 	<style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
 		<item name="android:windowBackground">@drawable/my_bg</item>

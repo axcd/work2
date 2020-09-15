@@ -2013,26 +2013,27 @@ containing a value of this type.
         public static final int fbkg=0x7f020044;
         public static final int fbkg1=0x7f020045;
         public static final int fbkg2=0x7f020046;
-        public static final int my_bg=0x7f020047;
-        public static final int notification_template_icon_bg=0x7f02005a;
-        public static final int radio=0x7f020048;
-        public static final int rate1=0x7f020049;
-        public static final int rate2=0x7f02004a;
-        public static final int rate3=0x7f02004b;
-        public static final int rbkg=0x7f02004c;
-        public static final int rbkg1=0x7f02004d;
-        public static final int rbkg2=0x7f02004e;
-        public static final int rbkg3=0x7f02004f;
-        public static final int sbkg=0x7f020050;
-        public static final int sbkg1=0x7f020051;
-        public static final int sbkg2=0x7f020052;
-        public static final int sbkg3=0x7f020053;
-        public static final int sbkg4=0x7f020054;
-        public static final int shift1=0x7f020055;
-        public static final int shift2=0x7f020056;
-        public static final int shift3=0x7f020057;
-        public static final int shift4=0x7f020058;
-        public static final int update_bkg=0x7f020059;
+        public static final int jb=0x7f020047;
+        public static final int my_bg=0x7f020048;
+        public static final int notification_template_icon_bg=0x7f02005b;
+        public static final int radio=0x7f020049;
+        public static final int rate1=0x7f02004a;
+        public static final int rate2=0x7f02004b;
+        public static final int rate3=0x7f02004c;
+        public static final int rbkg=0x7f02004d;
+        public static final int rbkg1=0x7f02004e;
+        public static final int rbkg2=0x7f02004f;
+        public static final int rbkg3=0x7f020050;
+        public static final int sbkg=0x7f020051;
+        public static final int sbkg1=0x7f020052;
+        public static final int sbkg2=0x7f020053;
+        public static final int sbkg3=0x7f020054;
+        public static final int sbkg4=0x7f020055;
+        public static final int shift1=0x7f020056;
+        public static final int shift2=0x7f020057;
+        public static final int shift3=0x7f020058;
+        public static final int shift4=0x7f020059;
+        public static final int update_bkg=0x7f02005a;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f0c004d;
@@ -2233,7 +2234,6 @@ containing a value of this type.
         public static final int Animation_AppCompat_Dialog=0x7f08007c;
         public static final int Animation_AppCompat_DropDownUp=0x7f08007d;
         /**  Base application theme. 
- Customize your theme here. 
          */
         public static final int AppTheme=0x7f08012e;
         public static final int Base_AlertDialog_AppCompat=0x7f08007e;

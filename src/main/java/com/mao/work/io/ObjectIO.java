@@ -17,19 +17,18 @@ public class ObjectIO <T>
 		try
 		{
 			mkRootDir();
-			File dir  = new File(root, fname.split("/")[0]);
 
 			if (fname.contains("/"))
 			{
+				File d  = new File(root, fname.split("/")[0]);
+				File f = new File(root, File.separator + fname);
 				if (null == t)
 				{
-					File f = new File(root, File.separator + fname);
 					if (f.exists())
 					{
 						f.delete();
 					}
 
-					File d = new File(root, fname.split("/")[0]);
 					if (d.exists() && d.isDirectory() && d.listFiles().length == 0)
 					{
 						d.delete();
@@ -37,9 +36,9 @@ public class ObjectIO <T>
 				}
 				else
 				{
-					if (!dir.exists())
+					if (!d.exists())
 					{   
-						dir.mkdir();
+						d.mkdir();
 					}
 					out(t,fname);
 				}

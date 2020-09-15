@@ -48,8 +48,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 		//初始化config
 		Config.init();
+		//设置状态栏显示
         super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.main_activity);
+		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
         initViews();
     }

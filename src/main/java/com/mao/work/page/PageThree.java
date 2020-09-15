@@ -154,6 +154,10 @@ public class PageThree
 											data[position] = F(Float.parseFloat(ett.getText().toString()),1);
 											textView2.setText((int)data[position] + "");
 										}
+										else
+										{
+											Toast.makeText(textView2.getContext(),"填写正确日期",Toast.LENGTH_LONG).show();
+										}
 									}
 									saveSettings();
 								}

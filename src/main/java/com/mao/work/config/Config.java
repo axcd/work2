@@ -45,8 +45,8 @@ public class Config
 	
 	public static void save()
 	{
-		new ObjectIO<Settings>().out(settings,"settings");
-		setConfig();
+		new ObjectIO<Settings>().outObject(settings,"settings");
+		//setConfig();
 		PageTwo.updateView();
 	}
 	

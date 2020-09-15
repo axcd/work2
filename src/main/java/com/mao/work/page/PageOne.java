@@ -34,7 +34,7 @@ public class PageOne
     public View onCreateView(LayoutInflater inflater, ViewGroup container)
 	{
 
-		view = inflater.inflate(R.layout.page_two, container, false);
+		view = inflater.inflate(R.layout.page_one, container, false);
 		context = view.getContext();
 		updateView();
         return view;
@@ -55,7 +55,7 @@ public class PageOne
 		getData();
 
 		//添加适配器
-		ListView listView = (ListView) view.findViewById(R.id.pagetwoListView);
+		ListView listView = (ListView) view.findViewById(R.id.pageoneListView);
 		listView.setAdapter(adapter);
 	}
 

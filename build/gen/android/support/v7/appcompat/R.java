@@ -2197,10 +2197,11 @@ containing a value of this type.
         public static final int page_two=0x7f040026;
         public static final int page_two_day_view=0x7f040027;
         public static final int page_two_update=0x7f040028;
-        public static final int select_dialog_item_material=0x7f040029;
-        public static final int select_dialog_multichoice_material=0x7f04002a;
-        public static final int select_dialog_singlechoice_material=0x7f04002b;
-        public static final int support_simple_spinner_dropdown_item=0x7f04002c;
+        public static final int page_two_update_radio=0x7f040029;
+        public static final int select_dialog_item_material=0x7f04002a;
+        public static final int select_dialog_multichoice_material=0x7f04002b;
+        public static final int select_dialog_singlechoice_material=0x7f04002c;
+        public static final int support_simple_spinner_dropdown_item=0x7f04002d;
     }
     public static final class mipmap {
         public static final int line=0x7f030000;

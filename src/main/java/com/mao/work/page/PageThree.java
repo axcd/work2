@@ -55,7 +55,6 @@ public class PageThree
 		//添加适配器
 		ListView listView = (ListView) view.findViewById(R.id.pagethreeListView);
 		listView.setAdapter(adapter);
-
 	}
 
 	public void getData()
@@ -93,6 +92,7 @@ public class PageThree
 		
 		Config.save();
 	}
+	
 	//设置保留位数
 	public float F(double num, int n)
 	{

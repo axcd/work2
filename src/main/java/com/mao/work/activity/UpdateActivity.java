@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.CompoundButton.*;
 import android.graphics.drawable.*;
 import com.mao.work.page.*;
+import com.mao.work.layout.*;
 
 public class UpdateActivity extends AppCompatActivity
 {
@@ -29,7 +30,7 @@ public class UpdateActivity extends AppCompatActivity
 	private String m;
 	private Month month;
 	private String date;
-	private int y =80;
+	private int y = MyRadioGroup.x+10;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -182,7 +183,7 @@ public class UpdateActivity extends AppCompatActivity
 				if (rb.getText().toString().equals(month.getDay(d).getHour().getHourName()))
 				{
 					rb.setChecked(true);
-					setY((i/6)*60);
+					setY((i/6-1)*MyRadioGroup.x+10);
 					break;
 				}
 			}

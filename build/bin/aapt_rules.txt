@@ -76,9 +76,9 @@
 # view res/layout/page_two_day_view.xml #generated:9
 -keep class com.mao.work.view.DayView { <init>(...); }
 
-# onClick res/layout/page_two_update.xml #generated:649
+# onClick res/layout/page_two_update.xml #generated:255
 -keepclassmembers class * { *** onDelete(...); }
 
-# onClick res/layout/page_two_update.xml #generated:660
+# onClick res/layout/page_two_update.xml #generated:266
 -keepclassmembers class * { *** onInsert(...); }
 

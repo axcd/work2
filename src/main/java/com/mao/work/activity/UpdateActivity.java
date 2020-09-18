@@ -16,13 +16,17 @@ import android.widget.CompoundButton.*;
 import android.graphics.drawable.*;
 import com.mao.work.page.*;
 import com.mao.work.layout.*;
+import java.math.*;
 
 public class UpdateActivity extends AppCompatActivity
 {
 	private Shift shift = Shift.DAY;
 	private Rate rate = Rate.ONE_AND_HALF;
 	private Fake fake = Fake.NORMAL;
-	private Hour hour = Hour.THREE;
+	private float dh = (Config.getSettings().getDayHour());
+	private float nh = Config.getSettings().getNightHour();
+	private Hour hour = Hour.get(dh+"h");
+	private int hourIndex = Hour.getIndex(dh+"h");
 
 	private ObjectIO<Month> io = new ObjectIO<Month>();
 
@@ -30,14 +34,14 @@ public class UpdateActivity extends AppCompatActivity
 	private String m;
 	private Month month;
 	private String date;
-	private int y = MyRadioGroup.x+10;
+	private int y = (hourIndex/6-1)*MyRadioGroup.x+10;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		// TODO: Implement this method
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.page_two_update);
+		setContentView(R.layout.page_two_update);MyLog.d(dh+"");
 
 		//从下面插入效果
 		Window window = getWindow();	
@@ -79,24 +83,32 @@ public class UpdateActivity extends AppCompatActivity
 					//选中白班，修改hour
 					if(shift.equals(Shift.DAY))
 					{
-						hour = Hour.THREE;
-						((RadioButton)hourRadioGroup.getChildAt(6)).setChecked(true);
+						hour = Hour.get(dh+"h");
+						hourIndex = Hour.getIndex(dh+"h");
+						((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
 						if(Config.isWeekend())
 						{
-							hour = Hour.ELEVEN;
-							((RadioButton)hourRadioGroup.getChildAt(22)).setChecked(true);
+							hour = Hour.get((dh+8)+"h");
+							hourIndex += 16;
+							((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
 						}
+						setY((hourIndex/6-1)*MyRadioGroup.x+10);
+						setScroll(hourScrollView);
 					}
 					//如果选中夜班，修改hour
 					if(shift.equals(Shift.NIGHT))
 					{
-						hour = Hour.THREE_AND_HALF;
-						((RadioButton)hourRadioGroup.getChildAt(7)).setChecked(true);
+						hour = Hour.get(nh+"h");
+						hourIndex = Hour.getIndex(nh+"h");
+						((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
 						if(Config.isWeekend())
 						{
-							hour = Hour.ELEVEN_AND_HALF;
-							((RadioButton)hourRadioGroup.getChildAt(23)).setChecked(true);
+							hour = Hour.get((nh+8)+"h");
+							hourIndex += 16;
+							((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
 						}
+						setY((hourIndex/6-1)*MyRadioGroup.x+10);
+						setScroll(hourScrollView);
 					}
 				}
 			});
@@ -132,13 +144,14 @@ public class UpdateActivity extends AppCompatActivity
 		((RadioButton)shiftRadioGroup.getChildAt(0)).setChecked(true);
 		((RadioButton)rateRadioGroup.getChildAt(0)).setChecked(true);
 		((RadioButton)fakeRadioGroup.getChildAt(0)).setChecked(true);
-		((RadioButton)hourRadioGroup.getChildAt(6)).setChecked(true);
+		((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
 
 		//周末设置双倍倍数
 		if (Config.isWeekend())
 		{
+			setY((hourIndex/6-1)*MyRadioGroup.x+10);
 			((RadioButton)rateRadioGroup.getChildAt(1)).setChecked(true);
-			((RadioButton)hourRadioGroup.getChildAt(22)).setChecked(true);
+			((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
 		}
 		//回显加班信息
 		if (null != month.getDay(d))
@@ -188,6 +201,10 @@ public class UpdateActivity extends AppCompatActivity
 				}
 			}
 		}
+		setScroll(hourScrollView);
+	}
+	
+	public void setScroll(final ScrollView hourScrollView){
 		
 		hourScrollView.post(new Runnable(){
 				public void run()
@@ -197,6 +214,14 @@ public class UpdateActivity extends AppCompatActivity
 			});
 	}
 
+	//设置保留位数
+	public static float F(double num, int n)
+	{
+		BigDecimal bg = new BigDecimal(num);
+		double num1 = bg.setScale(n, BigDecimal.ROUND_HALF_UP).doubleValue();
+		return((float)num1);
+	}
+	
 	public void setY(int y)
 	{
 		this.y = y;

@@ -26,10 +26,15 @@ public class MyRadioGroup extends RadioGroup
 		for(int i=0;i<49;i++)
 		{
 			RadioButton rb = (RadioButton)LayoutInflater.from(context).inflate(R.layout.page_two_update_radio,null,false);
-			if(i%2==1)rb.setText(i*0.5+"h");
-			else rb.setText((i+1)/2+"h");
+			
+//			if(i%2==1)
+				rb.setText(i*0.5+"h");
+//			else 
+//				rb.setText((i+1)/2+"h");
+				
 			this.addView(rb);
 		}
+		
 	}
 
 	@Override

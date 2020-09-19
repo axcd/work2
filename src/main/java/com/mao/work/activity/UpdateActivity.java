@@ -25,8 +25,8 @@ public class UpdateActivity extends AppCompatActivity
 	private Fake fake = Fake.NORMAL;
 	private float dh = (Config.getSettings().getDayHour());
 	private float nh = Config.getSettings().getNightHour();
-	private Hour hour = Hour.get(dh+"h");
-	private int hourIndex = Hour.getIndex(dh+"h");
+	private Hour hour = Hour.getHour(dh);
+	private int hourIndex = Hour.getIndex(dh);
 
 	private ObjectIO<Month> io = new ObjectIO<Month>();
 
@@ -41,7 +41,7 @@ public class UpdateActivity extends AppCompatActivity
 	{
 		// TODO: Implement this method
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.page_two_update);MyLog.d(dh+"");
+		setContentView(R.layout.page_two_update);
 
 		//从下面插入效果
 		Window window = getWindow();	
@@ -83,12 +83,12 @@ public class UpdateActivity extends AppCompatActivity
 					//选中白班，修改hour
 					if(shift.equals(Shift.DAY))
 					{
-						hour = Hour.get(dh+"h");
-						hourIndex = Hour.getIndex(dh+"h");
+						hour = Hour.getHour(dh);
+						hourIndex = Hour.getIndex(dh);
 						((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
 						if(Config.isWeekend())
 						{
-							hour = Hour.get((dh+8)+"h");
+							hour = Hour.getHour(dh+8);
 							hourIndex += 16;
 							((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
 						}
@@ -98,12 +98,12 @@ public class UpdateActivity extends AppCompatActivity
 					//如果选中夜班，修改hour
 					if(shift.equals(Shift.NIGHT))
 					{
-						hour = Hour.get(nh+"h");
-						hourIndex = Hour.getIndex(nh+"h");
+						hour = Hour.getHour(nh);
+						hourIndex = Hour.getIndex(nh);
 						((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
 						if(Config.isWeekend())
 						{
-							hour = Hour.get((nh+8)+"h");
+							hour = Hour.getHour(nh+8);
 							hourIndex += 16;
 							((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
 						}
@@ -213,7 +213,7 @@ public class UpdateActivity extends AppCompatActivity
 				}
 			});
 	}
-
+	
 	//设置保留位数
 	public static float F(double num, int n)
 	{

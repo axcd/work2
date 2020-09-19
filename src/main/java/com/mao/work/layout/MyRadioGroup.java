@@ -13,6 +13,7 @@ public class MyRadioGroup extends RadioGroup
 	private int n = 6;
 	private int w;
 	private int h;
+	private int childCount;
 	
 	public MyRadioGroup(Context context)
 	{
@@ -26,34 +27,31 @@ public class MyRadioGroup extends RadioGroup
 		for(int i=0;i<49;i++)
 		{
 			RadioButton rb = (RadioButton)LayoutInflater.from(context).inflate(R.layout.page_two_update_radio,null,false);
-			
-//			if(i%2==1)
-				rb.setText(i*0.5+"h");
-//			else 
-//				rb.setText((i+1)/2+"h");
-				
+			if(i%2!=0) rb.setText(i*0.5+"h");else rb.setText(i/2+"h");
 			this.addView(rb);
 		}
+		
+
+		childCount = getChildCount();
 		
 	}
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
 	{
-		//获取最大宽度
+		//获取最大宽度和
 		int maxWidth = MeasureSpec.getSize(widthMeasureSpec);
-		int childCount = getChildCount();
-		int row = (int)Math.floor(childCount/n);
-		
 		w = (maxWidth-m)/n-m;
 		h = (w+m)*2/3-m;
-		int maxHeight = (h+m)*(row+1)+m;
+		x = h+m;
+		int maxHeight = (h+m)*(int)Math.ceil(childCount/n+1)+m;
 		
 		for(int i=0;i<childCount;i++)
 		{
 			final View child = getChildAt(i);
 			int wm = MeasureSpec.makeMeasureSpec(w, MeasureSpec.EXACTLY);
 			int hm = MeasureSpec.makeMeasureSpec(h, MeasureSpec.EXACTLY);
+			//设置子类所需宽度和高度
 			child.measure(wm,hm);
 		}
 		
@@ -67,13 +65,7 @@ public class MyRadioGroup extends RadioGroup
 	{
 		super.onLayout(changed, l, t, r, b);
 		
-		int childCount = getChildCount();
-		int maxWidth = r - l;
 		int row = 0;
-		
-		w = (maxWidth-m)/n;
-		h = w*2/3;
-		x = h;
 		
 		for (int i = 0; i < childCount; i++)
 		{
@@ -85,7 +77,7 @@ public class MyRadioGroup extends RadioGroup
 					if (i != 0)
 						row++;
 				}
-				child.layout((i%n)*w+m, row*h+m, (i%n+1)*w, (row+1)*h);
+				child.layout((i%n)*(w+m)+m, row*(h+m)+m, (i%n+1)*(w+m), (row+1)*(h+m));
 			}
 		}
 	}

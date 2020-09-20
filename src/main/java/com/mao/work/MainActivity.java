@@ -81,9 +81,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //往ViewPager填充View，同时设置点击事件与页面切换事件
         listViews = new ArrayList<View>();
         LayoutInflater mInflater = getLayoutInflater();
-		listViews.add(new PageOne().onCreateView(mInflater,null));
-		listViews.add(new PageTwo().onCreateView(mInflater,null));
-		listViews.add(new PageThree().onCreateView(mInflater,null));
+		listViews.add(new PageOne().onCreateView(mInflater));
+		listViews.add(new PageTwo().onCreateView(mInflater));
+		listViews.add(new PageThree().onCreateView(mInflater));
 		
         vpager.setAdapter(new MyPagerAdapter(listViews));
 		currIndex=1;
@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_two.setOnClickListener(this);
         tv_three.setOnClickListener(this);
 
+		vpager.setOffscreenPageLimit(2);
         vpager.addOnPageChangeListener(this);
     }
 

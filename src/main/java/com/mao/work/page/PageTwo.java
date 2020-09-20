@@ -37,9 +37,9 @@ public class PageTwo
 	{
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container)
+    public View onCreateView(LayoutInflater inflater)
 	{
-        view = inflater.inflate(R.layout.page_two, container, false);
+        view = inflater.inflate(R.layout.page_two, null);
 
 		TextView ptv = (TextView)view.findViewById(R.id.premonth);
 		TextView ntv = (TextView)view.findViewById(R.id.nextmonth);

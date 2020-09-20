@@ -34,9 +34,9 @@ public class PageThree
 		//空构造函数
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container)
+    public View onCreateView(LayoutInflater inflater)
 	{
-		view = inflater.inflate(R.layout.page_three, container, false);
+		view = inflater.inflate(R.layout.page_three, null);
 		updateView();
         return view;
     }
@@ -48,7 +48,7 @@ public class PageThree
 		String[] companies = new String[] {
 			"周期开始(日期)", "基本工资(元)", "本月绩效(元)", "中班补贴(元/天)", "夜班补贴(元/天)" ,
 			"岗位补贴(元)", "高温补贴(元)","交通补贴(元)", "社会保险(元)", "公积金(元)",
-			"其他补贴(元)", "其他扣款(元)", "专项扣除(元)", "白班加班时数(每天)", "夜班加班时数(每天)" };
+			"其他补贴(元)", "其他扣款(元)", "专项扣除(元)", "白班平时加班(时/天)", "夜班平时加班(时/天)" };
 		ListAdapter adapter = new MyAdapter(view.getContext(), companies);
 		getData();
 

@@ -16,13 +16,14 @@ import com.mao.work.bean.*;
 import com.mao.work.enum.*;
 import java.math.*;
 import android.app.*;
+import android.support.v4.view.*;
 
 /**
  * Created by Jay on 2015/8/28 0028.
  */
 public class PageOne
 {
-	public static View view;
+	private static View view;
 	private static Context context;
 	public static float[] data = new float[25];
 
@@ -31,10 +32,10 @@ public class PageOne
 		//空构造函数
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container)
+    public View onCreateView(LayoutInflater inflater)
 	{
 
-		view = inflater.inflate(R.layout.page_one, container, false);
+		view = inflater.inflate(R.layout.page_one, null);
 		context = view.getContext();
 		updateView();
         return view;

@@ -8,7 +8,7 @@ import com.mao.work.*;
 public class ObjectIO <T>
 {
 
-	private File root = MainActivity.dir;   //new File(Environment.getExternalStorageDirectory(), "/work/");
+	private File root = new File("/data/data/com.mao.work");
 
 	//序列化
 	public void outObject(T t, String fname)
@@ -20,7 +20,7 @@ public class ObjectIO <T>
 
 			if (fname.contains("/"))
 			{
-				File d  = new File(root, fname.split("/")[0]);
+				File d  = new File(root, fname.split("/")[0]);MyLog.d(d+"");
 				File f = new File(root, File.separator + fname);
 				if (null == t)
 				{
@@ -50,7 +50,7 @@ public class ObjectIO <T>
 		}
 		catch (Exception e)
 		{
-			MyLog.d("Out IOException");
+			//MyLog.d("Out IOException");
 		}
 
 	}

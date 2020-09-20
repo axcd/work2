@@ -27,7 +27,6 @@ import java.io.File;
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,ViewPager.OnPageChangeListener {
 	
-	public static File dir ;
     private ViewPager vpager;
     private ImageView img_cursor;
     private TextView tv_one;
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		
 		//申请读写权限
 //		PermissionUtil.requestPermission(this);
-		dir = getDataDir();
+		
 		//初始化config
 		Config.init();
 		//设置状态栏显示

@@ -8,7 +8,7 @@ import com.mao.work.*;
 public class ObjectIO <T>
 {
 
-	private File root = new File(Environment.getExternalStorageDirectory(), "/work/");
+	private File root = MainActivity.dir;   //new File(Environment.getExternalStorageDirectory(), "/work/");
 
 	//序列化
 	public void outObject(T t, String fname)

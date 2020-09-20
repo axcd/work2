@@ -20,13 +20,14 @@ import com.mao.work.config.*;
 import com.mao.work.util.*;
 import android.support.v4.view.*;
 import android.view.*;
+import java.io.File;
 
 /**
  * Created by Jay on 2015/10/8 0008.
  */
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,
-        ViewPager.OnPageChangeListener {
-
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,ViewPager.OnPageChangeListener {
+	
+	public static File dir ;
     private ViewPager vpager;
     private ImageView img_cursor;
     private TextView tv_one;
@@ -44,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onCreate(Bundle savedInstanceState) {
 		
 		//申请读写权限
-		PermissionUtil.requestPermission(this);
-
+//		PermissionUtil.requestPermission(this);
+		dir = getDataDir();
 		//初始化config
 		Config.init();
 		//设置状态栏显示

@@ -42,10 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-		
-		//申请读写权限
-		PermissionUtil.requestPermission(this);
-
+	
 		//初始化config
 		Config.init();
 		
@@ -56,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		
         initViews();
     }
-
 
     private void initViews() {
         vpager = (ViewPager) findViewById(R.id.vpager);

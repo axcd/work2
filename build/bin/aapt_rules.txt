@@ -64,10 +64,10 @@
 # view res/layout/abc_screen_toolbar.xml #generated:36
 -keep class android.support.v7.widget.Toolbar { <init>(...); }
 
-# view AndroidManifest.xml #generated:19
+# view AndroidManifest.xml #generated:16
 -keep class com.mao.work.MainActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:28
+# view AndroidManifest.xml #generated:25
 -keep class com.mao.work.activity.UpdateActivity { <init>(...); }
 
 # view res/layout/page_two_update.xml #generated:232

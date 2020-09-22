@@ -19,6 +19,7 @@ import android.widget.*;
 import android.app.*;
 import android.content.*;
 import android.text.*;
+import com.mao.work.util.*;
 
 /**
  * Created by Jay on 2015/8/28 0028.
@@ -93,16 +94,8 @@ public class PageThree
 		Config.getSettings().setSpecialDeduction(data[12]);
 		Config.getSettings().setDayHour(data[13]);
 		Config.getSettings().setNightHour(data[14]);
-		
+
 		Config.save();
-	}
-	
-	//设置保留位数
-	public float F(double num, int n)
-	{
-		BigDecimal bg = new BigDecimal(num);
-		double num1 = bg.setScale(n, BigDecimal.ROUND_HALF_UP).doubleValue();
-		return((float)num1);
 	}
 
 	class MyAdapter extends ArrayAdapter<String>
@@ -123,15 +116,14 @@ public class PageThree
 			TextView textView1 = (TextView) view.findViewById(R.id.entryTextView1);
 			textView1.setText(text);
 
-			final EditText textView2 = (EditText) view.findViewById(R.id.entryEditText);
-			textView2.setText(data[position] + "");
-			//textView2.setTag(position + "");
+			final EditText et = (EditText) view.findViewById(R.id.entryEditText);
+			
 			if (position == 0)
-			{
-				textView2.setText((int)data[position] + "");
-			}
+				et.setText((int)data[position] + "");
+			else
+				et.setText(data[position] + "");
 
-			textView2.setOnClickListener(new View.OnClickListener(){
+			et.setOnClickListener(new View.OnClickListener(){
 					public void onClick(View view)
 					{
 						AlertDialog aldg;
@@ -145,22 +137,28 @@ public class PageThree
 								@Override
 								public void onClick(DialogInterface dialog, int which)
 								{
-									EditText ett = (EditText)(dialogv.getChildAt(0));
-									if (!"".equals(ett.getText().toString()))
+									EditText det = (EditText)(dialogv.getChildAt(0));
+									if (!"".equals(det.getText().toString()))
 									{
-										if (position != 0)
+										float f = Float.parseFloat(det.getText().toString());
+										if (position == 0)
 										{
-											data[position] = F(Float.parseFloat(ett.getText().toString()),1);
-											textView2.setText(data[position] + "");
+											if (MathUtil.isOK(f, 1, 1, 31))
+												data[position] = MathUtil.F(f, 1);
+											else
+												Toast.makeText(et.getContext(), "填写正确日期", Toast.LENGTH_LONG).show();
 										}
-										else if (Float.parseFloat(ett.getText().toString()) >= 1 && Float.parseFloat(ett.getText().toString()) <= 31)
+										else if (position == 13 || position == 14)
 										{
-											data[position] = F(Float.parseFloat(ett.getText().toString()),1);
-											textView2.setText((int)data[position] + "");
+											if (MathUtil.isOK(f, 0, 0.5f, 33))
+												data[position] = MathUtil.F(f, 1);
+											else
+												Toast.makeText(et.getContext(), "填写正确时数", Toast.LENGTH_LONG).show();
 										}
 										else
 										{
-											Toast.makeText(textView2.getContext(),"填写正确日期",Toast.LENGTH_LONG).show();
+											data[position] = MathUtil.F(f, 1);
+											et.setText(data[position] + "");
 										}
 									}
 									saveSettings();

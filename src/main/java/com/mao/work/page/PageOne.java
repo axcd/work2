@@ -17,6 +17,7 @@ import com.mao.work.enum.*;
 import java.math.*;
 import android.app.*;
 import android.support.v4.view.*;
+import com.mao.work.util.*;
 
 /**
  * Created by Jay on 2015/8/28 0028.
@@ -192,33 +193,25 @@ public class PageOne
 			//基本工资
 			float base = Config.getSettings().getBasePay();
 			//平时加班(H)
-			data[17] = F(base / 21.75 / 8 * 1.5 , 1);
+			data[17] = MathUtil.F(base / 21.75 / 8 * 1.5 , 1);
 			//平时加班费
-			data[18] = F((data[17] * data[0]), 1);
+			data[18] = MathUtil.F((data[17] * data[0]), 1);
 			//周末加班(H)
-			data[19] = F(base / 21.75 / 8 * 2 , 1);
+			data[19] = MathUtil.F(base / 21.75 / 8 * 2 , 1);
 			//周末加班费
-			data[20] = F(data[19] * data[1], 1);
+			data[20] = MathUtil.F(data[19] * data[1], 1);
 			//节假日加班(H)
-			data[21] = F(base / 21.75 / 8 * 3 , 1);
+			data[21] = MathUtil.F(base / 21.75 / 8 * 3 , 1);
 			//节假日加班费
-			data[22] = F(data[21] * data[2], 1);
+			data[22] = MathUtil.F(data[21] * data[2], 1);
 
 			float middle = Config.getSettings().getMiddleShiftSubsidy();
 			float night = Config.getSettings().getNightShiftSubsidy();
 			//应发工资
-			data[23] = F((base + data[3] * middle + data[4] * night + data[18] + data[20] + data[22] + data[9] + data[10] + data[12] + data[15]), 1);
+			data[23] = MathUtil.F((base + data[3] * middle + data[4] * night + data[18] + data[20] + data[22] + data[9] + data[10] + data[12] + data[15]), 1);
 			//实发工资
-			data[24] = F((data[23] - (float)(base / 21.75 / 8  * rateXhour) - (float)(base / 21.75 / 8 * data[6]) - (float)(base / 21.75 / 8 * 0.3 * data[7]) - data[13] - data[14] - data[16]), 1);
+			data[24] = MathUtil.F((data[23] - (float)(base / 21.75 / 8  * rateXhour) - (float)(base / 21.75 / 8 * data[6]) - (float)(base / 21.75 / 8 * 0.3 * data[7]) - data[13] - data[14] - data[16]), 1);
 		}
-	}
-
-	//设置保留位数
-	public static float F(double num, int n)
-	{
-		BigDecimal bg = new BigDecimal(num);
-		double num1 = bg.setScale(n, BigDecimal.ROUND_HALF_UP).doubleValue();
-		return((float)num1);
 	}
 }
 

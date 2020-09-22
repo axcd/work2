@@ -1,4 +1,5 @@
 package com.mao.work.util;
+
 import java.math.*;
 
 public class MathUtil

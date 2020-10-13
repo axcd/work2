@@ -129,27 +129,18 @@ public class UpdateActivity extends AppCompatActivity
 		}
 		
 		int r = 0;
-//		switch(rate)
-//		{
-//			case ONE_AND_HALF:
-//				r = 0;
-//				break;
-//			case TWO:
-//				r = 1;
-//				break;
-//			case THREE:
-//				r = 2;
-//				break;
-//		}
+		int h = Hour.getI(hour.getHourName());
 		if(Config.isWeekend())
 		{
 			r = 1;
+			h += 16;
+			y = (h/6-1)*MyRadioGroup.x+10;
 		}
 		
 		((RadioButton)shiftRadioGroup.getChildAt(s)).setChecked(true);
 		((RadioButton)rateRadioGroup.getChildAt(r)).setChecked(true);
 		((RadioButton)fakeRadioGroup.getChildAt(0)).setChecked(true);
-		((RadioButton)hourRadioGroup.getChildAt(Hour.getI(hour.getHourName()))).setChecked(true);
+		((RadioButton)hourRadioGroup.getChildAt(h)).setChecked(true);
 
 		//回显加班信息
 		if (null != month.getDay(d))
@@ -269,7 +260,7 @@ public class UpdateActivity extends AppCompatActivity
 		
 		Config.setShift(shift);
 		//Config.setRate(rate);
-		Config.setHour(hour);
+		if(!Config.isWeekend()) Config.setHour(hour);
 		finish();
 	}
 

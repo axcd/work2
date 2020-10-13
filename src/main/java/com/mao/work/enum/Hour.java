@@ -66,6 +66,17 @@ public enum Hour implements Serializable
 		return -1;
 	}
 	
+	public static int getI(String hourName) {
+		Hour[] hours = Hour.values();
+		for (int i=0;i<hours.length;i++) {
+			Hour hour = hours[i];
+			if (hour.getHourName().equals(hourName)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
 	public static Hour getHour(float f){
 		String hour = "h";
 		if(f==(int)f)

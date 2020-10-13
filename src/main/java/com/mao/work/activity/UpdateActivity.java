@@ -20,13 +20,10 @@ import java.math.*;
 
 public class UpdateActivity extends AppCompatActivity
 {
-	private Shift shift = Shift.DAY;
-	private Rate rate = Rate.ONE_AND_HALF;
+	private Shift shift = Config.getShift();
+	private Rate rate = Config.getRate();
 	private Fake fake = Fake.NORMAL;
-	private float dh = (Config.getSettings().getDayHour());
-	private float nh = Config.getSettings().getNightHour();
-	private Hour hour = Hour.getHour(dh);
-	private int hourIndex = Hour.getIndex(dh);
+	private Hour hour = Config.getHour();
 
 	private ObjectIO<Month> io = new ObjectIO<Month>();
 
@@ -34,7 +31,7 @@ public class UpdateActivity extends AppCompatActivity
 	private String m;
 	private Month month;
 	private String date;
-	private int y = (hourIndex/6-1)*MyRadioGroup.x+10;
+	private int y = (Hour.getI(hour.getHourName())/6-1)*MyRadioGroup.x+10;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -79,37 +76,10 @@ public class UpdateActivity extends AppCompatActivity
 					RadioButton rb = (RadioButton) findViewById(p2);
 					String str = rb.getText().toString();
 					shift = Shift.get(str);
-					
-					//选中白班，修改hour
-					if(shift.equals(Shift.DAY))
-					{
-						hour = Hour.getHour(dh);
-						hourIndex = Hour.getIndex(dh);
-						((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
-						if(Config.isWeekend())
-						{
-							hour = Hour.getHour(dh+8);
-							hourIndex += 16;
-							((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
-						}
-						setY((hourIndex/6-1)*MyRadioGroup.x+10);
-						setScroll(hourScrollView);
-					}
-					//如果选中夜班，修改hour
-					if(shift.equals(Shift.NIGHT))
-					{
-						hour = Hour.getHour(nh);
-						hourIndex = Hour.getIndex(nh);
-						((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
-						if(Config.isWeekend())
-						{
-							hour = Hour.getHour(nh+8);
-							hourIndex += 16;
-							((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
-						}
-						setY((hourIndex/6-1)*MyRadioGroup.x+10);
-						setScroll(hourScrollView);
-					}
+					if(shift.equals(Shift.REST)){
+						((RadioButton)hourRadioGroup.getChildAt(0)).setChecked(true);
+						hour = Hour.ZERO;
+					} 
 				}
 			});
 
@@ -141,18 +111,46 @@ public class UpdateActivity extends AppCompatActivity
 			});
 
 		//设置点开默认选中
-		((RadioButton)shiftRadioGroup.getChildAt(0)).setChecked(true);
-		((RadioButton)rateRadioGroup.getChildAt(0)).setChecked(true);
-		((RadioButton)fakeRadioGroup.getChildAt(0)).setChecked(true);
-		((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
-
-		//周末设置双倍倍数
-		if (Config.isWeekend())
+		int s = 0;
+		switch(shift)
 		{
-			setY((hourIndex/6-1)*MyRadioGroup.x+10);
-			((RadioButton)rateRadioGroup.getChildAt(1)).setChecked(true);
-			((RadioButton)hourRadioGroup.getChildAt(hourIndex)).setChecked(true);
+			case DAY:
+				s = 0;
+				break;
+			case MIDDLE:
+				s = 1;
+				break;
+			case NIGHT:
+				s = 2;
+				break;
+			case REST:
+				s = 3;
+				break;
 		}
+		
+		int r = 0;
+//		switch(rate)
+//		{
+//			case ONE_AND_HALF:
+//				r = 0;
+//				break;
+//			case TWO:
+//				r = 1;
+//				break;
+//			case THREE:
+//				r = 2;
+//				break;
+//		}
+		if(Config.isWeekend())
+		{
+			r = 1;
+		}
+		
+		((RadioButton)shiftRadioGroup.getChildAt(s)).setChecked(true);
+		((RadioButton)rateRadioGroup.getChildAt(r)).setChecked(true);
+		((RadioButton)fakeRadioGroup.getChildAt(0)).setChecked(true);
+		((RadioButton)hourRadioGroup.getChildAt(Hour.getI(hour.getHourName()))).setChecked(true);
+
 		//回显加班信息
 		if (null != month.getDay(d))
 		{
@@ -268,6 +266,10 @@ public class UpdateActivity extends AppCompatActivity
 		month.setDay(d, day);
 		io.outObject(month, m);
 		PageOne.updateView();
+		
+		Config.setShift(shift);
+		//Config.setRate(rate);
+		Config.setHour(hour);
 		finish();
 	}
 

@@ -28,7 +28,7 @@ public class PageThree
 {
 
 	private View view;
-	private static float[] data = new float[15];
+	private static float[] data = new float[13];
 
     public PageThree()
 	{
@@ -49,7 +49,7 @@ public class PageThree
 		String[] companies = new String[] {
 			"周期开始(日期)", "基本工资(元)", "本月绩效(元)", "中班补贴(元/天)", "夜班补贴(元/天)" ,
 			"岗位补贴(元)", "高温补贴(元)","交通补贴(元)", "社会保险(元)", "公积金(元)",
-			"其他补贴(元)", "其他扣款(元)", "专项扣除(元)", "白班平时加班(时/天)", "夜班平时加班(时/天)" };
+			"其他补贴(元)", "其他扣款(元)", "专项扣除(元)", };
 		ListAdapter adapter = new MyAdapter(view.getContext(), companies);
 		getData();
 
@@ -73,8 +73,6 @@ public class PageThree
 		data[10] = Config.getSettings().getOtherSubsidy();
 		data[11] = Config.getSettings().getOtherDeductions();
 		data[12] = Config.getSettings().getSpecialDeduction();
-		data[13] = Config.getSettings().getDayHour();
-		data[14] = Config.getSettings().getNightHour();
 	}
 
 	public void saveSettings()
@@ -92,9 +90,6 @@ public class PageThree
 		Config.getSettings().setOtherSubsidy(data[10]);
 		Config.getSettings().setOtherDeductions(data[11]);
 		Config.getSettings().setSpecialDeduction(data[12]);
-		Config.getSettings().setDayHour(data[13]);
-		Config.getSettings().setNightHour(data[14]);
-
 		Config.save();
 	}
 
@@ -147,13 +142,6 @@ public class PageThree
 												data[position] = MathUtil.F(f, 1);
 											else
 												Toast.makeText(et.getContext(), "填写正确日期", Toast.LENGTH_LONG).show();
-										}
-										else if (position == 13 || position == 14)
-										{
-											if (MathUtil.isOK(f, 0, 0.5f, 33))
-												data[position] = MathUtil.F(f, 1);
-											else
-												Toast.makeText(et.getContext(), "填写正确时数", Toast.LENGTH_LONG).show();
 										}
 										else
 										{

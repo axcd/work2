@@ -17,30 +17,7 @@ public class Settings implements Serializable
 	private float otherSubsidy = 0;
 	private float otherDeductions = 0;
 	private float specialDeduction = 0;
-	private float dayHour = 3;
-	private float nightHour = 3.5f;
-
-	public void setDayHour(float dayHour)
-	{
-		this.dayHour = dayHour;
-	}
-
-	public float getDayHour()
-	{
-		return dayHour;
-	}
-
-	public void setNightHour(float nightHour)
-	{
-		this.nightHour = nightHour;
-	}
-
-	public float getNightHour()
-	{
-		return nightHour;
-	}
 	
-
 	public void setSpecialDeduction(float specialDeduction)
 	{
 		this.specialDeduction = specialDeduction;

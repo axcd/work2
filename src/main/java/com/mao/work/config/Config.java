@@ -26,7 +26,7 @@ public class Config
 	private static Calendar calendar;
 	private static Shift shift = Shift.DAY;
 	private static Rate rate = Rate.ONE_AND_HALF;
-	private static Hour hour = Hour.ZERO;
+	private static Hour hour = Hour.THREE;
 
 	public static void init()
 	{

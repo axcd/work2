@@ -8,7 +8,11 @@ import com.mao.work.*;
 public class ObjectIO <T>
 {
 
+<<<<<<< HEAD
 	private File root = new File("/data/user/0/com.mao.work");
+=======
+	private File root = new File("/data/data/com.mao.work");
+>>>>>>> ed60bf127bf9513346cc2e4926b667b9ee2ed1a8
 
 	//序列化
 	public void outObject(T t, String fname)
@@ -20,7 +24,7 @@ public class ObjectIO <T>
 
 			if (fname.contains("/"))
 			{
-				File d  = new File(root, fname.split("/")[0]);
+				File d  = new File(root, fname.split("/")[0]);MyLog.d(d+"");
 				File f = new File(root, File.separator + fname);
 				if (null == t)
 				{
@@ -50,7 +54,7 @@ public class ObjectIO <T>
 		}
 		catch (Exception e)
 		{
-			MyLog.d("Out IOException");
+			//MyLog.d("Out IOException");
 		}
 
 	}

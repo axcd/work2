@@ -17,9 +17,10 @@ import com.mao.work.enum.*;
 import java.math.*;
 import android.app.*;
 import android.support.v4.view.*;
+import com.mao.work.util.*;
 
 /**
- * Created by Jay on 2015/8/28 0028.
+ * Created by Jay on 2020/9/28 0028.
  */
 public class PageOne
 {
@@ -46,11 +47,11 @@ public class PageOne
 	{
 		//数组置零,获取数据
 		String[] companies = new String[] {
-			"平时加班(小时)", "周末加班(小时)", "节假日加班(小时)", "中班天数(天)", "夜班天数(天)" ,
-			"调休(小时)", "事假(小时)", "病假(小时)","年假(小时)",
+			"平时加班(时)", "周末加班(时)", "节假日加班(时)", "中班天数(天)", "夜班天数(天)" ,
+			"调休(时)", "事假(时)", "病假(时)","年假(时)",
 			"本月绩效(元)", "岗位补贴(元)", "交通补贴(元)", "高温补贴(元)", "社会保险(元)", "公积金(元)", 
-			"其他补贴(元)", "其他扣款(元)", "平时加班(元/小时)","平时加班费", "周末加班(元/小时)",
-			"周末加班费(元)", "节假日加班(元/小时)","节假日加班费(元)",
+			"其他补贴(元)", "其他扣款(元)", "平时加班(元/时)","平时加班费(元)", "周末加班(元/时)",
+			"周末加班费(元)", "节假日加班(元/时)","节假日加班费(元)",
 			"本月应发(元)", "本月实发(元)"};
 		ListAdapter adapter = new MyAdapter(context, companies);
 		getData();
@@ -192,33 +193,25 @@ public class PageOne
 			//基本工资
 			float base = Config.getSettings().getBasePay();
 			//平时加班(H)
-			data[17] = F(base / 21.75 / 8 * 1.5 , 1);
+			data[17] = MathUtil.F(base / 21.75 / 8 * 1.5 , 1);
 			//平时加班费
-			data[18] = F((data[17] * data[0]), 1);
+			data[18] = MathUtil.F((data[17] * data[0]), 1);
 			//周末加班(H)
-			data[19] = F(base / 21.75 / 8 * 2 , 1);
+			data[19] = MathUtil.F(base / 21.75 / 8 * 2 , 1);
 			//周末加班费
-			data[20] = F(data[19] * data[1], 1);
+			data[20] = MathUtil.F(data[19] * data[1], 1);
 			//节假日加班(H)
-			data[21] = F(base / 21.75 / 8 * 3 , 1);
+			data[21] = MathUtil.F(base / 21.75 / 8 * 3 , 1);
 			//节假日加班费
-			data[22] = F(data[21] * data[2], 1);
+			data[22] = MathUtil.F(data[21] * data[2], 1);
 
 			float middle = Config.getSettings().getMiddleShiftSubsidy();
 			float night = Config.getSettings().getNightShiftSubsidy();
 			//应发工资
-			data[23] = F((base + data[3] * middle + data[4] * night + data[18] + data[20] + data[22] + data[9] + data[10] + data[12] + data[15]), 1);
+			data[23] = MathUtil.F((base + data[3] * middle + data[4] * night + data[18] + data[20] + data[22] + data[9] + data[10] + data[12] + data[15]), 1);
 			//实发工资
-			data[24] = F((data[23] - (float)(base / 21.75 / 8  * rateXhour) - (float)(base / 21.75 / 8 * data[6]) - (float)(base / 21.75 / 8 * 0.3 * data[7]) - data[13] - data[14] - data[16]), 1);
+			data[24] = MathUtil.F((data[23] - (float)(base / 21.75 / 8  * rateXhour) - (float)(base / 21.75 / 8 * data[6]) - (float)(base / 21.75 / 8 * 0.3 * data[7]) - data[13] - data[14] - data[16]), 1);
 		}
-	}
-
-	//设置保留位数
-	public static float F(double num, int n)
-	{
-		BigDecimal bg = new BigDecimal(num);
-		double num1 = bg.setScale(n, BigDecimal.ROUND_HALF_UP).doubleValue();
-		return((float)num1);
 	}
 }
 

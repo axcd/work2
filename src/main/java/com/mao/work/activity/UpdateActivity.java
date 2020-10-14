@@ -88,6 +88,7 @@ public class UpdateActivity extends AppCompatActivity
 						{
 							r = 1;
 							h += 16;
+							h = h>48?48:h;
 							y = (h/6-1)*MyRadioGroup.x+10;
 						}
 						((RadioButton)rateRadioGroup.getChildAt(r)).setChecked(true);
@@ -148,6 +149,7 @@ public class UpdateActivity extends AppCompatActivity
 		{
 			r = 1;
 			h += 16;
+			h = h>48?48:h;
 			y = (h/6-1)*MyRadioGroup.x+10;
 		}
 		

@@ -79,7 +79,21 @@ public class UpdateActivity extends AppCompatActivity
 					if(shift.equals(Shift.REST)){
 						((RadioButton)hourRadioGroup.getChildAt(0)).setChecked(true);
 						hour = Hour.ZERO;
-					} 
+						y = 10;
+					}else{
+						hour = Config.getHour();
+						int r = 0;
+						int h = Hour.getI(hour.getHourName());
+						if(Config.isWeekend())
+						{
+							r = 1;
+							h += 16;
+							y = (h/6-1)*MyRadioGroup.x+10;
+						}
+						((RadioButton)rateRadioGroup.getChildAt(r)).setChecked(true);
+						((RadioButton)hourRadioGroup.getChildAt(h)).setChecked(true);
+					}
+					setScroll(hourScrollView);
 				}
 			});
 
@@ -198,7 +212,10 @@ public class UpdateActivity extends AppCompatActivity
 		hourScrollView.post(new Runnable(){
 				public void run()
 				{
-					hourScrollView.scrollTo(0, getY());
+					int x = getY();
+					if(x<10) x = 10;
+					if(x>7*MyRadioGroup.x) x = 6*MyRadioGroup.x+10;
+					hourScrollView.scrollTo(0, x);
 				}
 			});
 	}
@@ -258,7 +275,7 @@ public class UpdateActivity extends AppCompatActivity
 		io.outObject(month, m);
 		PageOne.updateView();
 		
-		Config.setShift(shift);
+		if(!shift.equals(Shift.REST)) Config.setShift(shift);
 		//Config.setRate(rate);
 		if(!Config.isWeekend()) Config.setHour(hour);
 		finish();

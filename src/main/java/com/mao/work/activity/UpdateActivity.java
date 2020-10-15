@@ -31,7 +31,7 @@ public class UpdateActivity extends AppCompatActivity
 	private String m;
 	private Month month;
 	private String date;
-	private int y = (Hour.getI(hour.getHourName())/6-1)*MyRadioGroup.x+10;
+	private int y = (Hour.getI(hour.getHourName()) / 6 - 1) * MyRadioGroup.x + 10;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -62,7 +62,7 @@ public class UpdateActivity extends AppCompatActivity
 		//设置显示日期
 		final TextView dateText = (TextView)findViewById(R.id.txt_topbar);
 		dateText.setText(date);
-		
+
 		final RadioGroup shiftRadioGroup = (RadioGroup)findViewById(R.id.shiftRadioGroup);
 		final RadioGroup rateRadioGroup = (RadioGroup)findViewById(R.id.rateRadioGroup);
 		final RadioGroup fakeRadioGroup = (RadioGroup)findViewById(R.id.fakeRadioGroup);
@@ -76,25 +76,6 @@ public class UpdateActivity extends AppCompatActivity
 					RadioButton rb = (RadioButton) findViewById(p2);
 					String str = rb.getText().toString();
 					shift = Shift.get(str);
-					if(shift.equals(Shift.REST)){
-						((RadioButton)hourRadioGroup.getChildAt(0)).setChecked(true);
-						hour = Hour.ZERO;
-						y = 10;
-					}else{
-						hour = Config.getHour();
-						int r = 0;
-						int h = Hour.getI(hour.getHourName());
-						if(Config.isWeekend())
-						{
-							r = 1;
-							h += 16;
-							h = h>48?48:h;
-							y = (h/6-1)*MyRadioGroup.x+10;
-						}
-						((RadioButton)rateRadioGroup.getChildAt(r)).setChecked(true);
-						((RadioButton)hourRadioGroup.getChildAt(h)).setChecked(true);
-					}
-					setScroll(hourScrollView);
 				}
 			});
 
@@ -104,6 +85,20 @@ public class UpdateActivity extends AppCompatActivity
 					RadioButton rb = (RadioButton) findViewById(p2);
 					String str = rb.getText().toString();
 					rate = Rate.get(str);
+					
+					int r = 0;
+					int h = Hour.getI(Config.getHour().getHourName());
+					if (!rate.equals(Rate.ONE_AND_HALF))
+					{
+						if(rate.equals(Rate.TWO))r = 1;
+						else r = 2;
+						h += 16;
+						h = h > 48 ?48: h;
+					}
+					y = (h / 6 - 1) * MyRadioGroup.x + 10;
+					((RadioButton)rateRadioGroup.getChildAt(r)).setChecked(true);
+					((RadioButton)hourRadioGroup.getChildAt(h)).setChecked(true);
+					setScroll(hourScrollView);
 				}
 			});
 
@@ -127,7 +122,7 @@ public class UpdateActivity extends AppCompatActivity
 
 		//设置点开默认选中
 		int s = 0;
-		switch(shift)
+		switch (shift)
 		{
 			case DAY:
 				s = 0;
@@ -142,17 +137,17 @@ public class UpdateActivity extends AppCompatActivity
 				s = 3;
 				break;
 		}
-		
+
 		int r = 0;
 		int h = Hour.getI(hour.getHourName());
-		if(Config.isWeekend())
+		if (Config.isWeekend())
 		{
 			r = 1;
 			h += 16;
-			h = h>48?48:h;
-			y = (h/6-1)*MyRadioGroup.x+10;
+			h = h > 48 ?48: h;
+			y = (h / 6 - 1) * MyRadioGroup.x + 10;
 		}
-		
+
 		((RadioButton)shiftRadioGroup.getChildAt(s)).setChecked(true);
 		((RadioButton)rateRadioGroup.getChildAt(r)).setChecked(true);
 		((RadioButton)fakeRadioGroup.getChildAt(0)).setChecked(true);
@@ -201,27 +196,28 @@ public class UpdateActivity extends AppCompatActivity
 				if (rb.getText().toString().equals(month.getDay(d).getHour().getHourName()))
 				{
 					rb.setChecked(true);
-					setY((i/6-1)*MyRadioGroup.x+10);
+					setY((i / 6 - 1) * MyRadioGroup.x + 10);
 					break;
 				}
 			}
 		}
 		setScroll(hourScrollView);
 	}
-	
-	public void setScroll(final ScrollView hourScrollView){
-		
+
+	public void setScroll(final ScrollView hourScrollView)
+	{
+
 		hourScrollView.post(new Runnable(){
 				public void run()
 				{
 					int x = getY();
-					if(x<10) x = 10;
-					if(x>7*MyRadioGroup.x) x = 6*MyRadioGroup.x+10;
+					if (x < 10) x = 10;
+					if (x > 7 * MyRadioGroup.x) x = 6 * MyRadioGroup.x + 10;
 					hourScrollView.scrollTo(0, x);
 				}
 			});
 	}
-	
+
 	//设置保留位数
 	public static float F(double num, int n)
 	{
@@ -229,7 +225,7 @@ public class UpdateActivity extends AppCompatActivity
 		double num1 = bg.setScale(n, BigDecimal.ROUND_HALF_UP).doubleValue();
 		return((float)num1);
 	}
-	
+
 	public void setY(int y)
 	{
 		this.y = y;
@@ -254,8 +250,8 @@ public class UpdateActivity extends AppCompatActivity
 			{
 				break;
 			}
-		
-			if(i == length-1)
+
+			if (i == length - 1)
 			{
 				month = null;
 			}
@@ -271,15 +267,26 @@ public class UpdateActivity extends AppCompatActivity
 	public void onInsert(View view)
 	{
 		//添加加班
+		if (shift.equals(Shift.REST))
+		{
+			hour = Hour.ZERO;
+			fake = Fake.NORMAL;
+		} 
+		if (!shift.equals(Shift.REST))
+		{
+			Config.setShift(shift);
+			if (fake.equals(Fake.NORMAL) && rate.equals(Rate.ONE_AND_HALF))
+			{
+				Config.setHour(hour);
+			}
+		} 
+
 		Day day = new Day(date, shift, fake, rate, hour);
 		Config.getSelectedView().setDay(day);
 		month.setDay(d, day);
 		io.outObject(month, m);
 		PageOne.updateView();
-		
-		if(!shift.equals(Shift.REST)) Config.setShift(shift);
-		//Config.setRate(rate);
-		if(!Config.isWeekend()) Config.setHour(hour);
+
 		finish();
 	}
 

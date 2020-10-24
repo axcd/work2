@@ -176,6 +176,7 @@ class DayAdapter extends ArrayAdapter<Date>
 			textView.setOnClickListener(new View.OnClickListener(){
 					public void onClick(View view)
 					{
+						//textView.setClickable(false);
 						if (null != Config.getSelectedView())
 						{
 							Config.getSelectedView().setSelected(false);
@@ -199,6 +200,7 @@ class DayAdapter extends ArrayAdapter<Date>
 						Intent intent = new Intent();
 						intent.setClass(getContext(), UpdateActivity.class);
 						getContext().startActivity(intent);
+						//textView.setClickable(true);
 					}
 				});
 

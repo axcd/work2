@@ -38,7 +38,7 @@ public class Config
 		Config.setToday(Config.calendar.getTime());
 
 		//如果大于开始日期显示在下一月
-		if (calendar.get(Calendar.DATE) > Config.getSettings().getStartDay() && Config.getSettings().getStartDay() != 1)
+		if (calendar.get(Calendar.DATE) >= Config.getSettings().getStartDay() && Config.getSettings().getStartDay() != 1)
 		{
 			Config.calendar.add(Calendar.MONTH, 1);
 		}

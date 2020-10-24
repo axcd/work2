@@ -295,6 +295,7 @@ public class UpdateActivity extends AppCompatActivity
 	{
 		super.finish();
 		overridePendingTransition(R.anim.dialog_exit, 0); 
+		//Config.getSelectedView().setClickable(true);
 	}
 
 }

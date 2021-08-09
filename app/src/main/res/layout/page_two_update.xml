@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="wrap_content"
+	android:layout_width="match_parent"
+	android:orientation="vertical"
+	android:layout_gravity="center"
+	android:background="@drawable/update_bkg">
+
+	<TextView
+		android:id="@+id/txt_topbar"
+		android:layout_width="match_parent"
+		android:layout_height="40dp"
+		android:gravity="center"
+		android:text="加班信息"
+		android:textColor="#FF4A3D9D"
+		android:textSize="18sp"/>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="4px"
+		android:background="@color/fuchsia"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:gravity="top|center_horizontal"
+		android:orientation="vertical">
+
+		<RadioGroup
+			android:id="@+id/shiftRadioGroup"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:gravity="center"
+			android:orientation="horizontal"
+			android:background="#FFF9F7E3">
+
+			<RadioButton
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
+				android:gravity="center"
+				android:button="@null"
+				android:background="@drawable/shift1"
+				android:text="白班"
+				android:layout_weight="1.0"
+				android:layout_marginLeft="12dp"
+				android:layout_marginRight="12dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"
+				android:padding="5dp"/>
+
+			<RadioButton
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
+				android:gravity="center"
+				android:button="@null"
+				android:background="@drawable/shift2"
+				android:text="中班"
+				android:layout_weight="1.0"
+				android:layout_marginLeft="12dp"
+				android:layout_marginRight="12dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"
+				android:padding="5dp"/>
+
+			<RadioButton
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
+				android:gravity="center"
+				android:button="@null"
+				android:background="@drawable/shift3"
+				android:text="夜班"
+				android:layout_weight="1.0"
+				android:layout_marginLeft="12dp"
+				android:layout_marginRight="12dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"
+				android:padding="5dp"/>
+
+			<RadioButton
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
+				android:gravity="center"
+				android:button="@null"
+				android:background="@drawable/shift4"
+				android:text="休班"
+				android:layout_weight="1.0"
+				android:layout_marginLeft="12dp"
+				android:layout_marginRight="12dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"
+				android:padding="5dp"/>
+
+		</RadioGroup>
+
+		<RadioGroup
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:gravity="center"
+			android:orientation="horizontal"
+			android:background="#FFE3FEFE"
+			android:id="@+id/rateRadioGroup"
+			android:paddingLeft="50dp"
+			android:paddingRight="50dp">
+
+			<RadioButton
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
+				android:gravity="center"
+				android:button="@null"
+				android:background="@drawable/rate1"
+				android:text="1.5倍"
+				android:layout_margin="10dp"
+				android:layout_weight="1.0"/>
+
+			<RadioButton
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
+				android:gravity="center"
+				android:button="@null"
+				android:background="@drawable/rate2"
+				android:text="2倍"
+				android:layout_margin="10dp"
+				android:layout_weight="1.0"/>
+
+			<RadioButton
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
+				android:gravity="center"
+				android:button="@null"
+				android:background="@drawable/rate3"
+				android:text="3倍"
+				android:layout_margin="10dp"
+				android:layout_weight="1.0"
+				android:padding="5dp"/>
+
+		</RadioGroup>
+
+		<RadioGroup
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:gravity="center"
+			android:orientation="horizontal"
+			android:background="#FFFEF3FE"
+			android:id="@+id/fakeRadioGroup">
+
+			<RadioButton
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
+				android:gravity="center"
+				android:button="@null"
+				android:background="@drawable/fake1"
+				android:text="加班"
+				android:layout_weight="1.0"
+				android:padding="5dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"/>
+
+			<RadioButton
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
+				android:gravity="center"
+				android:button="@null"
+				android:background="@drawable/fake2"
+				android:text="事假"
+				android:layout_weight="1.0"
+				android:padding="5dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"/>
+
+			<RadioButton
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
+				android:gravity="center"
+				android:button="@null"
+				android:background="@drawable/fake3"
+				android:text="病假"
+				android:layout_weight="1.0"
+				android:padding="5dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"/>
+
+			<RadioButton
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
+				android:gravity="center"
+				android:button="@null"
+				android:background="@drawable/fake3"
+				android:text="调休"
+				android:layout_weight="1.0"
+				android:padding="5dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"/>
+
+			<RadioButton
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
+				android:gravity="center"
+				android:button="@null"
+				android:background="@drawable/fake4"
+				android:text="年假"
+				android:layout_weight="1.0"
+				android:padding="5dp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"/>
+
+		</RadioGroup>
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="3px"
+			android:background="@color/pink"/>
+
+		<ScrollView
+			android:layout_height="102dp"
+			android:layout_width="match_parent"
+			android:scrollbarFadeDuration="0"
+			android:fadeScrollbars="false"
+			android:background="#7FF7F78C"
+			android:id="@+id/hourScrollView">
+
+			<com.mao.work2.layout.MyRadioGroup
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:gravity="center"
+				android:orientation="horizontal"
+				android:id="@+id/hourRadioGroup"/>
+
+		</ScrollView>
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="3px"
+			android:background="@color/pink"/>
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:layout_margin="20dp"
+			android:layout_gravity="center"
+			android:weightSum="1.0">
+
+			<Button
+				android:layout_height="35dp"
+				android:layout_width="100dp"
+				android:text="删除"
+				android:layout_gravity="left"
+				android:layout_marginRight="25dp"
+				android:onClick="onDelete"
+				android:shadowRadius="5.0"
+				android:background="#FFF5C3F4"
+				android:gravity="center"/>
+
+			<Button
+				android:layout_height="35dp"
+				android:layout_width="100dp"
+				android:text="增加"
+				android:layout_marginLeft="25dp"
+				android:onClick="onInsert"
+				android:shadowRadius="5.0"
+				android:background="#FFCBF8BD"
+				android:gravity="center"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</LinearLayout>
+

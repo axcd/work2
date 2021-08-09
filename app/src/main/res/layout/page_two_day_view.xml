@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="60dp"
+	android:gravity="center"
+	android:orientation="vertical">
+
+	<com.mao.work2.view.DayView
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:id="@+id/entryTextView1"
+		android:layout_margin="1dp"
+		android:gravity="center"
+		android:textSize="18sp"
+		android:textStyle="bold"
+		android:background="#78C0BDF8"/>
+
+</LinearLayout>
+

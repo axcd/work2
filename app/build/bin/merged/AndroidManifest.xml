@@ -28,10 +28,6 @@
         <activity
             android:name="com.mao.work2.activity.UpdateActivity"
             android:theme="@style/MyDialogTheme" />
-
-        <meta-data
-            android:name="android.support.VERSION"
-            android:value="26.0.1" />
     </application>
 
 </manifest>

@@ -15,6 +15,7 @@ import com.mao.work2.page.*;
 public class Config
 {
 	private static Settings settings;
+	private static int startDay;
 	private static Date today;
 	private static Date selectedDate;
 	private static Date startDate;
@@ -27,18 +28,20 @@ public class Config
 	private static Shift shift = Shift.DAY;
 	private static Rate rate = Rate.ONE_AND_HALF;
 	private static Hour hour = Hour.THREE;
+	private static int scroll;
 
 	public static void init()
 	{
 
-		settings = new ObjectIO<Settings>().inObject("settings");
-		if(null==settings)  settings = new Settings();
+		settings = new Settings();
+		
+		startDay = (int)settings.get("周期开始(日期)");
 
 		Config.calendar = Calendar.getInstance();
 		Config.setToday(Config.calendar.getTime());
 
 		//如果大于开始日期显示在下一月
-		if (calendar.get(Calendar.DATE) >= Config.getSettings().getStartDay() && Config.getSettings().getStartDay() != 1)
+		if (calendar.get(Calendar.DATE) >= startDay && startDay != 1)
 		{
 			Config.calendar.add(Calendar.MONTH, 1);
 		}
@@ -48,8 +51,9 @@ public class Config
 	
 	public static void save()
 	{
-		new ObjectIO<Settings>().outObject(settings,"settings");
-		//setConfig();
+		//保存修改
+		settings.save();
+		startDay = (int)settings.get("周期开始(日期)");
 		PageTwo.updateView();
 	}
 	
@@ -84,13 +88,13 @@ public class Config
 	public static void setStartDate(Calendar calendar)
 	{
 		Calendar start_cal = (Calendar)calendar.clone();
-	    if(Config.getSettings().getStartDay()!=1)start_cal.add(Calendar.MONTH, -1);
+	    if(startDay!=1)start_cal.add(Calendar.MONTH, -1);
 		int maxDay = start_cal.getActualMaximum(Calendar.DATE);
 		
-		if(maxDay<Config.getSettings().getStartDay()){
+		if(maxDay<startDay){
 			start_cal.set(Calendar.DATE, maxDay);
 		}else{
-			start_cal.set(Calendar.DATE, Config.getSettings().getStartDay()-1);
+			start_cal.set(Calendar.DATE, startDay-1);
 		}
 		Config.startDate = start_cal.getTime();
 	}
@@ -104,17 +108,27 @@ public class Config
 	public static void setEndDate(Calendar calendar)
 	{
 		Calendar end_cal = (Calendar)calendar.clone();
-	    if(Config.getSettings().getStartDay()==1)end_cal.add(Calendar.MONTH,1);
+	    if(startDay==1)end_cal.add(Calendar.MONTH,1);
 		int maxDay = end_cal.getActualMaximum(Calendar.DATE);
 		
-		if(maxDay<Config.getSettings().getStartDay()){
+		if(maxDay<startDay){
 			end_cal.set(Calendar.DATE,maxDay+1);
 		}else{
-			end_cal.set(Calendar.DATE, Config.getSettings().getStartDay());
+			end_cal.set(Calendar.DATE, startDay);
 		}
 		Config.endDate = end_cal.getTime();
 	}
 
+	public static void setStartDay(int startDay)
+	{
+		Config.startDay = startDay;
+	}
+
+	public static int getStartDay()
+	{
+		return startDay;
+	}
+	
 	public static Date getEndDate()
 	{
 		return endDate;
@@ -230,4 +244,14 @@ public class Config
 		return rate;
 	}
 
+	public static void setScroll(int scroll)
+	{
+		Config.scroll = scroll;
+	}
+
+	public static int getScroll()
+	{
+		return scroll;
+	}
+	
 }

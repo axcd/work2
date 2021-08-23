@@ -1,150 +1,93 @@
 package com.mao.work2.settings;
 
-import java.io.*;
+import java.util.*;
+import com.mao.work2.io.*;
 
-public class Settings implements Serializable
+public class Settings
 {
-	private float basePay = 2000;
-	private int startDay = 1;
-	private float performance = 1000;
-	private float middleShiftSubsidy = 10;
-	private float nightShiftSubsidy = 15;
-	private float socialInsurance = 400;
-	private float housingFund = 400;
-	private float temperatureSubsidy = 0;
-	private float transportationSubsidy = 0;
-	private float postSubsidy = 100;
-	private float otherSubsidy = 0;
-	private float otherDeductions = 0;
-	private float specialDeduction = 0;
+	private ObjectIO objectIO = new ObjectIO();
+	private Map<String,Float> settings = new HashMap<String,Float>();
+	//这儿可以修改设置项
+	private String[] list = {
+		"周期开始(日期)", "基本工资(元)", "本月绩效(元)",
+		"中班补贴(元/天)", "夜班补贴(元/天)" ,
+		"岗位补贴(元)", "高温补贴(元)","交通补贴(元)", 
+		"社会保险(元)", "公积金(元)",
+		"其他补贴(元)", "其他扣款(元)", "专项扣除(元)"
+		};
+
+	public Settings(String[] list)
+	{
+		this.list = list;
+		init();
+	}
+
+	public Settings()
+	{
+		init();
+	}
+
+	public void setSettings(Map<String, Float> settings)
+	{
+		this.settings = settings;
+	}
+
+	public Map<String, Float> getSettings()
+	{
+		return settings;
+	}
+
+	public void setList(String[] list)
+	{
+		this.list = list;   
+	}
+
+	public String[] getList()
+	{
+		return list;
+	}
 	
-	public void setSpecialDeduction(float specialDeduction)
+	public void set(String key, Float value)
 	{
-		this.specialDeduction = specialDeduction;
+		settings.put(key,value);
 	}
-
-	public float getSpecialDeduction()
+	
+	public float get(String key)
 	{
-		return specialDeduction;
+		Float value = settings.get(key);
+		if(null == value)
+		{
+			value = 0f;
+		}
+		return value;
 	}
-
-	public void setBasePay(float basePay)
+	
+	//这儿可以设置默认值
+	public void setMapDefaultValue()
 	{
-		this.basePay = basePay;
+		set("周期开始(日期)",1f);
+		set("基本工资(元)",2200f);
+		set("本月绩效(元)",1100f);
 	}
-
-	public float getBasePay()
+	
+	private void init()
 	{
-		return basePay;
+		setMapDefaultValue();
+		
+		Map<String,Float> load_settings = (Map) objectIO.inObject(".setting");
+		//防止修改过后，清空.settings文件的以前配置
+		if(null != load_settings)
+		{
+			for(String key : list)
+			{
+				set(key,load_settings.get(key));
+			}
+		}
 	}
-
-	public void setStartDay(int startDay)
+	
+	public void save()
 	{
-		this.startDay = startDay;
+		objectIO.outObject(settings,".setting");
 	}
-
-	public int getStartDay()
-	{
-		return startDay;
-	}
-
-	public void setPerformance(float performance)
-	{
-		this.performance = performance;
-	}
-
-	public float getPerformance()
-	{
-		return performance;
-	}
-
-	public void setMiddleShiftSubsidy(float middleShiftSubsidy)
-	{
-		this.middleShiftSubsidy = middleShiftSubsidy;
-	}
-
-	public float getMiddleShiftSubsidy()
-	{
-		return middleShiftSubsidy;
-	}
-
-	public void setNightShiftSubsidy(float nightShiftSubsidy)
-	{
-		this.nightShiftSubsidy = nightShiftSubsidy;
-	}
-
-	public float getNightShiftSubsidy()
-	{
-		return nightShiftSubsidy;
-	}
-
-	public void setSocialInsurance(float socialInsurance)
-	{
-		this.socialInsurance = socialInsurance;
-	}
-
-	public float getSocialInsurance()
-	{
-		return socialInsurance;
-	}
-
-	public void setHousingFund(float housingFund)
-	{
-		this.housingFund = housingFund;
-	}
-
-	public float getHousingFund()
-	{
-		return housingFund;
-	}
-
-	public void setTemperatureSubsidy(float temperatureSubsidy)
-	{
-		this.temperatureSubsidy = temperatureSubsidy;
-	}
-
-	public float getTemperatureSubsidy()
-	{
-		return temperatureSubsidy;
-	}
-
-	public void setTransportationSubsidy(float transportationSubsidy)
-	{
-		this.transportationSubsidy = transportationSubsidy;
-	}
-
-	public float getTransportationSubsidy()
-	{
-		return transportationSubsidy;
-	}
-
-	public void setPostSubsidy(float postSubsidy)
-	{
-		this.postSubsidy = postSubsidy;
-	}
-
-	public float getPostSubsidy()
-	{
-		return postSubsidy;
-	}
-
-	public void setOtherSubsidy(float otherSubsidy)
-	{
-		this.otherSubsidy = otherSubsidy;
-	}
-
-	public float getOtherSubsidy()
-	{
-		return otherSubsidy;
-	}
-
-	public void setOtherDeductions(float otherDeductions)
-	{
-		this.otherDeductions = otherDeductions;
-	}
-
-	public float getOtherDeductions()
-	{
-		return otherDeductions;
-	}
+	
 }

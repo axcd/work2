@@ -31,7 +31,7 @@ public class UpdateActivity extends AppCompatActivity
 	private String m;
 	private Month month;
 	private String date;
-	private int y = (Hour.getI(hour.getHourName()) / 6 - 1) * MyRadioGroup.x + 10;
+	private int y = (Hour.getI(hour.getHourName()) / 6 - 1) * Config.getScroll() + 10;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -95,7 +95,7 @@ public class UpdateActivity extends AppCompatActivity
 						h += 16;
 						h = h > 48 ?48: h;
 					}
-					y = (h / 6 - 1) * MyRadioGroup.x + 10;
+					y = (h / 6 - 1) * Config.getScroll() + 10;
 					((RadioButton)rateRadioGroup.getChildAt(r)).setChecked(true);
 					((RadioButton)hourRadioGroup.getChildAt(h)).setChecked(true);
 					setScroll(hourScrollView);
@@ -145,7 +145,7 @@ public class UpdateActivity extends AppCompatActivity
 			r = 1;
 			h += 16;
 			h = h > 48 ?48: h;
-			y = (h / 6 - 1) * MyRadioGroup.x + 10;
+			y = (h / 6 - 1) * Config.getScroll() + 10;
 		}
 
 		((RadioButton)shiftRadioGroup.getChildAt(s)).setChecked(true);
@@ -196,7 +196,7 @@ public class UpdateActivity extends AppCompatActivity
 				if (rb.getText().toString().equals(month.getDay(d).getHour().getHourName()))
 				{
 					rb.setChecked(true);
-					setY((i / 6 - 1) * MyRadioGroup.x + 10);
+					setY((i / 6 - 1) * Config.getScroll() + 10);
 					break;
 				}
 			}
@@ -212,7 +212,7 @@ public class UpdateActivity extends AppCompatActivity
 				{
 					int x = getY();
 					if (x < 10) x = 10;
-					if (x > 7 * MyRadioGroup.x) x = 6 * MyRadioGroup.x + 10;
+					if (x > 7 * Config.getScroll()) x = 6 * Config.getScroll() + 10;
 					hourScrollView.scrollTo(0, x);
 				}
 			});

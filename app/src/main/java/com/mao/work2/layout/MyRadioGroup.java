@@ -5,15 +5,16 @@ import android.content.*;
 import android.util.*;
 import android.view.*;
 import com.mao.work2.*;
+import android.content.res.*;
+import com.mao.work2.config.*;
 
 public class MyRadioGroup extends RadioGroup
 {
-	public static int x = 70;
-	private int m = 10;
-	private int n = 6;
+	private int m;
+	private int n;
 	private int w;
 	private int h;
-	private int childCount;
+	private int childCount = 49;
 	
 	public MyRadioGroup(Context context)
 	{
@@ -24,7 +25,12 @@ public class MyRadioGroup extends RadioGroup
 	{
 		super(context, attrs);
 
-		for(int i=0;i<49;i++)
+		//获取xml配置
+		TypedArray t = context.obtainStyledAttributes(attrs,R.styleable.MyRadioGroup);
+		m = t.getInteger(R.styleable.MyRadioGroup_m,10);
+		n = t.getInteger(R.styleable.MyRadioGroup_n,6);
+		
+		for(int i=0;i<childCount;i++)
 		{
 			RadioButton rb = (RadioButton)LayoutInflater.from(context).inflate(R.layout.page_two_update_radio,null,false);
 			if(i%2!=0) rb.setText(i*0.5+"h");else rb.setText(i/2+"h");
@@ -42,9 +48,9 @@ public class MyRadioGroup extends RadioGroup
 		//获取最大宽度和
 		int maxWidth = MeasureSpec.getSize(widthMeasureSpec);
 		w = (maxWidth-m)/n-m;
-		h = (w+m)*2/3-m;
-		x = h+m;
-		int maxHeight = (h+m)*(int)Math.ceil(childCount/n+1)+m;
+		h = w*3/5;
+		com.mao.work2.config.Config.setScroll(h+m);
+		int maxHeight = (h+m)*(int)Math.ceil(childCount*1.0/n)+m;
 		
 		for(int i=0;i<childCount;i++)
 		{
@@ -72,7 +78,7 @@ public class MyRadioGroup extends RadioGroup
 			View child = this.getChildAt(i);
 			if (child.getVisibility() != View.GONE)
 			{
-				if (i%6 == 0)
+				if (i%n == 0)
 				{
 					if (i != 0)
 						row++;

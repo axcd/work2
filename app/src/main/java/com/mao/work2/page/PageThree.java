@@ -28,7 +28,7 @@ public class PageThree
 {
 
 	private View view;
-	private static float[] data = new float[13];
+//	private static float[] data = new float[13];
 
     public PageThree()
 	{
@@ -45,51 +45,15 @@ public class PageThree
 
 	public void updateView()
 	{
-		//数组置零,获取数据
-		String[] companies = new String[] {
-			"周期开始(日期)", "基本工资(元)", "本月绩效(元)", "中班补贴(元/天)", "夜班补贴(元/天)" ,
-			"岗位补贴(元)", "高温补贴(元)","交通补贴(元)", "社会保险(元)", "公积金(元)",
-			"其他补贴(元)", "其他扣款(元)", "专项扣除(元)", };
-		ListAdapter adapter = new MyAdapter(view.getContext(), companies);
-		getData();
+		ListAdapter adapter = new MyAdapter(view.getContext(), Config.getSettings().getList() );
 
 		//添加适配器
 		ListView listView = (ListView) view.findViewById(R.id.pagethreeListView);
 		listView.setAdapter(adapter);
 	}
 
-	public void getData()
-	{
-		data[0] = Config.getSettings().getStartDay();
-		data[1] = Config.getSettings().getBasePay();
-		data[2] = Config.getSettings().getPerformance();
-		data[3] = Config.getSettings().getMiddleShiftSubsidy();
-		data[4] = Config.getSettings().getNightShiftSubsidy();
-		data[5] = Config.getSettings().getPostSubsidy();
-		data[6] = Config.getSettings().getTemperatureSubsidy();
-		data[7] = Config.getSettings().getTransportationSubsidy();
-		data[8] = Config.getSettings().getSocialInsurance();
-		data[9] = Config.getSettings().getHousingFund();
-		data[10] = Config.getSettings().getOtherSubsidy();
-		data[11] = Config.getSettings().getOtherDeductions();
-		data[12] = Config.getSettings().getSpecialDeduction();
-	}
-
 	public void saveSettings()
 	{
-		Config.getSettings().setStartDay((int)data[0]);
-		Config.getSettings().setBasePay(data[1]);
-		Config.getSettings().setPerformance(data[2]);
-		Config.getSettings().setMiddleShiftSubsidy(data[3]);
-		Config.getSettings().setNightShiftSubsidy(data[4]);
-		Config.getSettings().setPostSubsidy(data[5]);
-		Config.getSettings().setTemperatureSubsidy(data[6]);
-		Config.getSettings().setTransportationSubsidy(data[7]);
-		Config.getSettings().setSocialInsurance(data[8]);
-		Config.getSettings().setHousingFund(data[9]);
-		Config.getSettings().setOtherSubsidy(data[10]);
-		Config.getSettings().setOtherDeductions(data[11]);
-		Config.getSettings().setSpecialDeduction(data[12]);
 		Config.save();
 	}
 
@@ -114,9 +78,9 @@ public class PageThree
 			final EditText et = (EditText) view.findViewById(R.id.entryEditText);
 			
 			if (position == 0)
-				et.setText((int)data[position] + "");
+				et.setText((int)Config.getSettings().get(text) + "");
 			else
-				et.setText(data[position] + "");
+				et.setText(Config.getSettings().get(text) + "");
 
 			et.setOnClickListener(new View.OnClickListener(){
 					public void onClick(View view)
@@ -139,14 +103,14 @@ public class PageThree
 										if (position == 0)
 										{
 											if (MathUtil.isOK(f, 1, 1, 31))
-												data[position] = MathUtil.F(f, 1);
+												Config.getSettings().set(text ,MathUtil.F(f, 1));
 											else
 												Toast.makeText(et.getContext(), "填写正确日期", Toast.LENGTH_LONG).show();
 										}
 										else
 										{
-											data[position] = MathUtil.F(f, 1);
-											et.setText(data[position] + "");
+											Config.getSettings().set( text, MathUtil.F(f, 1));
+											et.setText(Config.getSettings().get(text) + "");
 										}
 									}
 									saveSettings();

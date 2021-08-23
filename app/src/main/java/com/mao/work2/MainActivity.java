@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		
 		//初始化config
 		Config.init();
-//		//设置状态栏显示
+		//设置状态栏显示
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         currIndex = index;
         animation.setFillAfter(true);// true表示图片停在动画结束位置
-        animation.setDuration(300); //设置动画时间为300毫秒
+        animation.setDuration(200); //设置动画时间为300毫秒
         img_cursor.startAnimation(animation);//开始动画
     }
 

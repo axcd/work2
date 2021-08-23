@@ -86,11 +86,11 @@ public class PageTwo
 		tv.setText(sdf.format(calendar.getTime()));
 
 		//设置开始日期
-		if (Config.getSettings().getStartDay() != 1)
+		if (Config.getStartDay() != 1)
 		{
 			calendar.add(Calendar.MONTH, -1);
 		}
-		calendar.set(Calendar.DATE, Config.getSettings().getStartDay());
+		calendar.set(Calendar.DATE, Config.getStartDay());
 
 		//获取List<Date>
 		List<Date> dates = new ArrayList<Date>();
@@ -208,8 +208,7 @@ class DayAdapter extends ArrayAdapter<Date>
 		else
 		{
 			//不在范围之内的View，取消父类点击效果
-			textView.setOnClickListener(new View.OnClickListener(){ public void onClick(View view)
-					{} });
+			textView.setOnClickListener(new View.OnClickListener(){ public void onClick(View view) {} });
 		}
 
 		return view;

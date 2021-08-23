@@ -27,7 +27,7 @@ public class MyRadioGroup extends RadioGroup
 
 		//获取xml配置
 		TypedArray t = context.obtainStyledAttributes(attrs,R.styleable.MyRadioGroup);
-		m = t.getInteger(R.styleable.MyRadioGroup_m,10);
+		m = t.getInteger(R.styleable.MyRadioGroup_m,15);
 		n = t.getInteger(R.styleable.MyRadioGroup_n,6);
 		
 		for(int i=0;i<childCount;i++)

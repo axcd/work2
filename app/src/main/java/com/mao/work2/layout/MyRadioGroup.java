@@ -49,8 +49,9 @@ public class MyRadioGroup extends RadioGroup
 		int maxWidth = MeasureSpec.getSize(widthMeasureSpec);
 		w = (maxWidth-m)/n-m;
 		h = w*3/5;
-		com.mao.work2.config.Config.setScroll(h+m);
 		int maxHeight = (h+m)*(int)Math.ceil(childCount*1.0/n)+m;
+		
+		com.mao.work2.config.Config.setScroll(h+m);
 		
 		for(int i=0;i<childCount;i++)
 		{
@@ -65,25 +66,17 @@ public class MyRadioGroup extends RadioGroup
 		setMeasuredDimension(maxWidth, maxHeight);
 	}
 
-
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b)
 	{
 		super.onLayout(changed, l, t, r, b);
-		
-		int row = 0;
 		
 		for (int i = 0; i < childCount; i++)
 		{
 			View child = this.getChildAt(i);
 			if (child.getVisibility() != View.GONE)
 			{
-				if (i%n == 0)
-				{
-					if (i != 0)
-						row++;
-				}
-				child.layout((i%n)*(w+m)+m, row*(h+m)+m, (i%n+1)*(w+m), (row+1)*(h+m));
+				child.layout((i%n)*(w+m)+m, (i/n)*(h+m)+m, (i%n+1)*(w+m), (i/n+1)*(h+m));	
 			}
 		}
 	}

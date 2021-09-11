@@ -21,7 +21,7 @@ import android.view.*;
 import java.io.File;
 
 /**
- * Created by Jay on 2015/10/8 0008.
+ * Created by mao on 2020/09/28 0008.
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,ViewPager.OnPageChangeListener {
 	

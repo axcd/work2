@@ -3,7 +3,17 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
-
+	
+	sourceSets {
+		main {
+			res.srcDirs =
+			   [
+		      'src/main/res/layout/main',
+			  'src/main/res/layout',
+              'src/main/res',
+               ]
+		   }
+        }
     defaultConfig {
         applicationId "com.mao.work2"
         minSdkVersion 16

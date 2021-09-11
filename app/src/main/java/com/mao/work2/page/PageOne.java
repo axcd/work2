@@ -56,11 +56,10 @@ public class PageOne
 
 	public static void updateView()
 	{
-		
-		ListAdapter adapter = new MyAdapter(context, report.getList());
 		getData();
 
 		//添加适配器
+		ListAdapter adapter = new MyAdapter(context, report.getList());
 		ListView listView = (ListView) view.findViewById(R.id.pageoneListView);
 		listView.setAdapter(adapter);
 	}
@@ -185,28 +184,29 @@ public class PageOne
 				}
 			}
 			
-			//基本工资
-			float base = Config.getSettings().get("基本工资(元)");
+			//加班费基数
+			float base = Config.getSettings().get("基本工资(元)")+report.get("本月绩效(元)")+report.get("岗位补贴(元)");
+			report.set("加班费基数(元)",MathUtil.F(base, 1));
 			//平时加班(H)
-			report.set("平时加班(元/时)", MathUtil.F(base / 21.75 / 8 * 1.5 , 1));
+			report.set("平时加班(元/时)", MathUtil.F(base / 21.75 / 8 * 1.5 , 2));
 			//平时加班费
-			report.set("平时加班费(元)",  MathUtil.F((report.get("平时加班(元/时)") * report.get("平时加班(时)")), 1));
+			report.set("平时加班费(元)",  MathUtil.F((report.get("平时加班(元/时)") * report.get("平时加班(时)")), 2));
 			//周末加班(H)
-			report.set("周末加班(元/时)", MathUtil.F(base / 21.75 / 8 * 2, 1));
+			report.set("周末加班(元/时)", MathUtil.F(base / 21.75 / 8 * 2, 2));
 			//周末加班费
-			report.set("周末加班费(元)",  MathUtil.F((report.get("周末加班(元/时)") * report.get("周末加班(时)")), 1));
+			report.set("周末加班费(元)",  MathUtil.F((report.get("周末加班(元/时)") * report.get("周末加班(时)")), 2));
 			//节假日加班(H)
-			report.set("节假日加班(元/时)", MathUtil.F(base / 21.75 / 8 * 3 , 1));
+			report.set("节假日加班(元/时)", MathUtil.F(base / 21.75 / 8 * 3 , 2));
 			//节假日加班费
-			report.set("节假日加班费(元)",  MathUtil.F((report.get("节假日加班(元/时)") * report.get("节假日加班(时)")), 1));
+			report.set("节假日加班费(元)",  MathUtil.F((report.get("节假日加班(元/时)") * report.get("节假日加班(时)")), 2));
 			
 			//应发工资
-			report.set("本月应发(元)", MathUtil.F( base+report.get("本月绩效(元)")+report.get("岗位补贴(元)")
+			report.set("本月应发(元)", MathUtil.F( Config.getSettings().get("基本工资(元)")+report.get("本月绩效(元)")+report.get("岗位补贴(元)")
 						 +report.get("夜班天数(天)")*Config.getSettings().get("夜班补贴(元/天)")+report.get("中班天数(天)")*Config.getSettings().get("中班补贴(元/天)")
 			            +report.get("交通补贴(元)")+report.get("高温补贴(元)")+report.get("其他补贴(元)")
-						+report.get("平时加班费(元)")+report.get("周末加班费(元)")+report.get("节假日加班费(元)") ,1));
+						+report.get("平时加班费(元)")+report.get("周末加班费(元)")+report.get("节假日加班费(元)") ,2));
 			//实发工资
-			report.set("本月实发(元)", MathUtil.F( report.get("本月应发(元)")-report.get("社会保险(元)")-report.get("公积金(元)")-report.get("其他扣款(元)"), 1));
+			report.set("本月实发(元)", MathUtil.F( report.get("本月应发(元)")-report.get("社会保险(元)")-report.get("公积金(元)")-report.get("其他扣款(元)"), 2));
 		}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	}

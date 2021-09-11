@@ -18,7 +18,8 @@
 		android:gravity="center"
 		android:textSize="16sp"
 		android:typeface="serif"
-		android:textColor="#FF1E0782"/>
+		android:textColor="#FF1E0782"
+		android:textStyle="bold"/>
 
 	<TextView
 		android:layout_width="wrap_content"
@@ -30,7 +31,7 @@
 		android:layout_marginRight="15dp"
 		android:layout_marginBottom="5dp"
 		android:textSize="16sp"
-		android:textStyle="italic"
+		android:textStyle="normal"
 		android:typeface="serif"
 		android:paddingRight="5dp"
 		android:textColor="#FF0B0193"/>

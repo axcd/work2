@@ -27,8 +27,7 @@ import com.mao.work2.util.*;
 public class PageThree
 {
 
-	private View view;
-//	private static float[] data = new float[13];
+	private static View view;
 
     public PageThree()
 	{
@@ -43,23 +42,23 @@ public class PageThree
     }
 
 
-	public void updateView()
+	public static void updateView()
 	{
-		ListAdapter adapter = new MyAdapter(view.getContext(), Config.getSettings().getList() );
+		ListAdapter adapter = new MyAdapter3(view.getContext(), Config.getSettings().getList() );
 
 		//添加适配器
 		ListView listView = (ListView) view.findViewById(R.id.pagethreeListView);
 		listView.setAdapter(adapter);
 	}
 
-	public void saveSettings()
+	public static void saveSettings()
 	{
 		Config.save();
 	}
-
-	class MyAdapter extends ArrayAdapter<String>
+}
+	class MyAdapter3 extends ArrayAdapter<String>
 	{
-		public MyAdapter(Context context, String[] values) 
+		public MyAdapter3(Context context, String[] values) 
 		{
 			super(context, R.layout.page_three_entry, values);
 		}
@@ -77,11 +76,11 @@ public class PageThree
 
 			final EditText et = (EditText) view.findViewById(R.id.entryEditText);
 			
-			if (position == 0)
+			if (position == 0)  
 				et.setText((int)Config.getSettings().get(text) + "");
 			else
 				et.setText(Config.getSettings().get(text) + "");
-
+			
 			et.setOnClickListener(new View.OnClickListener(){
 					public void onClick(View view)
 					{
@@ -109,11 +108,11 @@ public class PageThree
 										}
 										else
 										{
-											Config.getSettings().set( text, MathUtil.F(f, 1));
+											Config.getSettings().set( text, MathUtil.F(f, 2));
 											et.setText(Config.getSettings().get(text) + "");
 										}
 									}
-									saveSettings();
+									PageThree.saveSettings();
 								}
 							});
 						adBd.setNegativeButton("取消", null);
@@ -124,6 +123,6 @@ public class PageThree
 
 			return view;
 		}
-	}
+	
 }
 

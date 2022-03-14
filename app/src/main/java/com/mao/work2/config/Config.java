@@ -14,7 +14,6 @@ import com.mao.work2.page.*;
 
 public class Config
 {
-	private static Settings settings;
 	private static int startDay;
 	private static Date today;
 	private static Date selectedDate;
@@ -29,24 +28,21 @@ public class Config
 	private static Rate rate = Rate.ONE_AND_HALF;
 	private static Hour hour = Hour.THREE;
 	private static int scroll;
+	private static Settings settings;
+	private static Report report;
 
 	public static void init()
 	{
-
-		settings = new Settings();
-		
-		startDay = (int)settings.get("周期开始(日期)");
-
 		Config.calendar = Calendar.getInstance();
 		Config.setToday(Config.calendar.getTime());
+		
+		Config.setConfig();
 
 		//如果大于开始日期显示在下一月
 		if (calendar.get(Calendar.DATE) >= startDay && startDay != 1)
 		{
 			Config.calendar.add(Calendar.MONTH, 1);
 		}
-		
-		Config.setConfig();
 	}
 	
 	public static void save()
@@ -54,34 +50,29 @@ public class Config
 		//保存修改
 		settings.save();
 		startDay = (int)settings.get("周期开始(日期)");
+		PageOne.updateView();
 		PageTwo.updateView();
+		PageThree.updateView();
 	}
 	
 	//设置Config
 	public static void setConfig()
 	{
-		setStartDate(getCalendar());
-		setEndDate(getCalendar());
-
-		Calendar cal = (Calendar)getCalendar().clone();
-		ObjectIO<Month> io = new ObjectIO<Month>();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM");
-
-		String nMonth = sdf.format(cal.getTime());
-		setNextMonth(io.inObject(nMonth));
-		if(null == getNextMonth())
-		{
-			setNextMonth(new Month(nMonth));
-		}
+		
+		Calendar cal = (Calendar)getCalendar().clone();
+		String nmonth = sdf.format(cal.getTime());
+		setNextMonth(new Month(nmonth));	
+		setSettings(new Settings(nmonth));
 
 		cal.add(Calendar.MONTH,-1);
-		String pMonth = sdf.format(cal.getTime());    
-		setPreMonth(io.inObject(pMonth));
-		if(null == getPreMonth())
-		{
-			setPreMonth(new Month(pMonth));
-		}
+		String pmonth = sdf.format(cal.getTime());
+		setPreMonth(new Month(pmonth));
 
+		startDay = (int)settings.get("周期开始(日期)");
+		setStartDate(getCalendar());
+		setEndDate(getCalendar());
+		
 	}
 	
 	//设置开始日期
@@ -252,6 +243,16 @@ public class Config
 	public static int getScroll()
 	{
 		return scroll;
+	}
+	
+	public static void setReport(Report report)
+	{
+		Config.report = report;
+	}
+
+	public static Report getReport()
+	{
+		return report;
 	}
 	
 }

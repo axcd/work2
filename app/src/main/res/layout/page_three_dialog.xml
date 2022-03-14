@@ -6,12 +6,12 @@
 	android:gravity="center">
 
 	<EditText
-		android:inputType="numberDecimal"
 		android:layout_width="wrap_content"
 		android:ems="10"
 		android:focusable="true"
 		android:layout_height="wrap_content"
-		android:gravity="center"/>
+		android:gravity="center"
+		android:inputType="numberDecimal"/>
 
 </LinearLayout>
 

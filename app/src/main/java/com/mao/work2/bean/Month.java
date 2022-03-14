@@ -3,6 +3,7 @@ package com.mao.work2.bean;
 import java.io.*;
 import com.mao.work2.*;
 import java.util.*;
+import com.mao.work2.io.*;
 
 public class Month implements Serializable
 {
@@ -13,6 +14,7 @@ public class Month implements Serializable
 	{
 		this.index = index;
 		this.days = new Day[31];
+		readDays();
 	}
 
 	public void setDay(int i, Day day)
@@ -53,4 +55,41 @@ public class Month implements Serializable
 		return days;
 	}
 	
+	//判断本月是否为空
+	public boolean isEmpty()
+	{
+		boolean flag = true;
+		
+		for(Day day : days)
+		{
+			if(null!=day)
+			{
+				flag = false;
+				break;
+			}
+		}
+		
+		return flag;
+	}
+	
+	//保存days
+	public void saveDays()
+	{
+		ObjectIO<Day[]> io = new ObjectIO<Day[]>();
+		
+		if(isEmpty())
+		{
+			io.deleteDir(index);
+		}else{
+			io.writerToFile(days, index+"/days");
+		}
+	}
+	
+	//读取days
+	public void readDays()
+	{
+		Day[] r_days = new ObjectIO<Day[]>().readFromFile(index+"/days");
+		if(null!=r_days) this.days = r_days;
+	}
+
 }

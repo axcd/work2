@@ -1,6 +1,3 @@
 <resources>
-    <string name="app_name">记加班2</string>
-
-    <string name="hello_world">Hello world!</string>
-    
+    <string name="app_name">加班日记</string>
 </resources>

@@ -74,6 +74,7 @@ public class PageTwo
 		Config.setConfig();
 		getCalendarView();
 		PageOne.updateView();
+		PageThree.updateView();
 	}
 
 	public static void getCalendarView()

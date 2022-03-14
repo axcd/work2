@@ -17,6 +17,7 @@ import android.graphics.drawable.*;
 import com.mao.work2.page.*;
 import com.mao.work2.layout.*;
 import java.math.*;
+import com.mao.work2.settings.*;
 
 public class UpdateActivity extends AppCompatActivity
 {
@@ -54,7 +55,7 @@ public class UpdateActivity extends AppCompatActivity
 		{
 			month = Config.getPreMonth();
 		}
-		else
+		else  // if (m.equals(Config.getNextMonth().getIndex()))
 		{
 			month = Config.getNextMonth();
 		}
@@ -242,25 +243,6 @@ public class UpdateActivity extends AppCompatActivity
 		Config.getSelectedView().setDay(null);
 		month.setDay(d, null);
 
-		//判断month是否为空
-		int length = month.getDays().length;
-		for (int i = 0;i < length;i++)
-		{
-			if (month.getDay(i) != null)
-			{
-				break;
-			}
-
-			if (i == length - 1)
-			{
-				month = null;
-			}
-		}
-
-		//保存
-		io.outObject(month, m);
-		PageOne.updateView();
-
 		finish();
 	}
 
@@ -284,9 +266,11 @@ public class UpdateActivity extends AppCompatActivity
 		Day day = new Day(date, shift, fake, rate, hour);
 		Config.getSelectedView().setDay(day);
 		month.setDay(d, day);
-		io.outObject(month, m);
-		PageOne.updateView();
-
+		
+		//加入配置
+		Config.getSettings().save();
+		PageThree.updateView();
+		
 		finish();
 	}
 
@@ -294,6 +278,10 @@ public class UpdateActivity extends AppCompatActivity
 	public void finish()
 	{
 		super.finish();
+		PageOne.updateView();
+		Config.getReport().writerToFile();
+		//保存
+		month.saveDays();
 		overridePendingTransition(R.anim.dialog_exit, 0); 
 		//Config.getSelectedView().setClickable(true);
 	}

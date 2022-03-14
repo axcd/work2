@@ -2,29 +2,42 @@ package com.mao.work2.settings;
 
 import java.util.*;
 import com.mao.work2.io.*;
-
+import com.mao.work2.config.*;
+import com.mao.work2.*;
+import com.mao.work2.bean.*;
 public class Settings
 {
-	private ObjectIO objectIO = new ObjectIO();
+	private String fpath;
+	private ObjectIO<Map<String,Float>> objectIO = new ObjectIO<Map<String,Float>>();
 	private Map<String,Float> settings = new HashMap<String,Float>();
 	//这儿可以修改设置项
 	private String[] list = {
-		"周期开始(日期)", "基本工资(元)", "本月绩效(元)",
-		"岗位补贴(元)", "中班补贴(元/天)", "夜班补贴(元/天)" ,
+		"周期开始(日期)",
+		"基本工资(元)",
+		"本月绩效(元)",
+		"岗位补贴(元)", 
+		"中班补贴(元/天)",
+		"夜班补贴(元/天)" ,
 		"高温补贴(元)","交通补贴(元)", 
-		"社会保险(元)", "公积金(元)",
-		"其他补贴(元)", "其他扣款(元)", "专项扣除(元)"
-		};
+		"养老保险(元)","医疗保险(元)","失业保险(元)", "公积金(元)",
+		"工会费(元)",
+		"其他补贴(元)", "其他扣款(元)"
+	};
 
-	public Settings(String[] list)
+	public Settings(String path)
 	{
-		this.list = list;
+		setFpath(path);
 		init();
 	}
 
-	public Settings()
+	public void setFpath(String fpath)
 	{
-		init();
+		this.fpath = fpath + "/.s";
+	}
+
+	public String getFpath()
+	{
+		return fpath;
 	}
 
 	public void setSettings(Map<String, Float> settings)
@@ -66,28 +79,40 @@ public class Settings
 	public void setMapDefaultValue()
 	{
 		set("周期开始(日期)",1f);
-		set("基本工资(元)",2200f);
-		set("本月绩效(元)",1100f);
+		set("基本工资(元)",2600f);
+		set("本月绩效(元)",500f);
+		set("岗位补贴(元)",100f);
 	}
 	
-	private void init()
+	public void init()
 	{
 		setMapDefaultValue();
 		
-		Map<String,Float> load_settings = (Map) objectIO.inObject(".setting");
-		//防止修改过后，清空.settings文件的以前配置
-		if(null != load_settings)
+		Map<String,Float> load_settings = (Map<String,Float>) objectIO.readFromFile(fpath);
+		Map<String,Float> load_s = (Map<String,Float>) objectIO.readFromFile(".setting");
+		
+		if( null != load_settings )
 		{
-			for(String key : list)
+			settings = load_settings;
+			set("周期开始(日期)",load_s.get("周期开始(日期)"));
+		}else{
+
+			if(null != load_s)
 			{
-				set(key,load_settings.get(key));
+				settings = load_s;
 			}
+			set("本月绩效(元)", 500f);
+			set("高温补贴(元)", 0f);
+			set("交通补贴(元)", 0f);
+			set("其他补贴(元)", 0f);
+			set("其他扣款(元)", 0f);
 		}
 	}
 	
 	public void save()
 	{
-		objectIO.outObject(settings,".setting");
+		objectIO.writerToFile(settings,".setting");
+		objectIO.writerToFile(settings, fpath);
 	}
 	
 }

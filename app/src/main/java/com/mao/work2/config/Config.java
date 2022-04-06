@@ -29,7 +29,6 @@ public class Config
 	private static Hour hour = Hour.THREE;
 	private static int scroll;
 	private static Settings settings;
-	private static Report report;
 
 	public static void init()
 	{
@@ -58,25 +57,19 @@ public class Config
 	//设置Config
 	public static void setConfig()
 	{
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM");
+		setPreMonth();
+		setNextMonth();
 		
-		Calendar cal = (Calendar)getCalendar().clone();
-		String nmonth = sdf.format(cal.getTime());
-		setNextMonth(new Month(nmonth));	
-		setSettings(new Settings(nmonth));
-
-		cal.add(Calendar.MONTH,-1);
-		String pmonth = sdf.format(cal.getTime());
-		setPreMonth(new Month(pmonth));
+		setSettings(new Settings(nextMonth.getIndex()));
 
 		startDay = (int)settings.get("周期开始(日期)");
-		setStartDate(getCalendar());
-		setEndDate(getCalendar());
+		setStartDate();
+		setEndDate();
 		
 	}
 	
 	//设置开始日期
-	public static void setStartDate(Calendar calendar)
+	public static void setStartDate()
 	{
 		Calendar start_cal = (Calendar)calendar.clone();
 	    if(startDay!=1)start_cal.add(Calendar.MONTH, -1);
@@ -96,7 +89,7 @@ public class Config
 	}
 
 	//设置结束日期
-	public static void setEndDate(Calendar calendar)
+	public static void setEndDate()
 	{
 		Calendar end_cal = (Calendar)calendar.clone();
 	    if(startDay==1)end_cal.add(Calendar.MONTH,1);
@@ -155,9 +148,14 @@ public class Config
 		return today;
 	}
 
-	public static void setPreMonth(Month preMonth)
+	public static void setPreMonth()
 	{
-		Config.preMonth = preMonth;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM");
+
+		Calendar cal = (Calendar)getCalendar().clone();
+		cal.add(Calendar.MONTH,-1);
+		String pmonth = sdf.format(cal.getTime());
+		Config.preMonth = new Month(pmonth);	
 	}
 
 	public static Month getPreMonth()
@@ -165,9 +163,13 @@ public class Config
 		return preMonth;
 	}
 
-	public static void setNextMonth(Month nextMonth)
+	public static void setNextMonth()
 	{
-		Config.nextMonth = nextMonth;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM");
+
+		Calendar cal = (Calendar)getCalendar().clone();
+		String nmonth = sdf.format(cal.getTime());
+		Config.nextMonth = new Month(nmonth);
 	}
 
 	public static Month getNextMonth()
@@ -243,16 +245,6 @@ public class Config
 	public static int getScroll()
 	{
 		return scroll;
-	}
-	
-	public static void setReport(Report report)
-	{
-		Config.report = report;
-	}
-
-	public static Report getReport()
-	{
-		return report;
 	}
 	
 }

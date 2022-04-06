@@ -47,7 +47,7 @@ public class PageTwo
 
 		//获取View
 		getCalendarView();
-
+		
 		ptv.setOnClickListener(new View.OnClickListener(){
 				public void onClick(View view)
 				{
@@ -138,7 +138,7 @@ class DayAdapter extends ArrayAdapter<Date>
 
 			//是否绘制
 			textView.setDraw(true);
-
+			
 			//标记今天
 			if (date.equals(Config.getToday()))
 			{
@@ -156,7 +156,7 @@ class DayAdapter extends ArrayAdapter<Date>
 			SimpleDateFormat sdfm = new SimpleDateFormat("yyyy/MM");
 			SimpleDateFormat sdfd = new SimpleDateFormat("dd");
 			int i = Integer.parseInt(sdfd.format(date));
-
+			
 			if (Config.getPreMonth().getIndex().equals(sdfm.format(date)))
 			{
 				if (null != Config.getPreMonth().getDay(i))
@@ -164,7 +164,7 @@ class DayAdapter extends ArrayAdapter<Date>
 					textView.setDay((Config.getPreMonth().getDay(i)));
 				}
 			}
-
+			
 			if (Config.getNextMonth().getIndex().equals(sdfm.format(date)))
 			{
 				if (null != Config.getNextMonth().getDay(i))
@@ -172,7 +172,7 @@ class DayAdapter extends ArrayAdapter<Date>
 					textView.setDay((Config.getNextMonth().getDay(i)));
 				}
 			}
-
+			
 			//设置选中单击事件
 			textView.setOnClickListener(new View.OnClickListener(){
 					public void onClick(View view)

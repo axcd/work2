@@ -279,7 +279,7 @@ public class UpdateActivity extends AppCompatActivity
 	{
 		super.finish();
 		PageOne.updateView();
-		Config.getReport().writerToFile();
+		//Config.getReport().writerToFile();
 		//保存
 		month.saveDays();
 		overridePendingTransition(R.anim.dialog_exit, 0); 

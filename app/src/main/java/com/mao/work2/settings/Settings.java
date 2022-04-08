@@ -10,6 +10,7 @@ public class Settings
 	private String fpath;
 	private ObjectIO<Map<String,Float>> objectIO = new ObjectIO<Map<String,Float>>();
 	private Map<String,Float> settings = new HashMap<String,Float>();
+	
 	//这儿可以修改设置项
 	private String[] list = {
 		"周期开始(日期)",
@@ -42,7 +43,10 @@ public class Settings
 
 	public void setSettings(Map<String, Float> settings)
 	{
-		this.settings = settings;
+		for(String key : settings.keySet())
+		{
+			set(key, settings.get(key));
+		}
 	}
 
 	public Map<String, Float> getSettings()
@@ -79,40 +83,49 @@ public class Settings
 	public void setMapDefaultValue()
 	{
 		set("周期开始(日期)",1f);
-		set("基本工资(元)",2600f);
-		set("本月绩效(元)",500f);
-		set("岗位补贴(元)",100f);
+//		set("基本工资(元)",2600f);
+//		set("本月绩效(元)",500f);
+//		set("岗位补贴(元)",100f);
+	}
+	
+	public void loadSettings(String fname)
+	{
+
+		Map<String,Float> load_settings = (Map<String,Float>) objectIO.readFromFile(fname);
+		
+		if(load_settings!=null)
+			setSettings(load_settings);
 	}
 	
 	public void init()
 	{
 		setMapDefaultValue();
-		
-		Map<String,Float> load_settings = (Map<String,Float>) objectIO.readFromFile(fpath);
-		Map<String,Float> load_s = (Map<String,Float>) objectIO.readFromFile(".setting");
-		
-		if( null != load_settings )
-		{
-			settings = load_settings;
-			set("周期开始(日期)",load_s.get("周期开始(日期)"));
-		}else{
-
-			if(null != load_s)
-			{
-				settings = load_s;
-			}
-			set("本月绩效(元)", 500f);
-			set("高温补贴(元)", 0f);
-			set("交通补贴(元)", 0f);
-			set("其他补贴(元)", 0f);
-			set("其他扣款(元)", 0f);
-		}
+		loadSettings(".setting");
+		loadSettings(fpath);
 	}
 	
 	public void save()
 	{
-		objectIO.writerToFile(settings,".setting");
-		objectIO.writerToFile(settings, fpath);
+		writerSettings();
+		writerS();
+	}
+	
+	public void writerSettings()
+	{
+		Map<String,Float> load_settings = settings;
+		load_settings.put("本月绩效(元)", 500f);
+		load_settings.put("高温补贴(元)", 0f);
+		load_settings.put("交通补贴(元)", 0f);
+		load_settings.put("其他补贴(元)", 0f);
+		load_settings.put("其他扣款(元)", 0f);
+		objectIO.writerToFile(load_settings,".setting");
+	}
+	
+	public void writerS()
+	{
+		Map<String,Float> load_settings = settings;
+		load_settings.remove("周期开始(日期)");
+		objectIO.writerToFile(load_settings, fpath);
 	}
 	
 }

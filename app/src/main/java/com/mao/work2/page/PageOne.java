@@ -80,7 +80,7 @@ public class PageOne
 //		    "其他补贴(元)", "其他扣款(元)", 
 //		    "调休费(元)","事假费(元)","病假费(元)",
 			"本月应发(元)", "本月实发(元)" ,
-//		    "下月5号应发(元)", "下月5号实发(元)"
+//			"本月5号应发(元)", "本月5号实发(元)",
 			};
 		
 		//添加适配器
@@ -94,24 +94,27 @@ public class PageOne
 	public static void getData()
 	{
 		Calendar cal = (Calendar)Config.getCalendar().clone();
-//		cal.add(Calendar.MONTH, -1);
+
 		PageOne.report = new Report(cal);
 		
 		cal.add(Calendar.MONTH, -1);
-		Report report0 = new Report(cal);
+		Report report1 = new Report(cal);
+		
+		cal.add(Calendar.MONTH, -1);
+		Report report2 = new Report(cal);
 		
 		//应发工资
-		report.set("下月5号应发(元)", MathUtil.F(report.get("基本工资(元)") + report.get("本月绩效(元)") + report.get("岗位补贴(元)")
-										 + report.get("夜班天数(天)") * report.get("夜班补贴(元/天)") + report.get("中班天数(天)") * report.get("中班补贴(元/天)")
-										 + report.get("交通补贴(元)") + report.get("高温补贴(元)") + report.get("其他补贴(元)")
-										 + report0.get("平时加班费(元)") + report0.get("周末加班费(元)") + report0.get("节假日加班费(元)") , 2));
+		report.set("本月5号应发(元)", MathUtil.F(report1.get("基本工资(元)") + report1.get("本月绩效(元)") + report1.get("岗位补贴(元)")
+										 + report1.get("夜班天数(天)") * report1.get("夜班补贴(元/天)") + report1.get("中班天数(天)") * report1.get("中班补贴(元/天)")
+										 + report1.get("交通补贴(元)") + report1.get("高温补贴(元)") + report1.get("其他补贴(元)")
+										 + report2.get("平时加班费(元)") + report2.get("周末加班费(元)") + report2.get("节假日加班费(元)") , 2));
 
 		//实发工资
-		report.set("下月5号实发(元)", MathUtil.F(report.get("下月5号应发(元)")
-		                                 - report0.get("事假费(元)") - report0.get("病假费(元)")
-										 - report.get("养老保险(元)") - report.get("医疗保险(元)") - report.get("失业保险(元)") 
-										 - report.get("公积金(元)")
-										 - report.get("工会费(元)") - report.get("其他扣款(元)") , 2));
+		report.set("本月5号实发(元)", MathUtil.F(report.get("本月5号应发(元)")
+		                                 - report2.get("事假费(元)") - report2.get("病假费(元)")
+										 - report1.get("养老保险(元)") - report1.get("医疗保险(元)") - report1.get("失业保险(元)") 
+										 - report1.get("公积金(元)")
+										 - report1.get("工会费(元)") - report1.get("其他扣款(元)") , 2));
 //										 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	}

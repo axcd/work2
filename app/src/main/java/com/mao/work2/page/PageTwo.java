@@ -85,22 +85,30 @@ public class PageTwo
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月");
 		TextView tv = (TextView)view.findViewById(R.id.yyyyMM);
 		tv.setText(sdf.format(calendar.getTime()));
-
-		//设置开始日期
-		if (Config.getStartDay() != 1)
-		{
-			calendar.add(Calendar.MONTH, -1);
-		}
-		calendar.set(Calendar.DATE, Config.getStartDay());
-
+	
 		//获取List<Date>
 		List<Date> dates = new ArrayList<Date>();
-		int w = calendar.get(Calendar.DAY_OF_WEEK);
-		int n = calendar.getActualMaximum(Calendar.DATE);
-		int m = (int)Math.ceil(1.0 * (n + w - 1) / 7) * 7;
-		calendar.add(Calendar.DATE, 1 - w);	
-		while (dates.size() < m)
+		
+		while(calendar.getTime().after(Config.getStartDate()))
+		{
+			calendar.add(Calendar.DATE, -1);
+		}
+		
+		calendar.add(Calendar.DATE, 1);
+			
+		while(calendar.get(Calendar.DAY_OF_WEEK)!=1)
+		{
+			calendar.add(Calendar.DATE, -1);
+		}
+		
+		while(calendar.getTime().before(Config.getEndDate()))
 		{ 
+			dates.add(calendar.getTime());
+			calendar.add(Calendar.DATE, 1);
+		}
+
+		while(calendar.get(Calendar.DAY_OF_WEEK)!=1)
+		{
 			dates.add(calendar.getTime());
 			calendar.add(Calendar.DATE, 1);
 		}

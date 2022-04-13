@@ -30,25 +30,23 @@ public class Config
 	private static int scroll;
 	private static Settings settings;
 
+	public static void setStartDay(int startDay)
+	{
+		Config.startDay = startDay;
+	}
+
 	public static void init()
 	{
-		Config.calendar = Calendar.getInstance();
-		Config.setToday(Config.calendar.getTime());
-		
+		Calendar calendar = Calendar.getInstance();
+		Config.setToday(calendar.getTime());
+		Config.setCalendar(calendar);
 		Config.setConfig();
-
-		//如果大于开始日期显示在下一月
-		if (calendar.get(Calendar.DATE) >= startDay && startDay != 1)
-		{
-			Config.calendar.add(Calendar.MONTH, 1);
-		}
 	}
 	
 	public static void save()
 	{
 		//保存修改
 		settings.save();
-		startDay = (int)settings.get("周期开始(日期)");
 		PageOne.updateView();
 		PageTwo.updateView();
 		PageThree.updateView();
@@ -59,26 +57,22 @@ public class Config
 	{
 		setPreMonth();
 		setNextMonth();
-		
 		setSettings(new Settings(nextMonth.getIndex()));
-
-		startDay = (int)settings.get("周期开始(日期)");
 		setStartDate();
 		setEndDate();
-		
 	}
 	
 	//设置开始日期
 	public static void setStartDate()
 	{
 		Calendar start_cal = (Calendar)calendar.clone();
-	    if(startDay!=1)start_cal.add(Calendar.MONTH, -1);
+		start_cal.add(Calendar.MONTH, -1);
 		int maxDay = start_cal.getActualMaximum(Calendar.DATE);
 		
-		if(maxDay<startDay){
-			start_cal.set(Calendar.DATE, maxDay);
-		}else{
+		if(startDay>1 && startDay<maxDay+1){
 			start_cal.set(Calendar.DATE, startDay-1);
+		}else{
+			start_cal.set(Calendar.DATE, maxDay);
 		}
 		Config.startDate = start_cal.getTime();
 	}
@@ -92,20 +86,19 @@ public class Config
 	public static void setEndDate()
 	{
 		Calendar end_cal = (Calendar)calendar.clone();
-	    if(startDay==1)end_cal.add(Calendar.MONTH,1);
 		int maxDay = end_cal.getActualMaximum(Calendar.DATE);
 		
-		if(maxDay<startDay){
-			end_cal.set(Calendar.DATE,maxDay+1);
-		}else{
+		if(startDay>1 && startDay<maxDay+1){
 			end_cal.set(Calendar.DATE, startDay);
+		}else{
+			end_cal.set(Calendar.DATE, maxDay+1);
 		}
 		Config.endDate = end_cal.getTime();
 	}
 
-	public static void setStartDay(int startDay)
-	{
-		Config.startDay = startDay;
+	public static void setStartDay()
+	{    
+		Config.startDay = (int)new Settings("setting").get("周期开始(日期)");
 	}
 
 	public static int getStartDay()
@@ -189,6 +182,15 @@ public class Config
 	
 	public static void setCalendar(Calendar calendar)
 	{
+		setStartDay();
+		
+		if(Config.startDay!=1)
+		{
+			if (calendar.get(Calendar.DATE) >= startDay)
+			{
+				calendar.add(Calendar.MONTH, 1);
+			}
+		}
 		Config.calendar = calendar;
 	}
 

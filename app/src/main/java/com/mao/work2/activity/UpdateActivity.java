@@ -267,10 +267,6 @@ public class UpdateActivity extends AppCompatActivity
 		Config.getSelectedView().setDay(day);
 		month.setDay(d, day);
 		
-		//加入配置
-		Config.getSettings().save();
-		PageThree.updateView();
-		
 		finish();
 	}
 
@@ -278,10 +274,9 @@ public class UpdateActivity extends AppCompatActivity
 	public void finish()
 	{
 		super.finish();
-		PageOne.updateView();
-		//Config.getReport().writerToFile();
 		//保存
 		month.saveDays();
+		PageOne.updateView();
 		overridePendingTransition(R.anim.dialog_exit, 0); 
 		//Config.getSelectedView().setClickable(true);
 	}

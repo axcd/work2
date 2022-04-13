@@ -102,7 +102,10 @@ public class PageThree
 										if (position == 0)
 										{
 											if (MathUtil.isOK(f, 1, 1, 31))
+											{
 												Config.getSettings().set(text ,MathUtil.F(f, 1));
+												Config.setStartDay((int)MathUtil.F(f, 1));
+											}
 											else
 												Toast.makeText(et.getContext(), "填写正确日期", Toast.LENGTH_LONG).show();
 										}

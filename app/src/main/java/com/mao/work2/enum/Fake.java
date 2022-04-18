@@ -12,7 +12,7 @@ public enum Fake implements Serializable
 		this.fake = fake;
 	}
 	
-	public static Fake get(String fakeName) {
+	public static Fake getByString(String fakeName) {
 		for (Fake fake : Fake.values()) {
 			if (fake.getFakeName().equals(fakeName)) {
 				return fake;
@@ -23,5 +23,16 @@ public enum Fake implements Serializable
 
 	public String getFakeName(){
 		return this.fake;
+	}
+	
+	public static int indexOf(Fake fake) {
+		Fake[] fakes = Fake.values();
+		for (int i=0;i<fakes.length;i++) {
+			Fake tmp = fakes[i];
+			if (tmp.equals(fake)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 }

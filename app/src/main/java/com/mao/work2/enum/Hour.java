@@ -36,11 +36,22 @@ public enum Hour implements Serializable
 		this.hour = hour;
 	}
 	
-	public static Hour get(String hourName) {
+	public static Hour getByString(String hourName) {
 		for (Hour hour : Hour.values()) {
 			if (hour.getHourName().equals(hourName)) {
 				return hour;
 			}
+		}
+		return null;
+	}
+	
+	public static Hour getByIndex(int index) {
+		int i = 0;
+		for (Hour hour : Hour.values()) {	
+			if (i==index) {
+				return hour;
+			}
+			i++;
 		}
 		return null;
 	}
@@ -49,41 +60,15 @@ public enum Hour implements Serializable
 		return this.hour;
 	}
 	
-	public static int getIndex(float f) {
-		String hourName = "h";
-		if(f==(int)f)
-			hourName = (int)f+"h";
-		else
-			hourName = f+"h";
-			
+	public static int indexOf(Hour hour) {
 		Hour[] hours = Hour.values();
 		for (int i=0;i<hours.length;i++) {
-			Hour hour = hours[i];
-			if (hour.getHourName().equals(hourName)) {
+			Hour tmp = hours[i];
+			if (tmp.equals(hour)) {
 				return i;
 			}
 		}
 		return -1;
-	}
-	
-	public static int getI(String hourName) {
-		Hour[] hours = Hour.values();
-		for (int i=0;i<hours.length;i++) {
-			Hour hour = hours[i];
-			if (hour.getHourName().equals(hourName)) {
-				return i;
-			}
-		}
-		return -1;
-	}
-	
-	public static Hour getHour(float f){
-		String hour = "h";
-		if(f==(int)f)
-			hour = (int)f+"h";
-		else
-			hour = f+"h";
-		return Hour.get(hour);
 	}
 	
 }

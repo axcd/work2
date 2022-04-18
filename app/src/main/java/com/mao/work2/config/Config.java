@@ -24,10 +24,6 @@ public class Config
 	private static DayView selectedView;
 	private static boolean weekend;
 	private static Calendar calendar;
-	private static Shift shift = Shift.DAY;
-	private static Rate rate = Rate.ONE_AND_HALF;
-	private static Hour hour = Hour.THREE;
-	private static int scroll;
 	private static Settings settings;
 
 	public static void setStartDay(int startDay)
@@ -209,44 +205,4 @@ public class Config
 		return settings;
 	}
 
-	public static void setShift(Shift shift)
-	{
-		Config.shift = shift;
-	}
-
-	public static Shift getShift()
-	{
-		return shift;
-	}
-	
-	public static void setHour(Hour hour)
-	{
-		Config.hour = hour;
-	}
-
-	public static Hour getHour()
-	{
-		return hour;
-	}
-
-	public static void setRate(Rate rate)
-	{
-		Config.rate = rate;
-	}
-
-	public static Rate getRate()
-	{
-		return rate;
-	}
-
-	public static void setScroll(int scroll)
-	{
-		Config.scroll = scroll;
-	}
-
-	public static int getScroll()
-	{
-		return scroll;
-	}
-	
 }

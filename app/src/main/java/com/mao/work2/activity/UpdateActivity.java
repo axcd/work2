@@ -21,18 +21,27 @@ import com.mao.work2.settings.*;
 
 public class UpdateActivity extends AppCompatActivity
 {
-	private Shift shift = Config.getShift();
-	private Rate rate = Config.getRate();
-	private Fake fake = Fake.NORMAL;
-	private Hour hour = Config.getHour();
-
-	private ObjectIO<Month> io = new ObjectIO<Month>();
-
+	private RadioGroup shiftRadioGroup;
+	private RadioGroup rateRadioGroup;
+	private RadioGroup fakeRadioGroup;
+	private RadioGroup hourRadioGroup;
+	private TextView dateText;
+	private ScrollView hourScrollView;
+	
+	private static Shift shift = Shift.DAY;
+	private static Rate rate = Rate.ONE_AND_HALF;
+	private static Fake fake = Fake.NORMAL;
+	private static Hour hour = Hour.THREE;
+	
+	//保留1.5倍时数
+	private static Shift shift0 = Shift.DAY;
+	private static Hour hour0 = Hour.THREE;
+	private static Rate rate0 = Rate.ONE_AND_HALF;
+	
 	private int d;
-	private String m;
 	private Month month;
 	private String date;
-	private int y = (Hour.getI(hour.getHourName()) / 6 - 1) * Config.getScroll() + 10;
+	private int i;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -45,38 +54,38 @@ public class UpdateActivity extends AppCompatActivity
 		Window window = getWindow();	
 		window.setGravity(Gravity.BOTTOM);	
 		window.setWindowAnimations(R.style.MyDialogAnimation);
+		
+		shiftRadioGroup = (RadioGroup)findViewById(R.id.shiftRadioGroup);
+		rateRadioGroup = (RadioGroup)findViewById(R.id.rateRadioGroup);
+		fakeRadioGroup = (RadioGroup)findViewById(R.id.fakeRadioGroup);
+		hourRadioGroup = (RadioGroup)findViewById(R.id.hourRadioGroup);
+		dateText = (TextView)findViewById(R.id.txt_topbar);
+		hourScrollView = (ScrollView)findViewById(R.id.hourScrollView);
 
 		//获取选中的月份
 		SimpleDateFormat msdf = new SimpleDateFormat("yyyy/MM/dd");
-		date = msdf.format(Config.getSelectedDate());
+		String date = msdf.format(Config.getSelectedDate());
 		d =  Integer.parseInt(date.substring(8));
-		m = date.substring(0, 7);
-		if (m.equals(Config.getPreMonth().getIndex()))
-		{
-			month = Config.getPreMonth();
-		}
-		else  // if (m.equals(Config.getNextMonth().getIndex()))
-		{
-			month = Config.getNextMonth();
-		}
+		month = new Month(date.substring(0, 7));
 
 		//设置显示日期
-		final TextView dateText = (TextView)findViewById(R.id.txt_topbar);
 		dateText.setText(date);
+		//增加监听
+		addListener();
+		//回显
+		display();
 
-		final RadioGroup shiftRadioGroup = (RadioGroup)findViewById(R.id.shiftRadioGroup);
-		final RadioGroup rateRadioGroup = (RadioGroup)findViewById(R.id.rateRadioGroup);
-		final RadioGroup fakeRadioGroup = (RadioGroup)findViewById(R.id.fakeRadioGroup);
-		final RadioGroup hourRadioGroup = (RadioGroup)findViewById(R.id.hourRadioGroup);
-		final ScrollView hourScrollView = (ScrollView)findViewById(R.id.hourScrollView);
-
+	}
+	
+	public void addListener()
+	{
 		//增加监听
 		shiftRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
 				public void onCheckedChanged(RadioGroup p1, int p2)
 				{
 					RadioButton rb = (RadioButton) findViewById(p2);
 					String str = rb.getText().toString();
-					shift = Shift.get(str);
+					shift = Shift.getByString(str);
 				}
 			});
 
@@ -85,21 +94,23 @@ public class UpdateActivity extends AppCompatActivity
 				{
 					RadioButton rb = (RadioButton) findViewById(p2);
 					String str = rb.getText().toString();
-					rate = Rate.get(str);
-					
-					int r = 0;
-					int h = Hour.getI(Config.getHour().getHourName());
-					if (!rate.equals(Rate.ONE_AND_HALF))
+					rate = Rate.getByString(str);
+					if(rate0.equals(Rate.ONE_AND_HALF))
 					{
-						if(rate.equals(Rate.TWO))r = 1;
-						else r = 2;
-						h += 16;
-						h = h > 48 ?48: h;
+						if(!rate.equals(rate0))
+						{
+							int h = Hour.indexOf(hour0);
+							h += 16;
+							h = h > 48 ?48: h;
+							hour = Hour.getByIndex(h);
+						}
+						
+					}else{
+						if(rate.equals(Rate.ONE_AND_HALF))
+						{
+							hour = hour0;
+						}
 					}
-					y = (h / 6 - 1) * Config.getScroll() + 10;
-					((RadioButton)rateRadioGroup.getChildAt(r)).setChecked(true);
-					((RadioButton)hourRadioGroup.getChildAt(h)).setChecked(true);
-					setScroll(hourScrollView);
 				}
 			});
 
@@ -108,7 +119,7 @@ public class UpdateActivity extends AppCompatActivity
 				{
 					RadioButton rb = (RadioButton) findViewById(p2);
 					String str = rb.getText().toString();
-					fake = Fake.get(str);
+					fake = Fake.getByString(str);
 				}
 			});
 
@@ -117,91 +128,47 @@ public class UpdateActivity extends AppCompatActivity
 				{
 					RadioButton rb = (RadioButton) findViewById(p2);
 					String str = rb.getText().toString();
-					hour = Hour.get(str);
+					hour = Hour.getByString(str);
 				}
 			});
-
-		//设置点开默认选中
-		int s = 0;
-		switch (shift)
-		{
-			case DAY:
-				s = 0;
-				break;
-			case MIDDLE:
-				s = 1;
-				break;
-			case NIGHT:
-				s = 2;
-				break;
-			case REST:
-				s = 3;
-				break;
+			
+		display();
+		
 		}
-
-		int r = 0;
-		int h = Hour.getI(hour.getHourName());
-		if (Config.isWeekend())
+		
+	//回显加班信息
+	public void display()
+	{
+		if(Config.isWeekend())
 		{
-			r = 1;
+			rate = Rate.TWO;
+			int h = Hour.indexOf(hour0);
 			h += 16;
 			h = h > 48 ?48: h;
-			y = (h / 6 - 1) * Config.getScroll() + 10;
+			hour = Hour.getByIndex(h);
 		}
-
-		((RadioButton)shiftRadioGroup.getChildAt(s)).setChecked(true);
-		((RadioButton)rateRadioGroup.getChildAt(r)).setChecked(true);
-		((RadioButton)fakeRadioGroup.getChildAt(0)).setChecked(true);
-		((RadioButton)hourRadioGroup.getChildAt(h)).setChecked(true);
-
-		//回显加班信息
-		if (null != month.getDay(d))
+		
+		Day day = month.getDay(d);
+		if (null != day)
 		{
-			int n = shiftRadioGroup.getChildCount();
-			for (int i=0;i < n;i++)
-			{
-				RadioButton rb = (RadioButton)shiftRadioGroup.getChildAt(i);
-				if (rb.getText().toString().equals(month.getDay(d).getShift().getShiftName()))
-				{
-					rb.setChecked(true);
-					break;
-				}
-			}
+			shift = day.getShift();
+			rate = day.getRate();
+			fake = day.getFake();
+			hour = day.getHour();
+		}	
 
-			n = rateRadioGroup.getChildCount();
-			for (int i=0;i < n;i++)
-			{
-				RadioButton rb = (RadioButton)rateRadioGroup.getChildAt(i);
-				if (rb.getText().toString().equals(month.getDay(d).getRate().getRateName()))
-				{
-					rb.setChecked(true);
-					break;
-				}
-			}
-
-			n = fakeRadioGroup.getChildCount();
-			for (int i=0;i < n;i++)
-			{
-				RadioButton rb = (RadioButton)fakeRadioGroup.getChildAt(i);
-				if (rb.getText().toString().equals(month.getDay(d).getFake().getFakeName()))
-				{
-					rb.setChecked(true);
-					break;
-				}
-			}
-
-			n = hourRadioGroup.getChildCount();
-			for (int i=0;i < n;i++)
-			{
-				RadioButton rb = (RadioButton)hourRadioGroup.getChildAt(i);
-				if (rb.getText().toString().equals(month.getDay(d).getHour().getHourName()))
-				{
-					rb.setChecked(true);
-					setY((i / 6 - 1) * Config.getScroll() + 10);
-					break;
-				}
-			}
-		}
+		int n = Shift.indexOf(shift);
+		((RadioButton)shiftRadioGroup.getChildAt(n)).setChecked(true);
+		
+		n = Rate.indexOf(rate);
+		((RadioButton)rateRadioGroup.getChildAt(n)).setChecked(true);
+		
+		n = fake.indexOf(fake);
+		((RadioButton)fakeRadioGroup.getChildAt(n)).setChecked(true);
+	
+		n = Hour.indexOf(hour);
+		((RadioButton)hourRadioGroup.getChildAt(n)).setChecked(true);
+		i = n;
 		setScroll(hourScrollView);
 	}
 
@@ -211,9 +178,11 @@ public class UpdateActivity extends AppCompatActivity
 		hourScrollView.post(new Runnable(){
 				public void run()
 				{
-					int x = getY();
-					if (x < 10) x = 10;
-					if (x > 7 * Config.getScroll()) x = 6 * Config.getScroll() + 10;
+					int x = 0;
+					if (i < 36)
+						x = i/6 * MyRadioGroup.y + 10;
+					else
+						x = 6 * MyRadioGroup.y + 10;
 					hourScrollView.scrollTo(0, x);
 				}
 			});
@@ -225,16 +194,6 @@ public class UpdateActivity extends AppCompatActivity
 		BigDecimal bg = new BigDecimal(num);
 		double num1 = bg.setScale(n, BigDecimal.ROUND_HALF_UP).doubleValue();
 		return((float)num1);
-	}
-
-	public void setY(int y)
-	{
-		this.y = y;
-	}
-
-	public int getY()
-	{
-		return y;
 	}
 
 	public void onDelete(View view)
@@ -256,16 +215,17 @@ public class UpdateActivity extends AppCompatActivity
 		} 
 		if (!shift.equals(Shift.REST))
 		{
-			Config.setShift(shift);
+			shift0 = shift;
 			if (fake.equals(Fake.NORMAL) && rate.equals(Rate.ONE_AND_HALF))
 			{
-				Config.setHour(hour);
+				//保留1.5倍
+				hour0 = hour;
 			}
 		} 
 
 		Day day = new Day(date, shift, fake, rate, hour);
 		Config.getSelectedView().setDay(day);
-		month.setDay(d, day);
+		month.setDay(d, day);	
 		
 		finish();
 	}
@@ -274,7 +234,14 @@ public class UpdateActivity extends AppCompatActivity
 	public void finish()
 	{
 		super.finish();
+		
 		//保存
+		shift = shift0;
+		rate = Rate.ONE_AND_HALF;
+		fake = Fake.NORMAL;
+		hour = hour0;
+		
+		//保存到文件
 		month.saveDays();
 		PageOne.updateView();
 		overridePendingTransition(R.anim.dialog_exit, 0); 

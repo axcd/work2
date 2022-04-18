@@ -10,7 +10,7 @@ public enum Shift implements Serializable
 		this.shift = shift;
 	}
 	
-	public static Shift get(String shiftName) {
+	public static Shift getByString(String shiftName) {
 		for (Shift shift : Shift.values()) {
 			if (shift.getShiftName().equals(shiftName)) {
 				return shift;
@@ -23,4 +23,14 @@ public enum Shift implements Serializable
 		return this.shift;
 	}
 	
+	public static int indexOf(Shift shift) {
+		Shift[] shifts = Shift.values();
+		for (int i=0;i<shifts.length;i++) {
+			Shift tmp = shifts[i];
+			if (tmp.equals(shift)) {
+				return i;
+			}
+		}
+		return -1;
+	}
 }

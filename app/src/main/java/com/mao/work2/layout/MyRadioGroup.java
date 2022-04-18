@@ -14,6 +14,7 @@ public class MyRadioGroup extends RadioGroup
 	private int n;
 	private int w;
 	private int h;
+	public static int y;
 	private int childCount = 49;
 	
 	public MyRadioGroup(Context context)
@@ -51,7 +52,8 @@ public class MyRadioGroup extends RadioGroup
 		h = w*3/5;
 		int maxHeight = (h+m)*(int)Math.ceil(childCount*1.0/n)+m;
 		
-		com.mao.work2.config.Config.setScroll(h+m);
+//		com.mao.work2.config.Config.setScroll(h+m);
+		y = h+m;
 		
 		for(int i=0;i<childCount;i++)
 		{

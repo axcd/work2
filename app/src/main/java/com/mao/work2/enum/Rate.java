@@ -11,7 +11,7 @@ public enum Rate implements Serializable
 		this.rate = rate;
 	}
 	
-	public static Rate get(String rateName) {
+	public static Rate getByString(String rateName) {
 		for (Rate rate : Rate.values()) {
 			if (rate.getRateName().equals(rateName)) {
 				return rate;
@@ -25,4 +25,14 @@ public enum Rate implements Serializable
 		return this.rate;
 	}
 	
+	public static int indexOf(Rate rate) {
+		Rate[] rates = Rate.values();
+		for (int i=0;i<rates.length;i++) {
+			Rate tmp = rates[i];
+			if (tmp.equals(rate)) {
+				return i;
+			}
+		}
+		return -1;
+	}
 }

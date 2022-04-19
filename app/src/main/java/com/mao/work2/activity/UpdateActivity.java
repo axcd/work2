@@ -148,8 +148,8 @@ public class UpdateActivity extends AppCompatActivity
 		((RadioButton)fakeRadioGroup.getChildAt(n)).setChecked(true);
 	
 		n = Hour.indexOf(hour);
-		if(shift.equals(Shift.REST)) n = 0;
 		((RadioButton)hourRadioGroup.getChildAt(n)).setChecked(true);
+		
 		i = n;
 		setScroll(hourScrollView);
 	}

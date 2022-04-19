@@ -36,7 +36,6 @@ public class UpdateActivity extends AppCompatActivity
 	//保留1.5倍时数
 	private static Shift shift0 = Shift.DAY;
 	private static Hour hour0 = Hour.THREE;
-	private static Rate rate0 = Rate.ONE_AND_HALF;
 	
 	private int d;
 	private Month month;
@@ -95,22 +94,6 @@ public class UpdateActivity extends AppCompatActivity
 					RadioButton rb = (RadioButton) findViewById(p2);
 					String str = rb.getText().toString();
 					rate = Rate.getByString(str);
-					if(rate0.equals(Rate.ONE_AND_HALF))
-					{
-						if(!rate.equals(rate0))
-						{
-							int h = Hour.indexOf(hour0);
-							h += 16;
-							h = h > 48 ?48: h;
-							hour = Hour.getByIndex(h);
-						}
-						
-					}else{
-						if(rate.equals(Rate.ONE_AND_HALF))
-						{
-							hour = hour0;
-						}
-					}
 				}
 			});
 
@@ -131,9 +114,7 @@ public class UpdateActivity extends AppCompatActivity
 					hour = Hour.getByString(str);
 				}
 			});
-			
-		display();
-		
+		//display();
 		}
 		
 	//回显加班信息
@@ -167,6 +148,7 @@ public class UpdateActivity extends AppCompatActivity
 		((RadioButton)fakeRadioGroup.getChildAt(n)).setChecked(true);
 	
 		n = Hour.indexOf(hour);
+		if(shift.equals(Shift.REST)) n = 0;
 		((RadioButton)hourRadioGroup.getChildAt(n)).setChecked(true);
 		i = n;
 		setScroll(hourScrollView);
@@ -208,11 +190,11 @@ public class UpdateActivity extends AppCompatActivity
 	public void onInsert(View view)
 	{
 		//添加加班
-		if (shift.equals(Shift.REST))
+		if(shift.equals(Shift.REST))
 		{
 			hour = Hour.ZERO;
 			fake = Fake.NORMAL;
-		} 
+		}
 		if (!shift.equals(Shift.REST))
 		{
 			shift0 = shift;

@@ -33,19 +33,10 @@ public class Config
 
 	public static void init()
 	{
-		Calendar calendar = Calendar.getInstance();
-		Config.setToday(calendar.getTime());
-		Config.setCalendar(calendar);
+		Calendar cal = Calendar.getInstance();
+		Config.setToday(cal.getTime());
+		Config.setCalendar(cal);
 		Config.setConfig();
-	}
-	
-	public static void save()
-	{
-		//保存修改
-		settings.save();
-		PageOne.updateView();
-		PageTwo.updateView();
-		PageThree.updateView();
 	}
 	
 	//设置Config

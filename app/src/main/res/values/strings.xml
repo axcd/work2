@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">加班日记</string>
+	<string name="tip">\n备注：\n
+		\t加班费基数 = 基本工资+本月绩效+岗位补贴+夜班补贴+交通补贴+高温补贴\n
+		\t本月应发 = 加班费基数+本月加班费+其他补贴\n
+		\t本月实发 = 本月应发-社会保险-工会费-其他补贴\n</string>
 </resources>

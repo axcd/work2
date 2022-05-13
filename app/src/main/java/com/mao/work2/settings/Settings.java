@@ -17,7 +17,7 @@ public class Settings
 		"基本工资(元)",
 		"本月绩效(元)",
 		"岗位补贴(元)", 
-		"中班补贴(元/天)",
+//		"中班补贴(元/天)",
 		"夜班补贴(元/天)" ,
 		"高温补贴(元)","交通补贴(元)", 
 		"养老保险(元)","医疗保险(元)","失业保险(元)", "公积金(元)",
@@ -112,7 +112,7 @@ public class Settings
 	
 	public void writerSettings()
 	{
-		Map<String,Float> load_settings = settings;
+		Map<String,Float> load_settings = copys(settings);
 		load_settings.put("本月绩效(元)", 500f);
 		load_settings.put("高温补贴(元)", 0f);
 		load_settings.put("交通补贴(元)", 0f);
@@ -123,9 +123,19 @@ public class Settings
 	
 	public void writerS()
 	{
-		Map<String,Float> load_settings = settings;
+		Map<String,Float> load_settings = copys(settings);
 		load_settings.remove("周期开始(日期)");
 		objectIO.writerToFile(load_settings, fpath);
+	}
+	
+	public Map<String,Float> copys(Map<String,Float> settings)
+	{
+		Map<String,Float> load_settings = new HashMap<String,Float>();
+		for(String key : settings.keySet())
+		{
+			load_settings.put(key, settings.get(key));
+		}
+		return load_settings;
 	}
 	
 }

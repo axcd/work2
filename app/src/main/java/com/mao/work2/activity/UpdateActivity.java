@@ -222,10 +222,12 @@ public class UpdateActivity extends AppCompatActivity
 		rate = Rate.ONE_AND_HALF;
 		fake = Fake.NORMAL;
 		hour = hour0;
-		
+
+		Config.getSettings().save();
 		//保存到文件
 		month.saveDays();
 		PageOne.updateView();
+		
 		overridePendingTransition(R.anim.dialog_exit, 0); 
 		//Config.getSelectedView().setClickable(true);
 	}

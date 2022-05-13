@@ -53,7 +53,10 @@ public class PageThree
 
 	public static void saveSettings()
 	{
-		Config.save();
+		//保存修改
+		Config.getSettings().save();
+		PageOne.updateView();
+		PageTwo.updateView();
 	}
 }
 	class MyAdapter3 extends ArrayAdapter<String>

@@ -54,7 +54,7 @@ public class PageThree
 	public static void saveSettings()
 	{
 		//保存修改
-		Config.getSettings().save();
+		Config.getSettings().update();
 		PageOne.updateView();
 		PageTwo.updateView();
 	}

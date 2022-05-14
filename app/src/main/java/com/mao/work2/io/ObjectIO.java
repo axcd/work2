@@ -6,6 +6,7 @@ import android.os.*;
 import com.mao.work2.*;
 import android.app.usage.*;
 import com.mao.work2.bean.*;
+import com.mao.work2.settings.*;
 
 public class ObjectIO <T>
 {
@@ -19,6 +20,16 @@ public class ObjectIO <T>
 	{
 		root = new File(DATA, "data/"+mao);
 		root = new File(STORAGE, mao);
+	}
+
+	public void setRoot(File root)
+	{
+		this.root = root;
+	}
+
+	public File getRoot()
+	{
+		return root;
 	}
 
 	//读取文件
@@ -75,7 +86,11 @@ public class ObjectIO <T>
 	{
 		File dir = new File(root,fname).getParentFile();
 		
-		if(!dir.exists()) dir.mkdirs();
+		if(!dir.exists()) 
+		{
+//			if(t instanceof Settings) return;
+			dir.mkdirs();
+		}
 		
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;

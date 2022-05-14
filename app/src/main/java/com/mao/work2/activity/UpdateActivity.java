@@ -223,8 +223,8 @@ public class UpdateActivity extends AppCompatActivity
 		fake = Fake.NORMAL;
 		hour = hour0;
 
-		Config.getSettings().save();
 		//保存到文件
+		Config.getSettings().save();
 		month.saveDays();
 		PageOne.updateView();
 		

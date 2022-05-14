@@ -5,9 +5,12 @@ import com.mao.work2.io.*;
 import com.mao.work2.config.*;
 import com.mao.work2.*;
 import com.mao.work2.bean.*;
+import java.io.*;
 public class Settings
 {
+	private String path;
 	private String fpath;
+	
 	private ObjectIO<Map<String,Float>> objectIO = new ObjectIO<Map<String,Float>>();
 	private Map<String,Float> settings = new HashMap<String,Float>();
 	
@@ -27,18 +30,9 @@ public class Settings
 
 	public Settings(String path)
 	{
-		setFpath(path);
+		this.path = path;
+		this.fpath = path + "/.s";
 		init();
-	}
-
-	public void setFpath(String fpath)
-	{
-		this.fpath = fpath + "/.s";
-	}
-
-	public String getFpath()
-	{
-		return fpath;
 	}
 
 	public void setSettings(Map<String, Float> settings)
@@ -49,6 +43,12 @@ public class Settings
 		}
 	}
 
+	private boolean isExits(String path)
+	{
+		File file = new File(objectIO.getRoot(), path);
+		return file.exists();
+	}
+	
 	public Map<String, Float> getSettings()
 	{
 		return settings;
@@ -106,14 +106,20 @@ public class Settings
 	
 	public void save()
 	{
+		if(!isExits(fpath)) writerS();
+	}
+	
+	public void update()
+	{
 		writerSettings();
+//		if(isExits(path))  
 		writerS();
 	}
 	
 	public void writerSettings()
 	{
 		Map<String,Float> load_settings = copys(settings);
-		load_settings.put("本月绩效(元)", 500f);
+//		load_settings.put("本月绩效(元)", 500f);
 		load_settings.put("高温补贴(元)", 0f);
 		load_settings.put("交通补贴(元)", 0f);
 		load_settings.put("其他补贴(元)", 0f);

@@ -131,7 +131,7 @@
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:text="@string/tip"
-		android:textSize="12sp"
+		android:textSize="10sp"
 		android:textColor="#FF000000"
 		android:textIsSelectable="false">
 

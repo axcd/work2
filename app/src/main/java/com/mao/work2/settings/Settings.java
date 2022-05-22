@@ -18,9 +18,10 @@ public class Settings
 	private String[] list = {
 		"周期开始(日期)",
 		"基本工资(元)",
+//		"十三薪(元)",
 		"本月绩效(元)",
 		"岗位补贴(元)", 
-//		"中班补贴(元/天)",
+		"中班补贴(元/天)",
 		"夜班补贴(元/天)" ,
 		"高温补贴(元)","交通补贴(元)", 
 		"养老保险(元)","医疗保险(元)","失业保险(元)", "公积金(元)",
@@ -112,8 +113,7 @@ public class Settings
 	public void update()
 	{
 		writerSettings();
-//		if(isExits(path))  
-		writerS();
+		if(isExits(path))  writerS();
 	}
 	
 	public void writerSettings()

@@ -107,13 +107,15 @@ public class Settings
 	
 	public void save()
 	{
-		if(!isExits(fpath)) writerS();
+		if(!isExits(fpath)) 
+			writerS();
 	}
 	
 	public void update()
 	{
 		writerSettings();
-		if(isExits(path))  writerS();
+//		if(isExits(path))  
+			writerS();
 	}
 	
 	public void writerSettings()

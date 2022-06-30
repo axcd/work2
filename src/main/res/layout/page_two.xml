@@ -24,10 +24,10 @@
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
 			android:layout_alignParentLeft="true"
-			android:text="«"
+			android:text="@string/last"
 			android:layout_weight="1.0"
 			android:padding="5dp"
-			android:textSize="23sp"
+			android:textSize="20sp"
 			android:gravity="bottom|center_horizontal"/>
 
 		<TextView
@@ -46,10 +46,10 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_alignParentRight="true"
-			android:text="»"
+			android:text="@string/next"
 			android:layout_weight="1.0"
 			android:padding="5dp"
-			android:textSize="23sp"
+			android:textSize="20sp"
 			android:gravity="bottom|center_horizontal"/>
 
 	</RelativeLayout>

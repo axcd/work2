@@ -2840,9 +2840,11 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f090012;
         public static final int abc_toolbar_collapse_description=0x7f090013;
         public static final int app_name=0x7f090021;
+        public static final int last=0x7f090022;
+        public static final int next=0x7f090023;
         public static final int search_menu_title=0x7f090014;
         public static final int status_bar_notification_info_overflow=0x7f090000;
-        public static final int tip=0x7f090022;
+        public static final int tip=0x7f090024;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f0600a9;

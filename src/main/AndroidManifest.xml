@@ -5,6 +5,7 @@
 	
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.VIBRATE"/>
 	
 	<application
 		android:allowBackup="true"
@@ -23,6 +24,8 @@
 		</activity>
 		
 		<activity android:name=".activity.UpdateActivity" android:theme="@style/MyDialogTheme"/>
+		
+		<activity android:name=".activity.SettingActivity" android:theme="@style/MyDialogTheme"/>
 		
 	</application>
 </manifest>

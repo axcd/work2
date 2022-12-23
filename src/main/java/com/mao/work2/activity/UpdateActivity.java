@@ -36,6 +36,8 @@ public class UpdateActivity extends AppCompatActivity
 	//保留1.5倍时数
 	private static Shift shift0 = Shift.DAY;
 	private static Hour hour0 = Hour.THREE;
+	//记录回显
+	private AllYearRest ayr = null; 
 	
 	private int d;
 	private Month month;
@@ -65,7 +67,9 @@ public class UpdateActivity extends AppCompatActivity
 		SimpleDateFormat msdf = new SimpleDateFormat("yyyy/MM/dd");
 		String date = msdf.format(Config.getSelectedDate());
 		d =  Integer.parseInt(date.substring(8));
+		
 		month = new Month(date.substring(0, 7));
+		ayr = new AllYearRest(date);
 
 		//设置显示日期
 		dateText.setText(date);
@@ -184,6 +188,12 @@ public class UpdateActivity extends AppCompatActivity
 		Config.getSelectedView().setDay(null);
 		month.setDay(d, null);
 
+		//删除年假
+		if(fake.equals(Fake.PAID))
+		{
+			ayr.del();
+		}
+		
 		finish();
 	}
 
@@ -197,6 +207,12 @@ public class UpdateActivity extends AppCompatActivity
 		}
 		if (!shift.equals(Shift.REST))
 		{
+			//增加年假
+			if(fake.equals(Fake.PAID))
+			{
+				ayr.add(hour);
+			}
+			
 			shift0 = shift;
 			if (fake.equals(Fake.NORMAL) && rate.equals(Rate.ONE_AND_HALF))
 			{
@@ -224,6 +240,7 @@ public class UpdateActivity extends AppCompatActivity
 		hour = hour0;
 
 		//保存到文件
+		ayr.save();
 		Config.getSettings().save();
 		month.saveDays();
 		PageOne.updateView();

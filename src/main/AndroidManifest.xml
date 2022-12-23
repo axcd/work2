@@ -25,7 +25,5 @@
 		
 		<activity android:name=".activity.UpdateActivity" android:theme="@style/MyDialogTheme"/>
 		
-		<activity android:name=".activity.SettingActivity" android:theme="@style/MyDialogTheme"/>
-		
 	</application>
 </manifest>

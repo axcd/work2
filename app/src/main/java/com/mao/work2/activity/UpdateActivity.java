@@ -205,8 +205,13 @@ public class UpdateActivity extends AppCompatActivity
 			hour = Hour.ZERO;
 			fake = Fake.NORMAL;
 		}
+		
+		//先删除
+		ayr.del();
+		
 		if (!shift.equals(Shift.REST))
 		{
+			
 			//增加年假
 			if(fake.equals(Fake.PAID))
 			{

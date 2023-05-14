@@ -91,9 +91,11 @@ class MyAdapter3 extends ArrayAdapter<String>
 				{
 					AlertDialog aldg;
 					AlertDialog.Builder adBd=new AlertDialog.Builder(getContext());
-
+					
 					final LinearLayout dialogv = (LinearLayout)LayoutInflater.from(getContext()).inflate(R.layout.page_three_dialog, null);
 					adBd.setTitle(text);
+					Config.TEXT = text;
+					
 					adBd.setView(dialogv);
 
 					adBd.setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -127,6 +129,8 @@ class MyAdapter3 extends ArrayAdapter<String>
 					adBd.setNegativeButton("取消", null);
 					aldg = adBd.create();
 					aldg.show();
+					
+					aldg.getWindow().setLayout(900,1250);
 				}
 			});
 

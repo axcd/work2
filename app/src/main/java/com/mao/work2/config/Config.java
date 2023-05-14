@@ -25,6 +25,7 @@ public class Config
 	private static boolean weekend;
 	private static Calendar calendar;
 	private static Settings settings;
+	public static String TEXT = "";  //输入数字标记
 
 	public static void setStartDay(int startDay)
 	{

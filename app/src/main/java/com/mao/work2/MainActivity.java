@@ -177,47 +177,71 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		EditText et = (EditText)((LinearLayout)view.getParent().getParent()).getChildAt(0);
 		String etstr = et.getText().toString();
 
-		if (!str.equals("c"))
-		{
-			if(str.equals("."))
-			{
-				if(etstr.length()==0)
+		char c = str.charAt(0);
+		if(null==etstr) etstr = "";
+		
+		switch(c){
+			case '0':
+				if(etstr.equals("0"))
+				{
 					etstr = "0";
-				if(!(etstr.indexOf(".")==-1))
-					str =  "";
-			}
-			
-			if ((etstr.equals("0") && !str.equals(".")))
+				}else if(((etstr.length()>5) && !etstr.contains("." )) || ((etstr.length()>3 && (etstr.charAt(etstr.length()-3)=='.'))))
+				{
+					Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+					// 震动0.5秒
+					v.vibrate(50);
+				}else{
+					etstr += c;
+				}
+				break;
+			case '.':
+				if(etstr.equals(""))
+				{
+					etstr = "0.";
+				}else if(!etstr.contains("."))
+				{
+					etstr +=".";
+				}
+				break;
+			case 'c':
+				if(etstr.length()>0)
+				{
+					etstr = etstr.substring(0, etstr.length() - 1);
+				}
+				break;
+			default:
+				if(etstr.equals("0"))
+				{
+					etstr = ""+c;
+				}else if(((etstr.length()>5) && !etstr.contains("." )) || ((etstr.length()>3 && (etstr.charAt(etstr.length()-3)=='.'))))
+				{
+					Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+					// 震动0.5秒
+					v.vibrate(50);
+				}else{
+					etstr += c;
+				}
+				System.out.println(etstr);
+			    break;
+		}
+		
+		if(Config.TEXT.equals("周期开始(日期)")&&etstr.length()>0){
+			if(etstr.contains("."))
 			{
-				etstr = "";
-			}
-				
-			if((etstr.length()>5) && etstr.indexOf(".") == -1 && !str.equals("."))
-			{
-				str = "";
-			}
-			
-			if(etstr.length()>3 && etstr.indexOf(".") == etstr.length()-3)
-			{
-				str = "";
-			}
-			
-			if(str.equals(""))
-			{
+				etstr = etstr.substring(0, etstr.length() - 1);
+				if(etstr.equals("0")) etstr = "";
+				Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+				// 震动0.5秒
+				v.vibrate(50);
+			}else if(Integer.parseInt(etstr)>0&&Integer.parseInt(etstr)<32){
+				et.setText(etstr);
+			}else{
+				etstr = etstr.substring(0, etstr.length() - 1);
 				Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 				// 震动0.5秒
 				v.vibrate(50);
 			}
-				
-			etstr = etstr + str;
 		}
-		
-		else if (etstr.length() > 0)
-		{
-			etstr = etstr.substring(0, etstr.length() - 1);
-		}	
-
-		//if(etstr.length() == 0) etstr = "0";
 		et.setText(etstr);
 	}
 }

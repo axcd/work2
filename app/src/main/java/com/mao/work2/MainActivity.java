@@ -201,6 +201,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				}else if(!etstr.contains("."))
 				{
 					etstr +=".";
+				}else{
+					Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+					// 震动0.5秒
+					v.vibrate(50);
 				}
 				break;
 			case 'c':

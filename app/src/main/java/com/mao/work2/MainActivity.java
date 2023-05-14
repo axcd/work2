@@ -211,6 +211,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				if(etstr.length()>0)
 				{
 					etstr = etstr.substring(0, etstr.length() - 1);
+				}else{
+					Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+					// 震动0.5秒
+					v.vibrate(50);
 				}
 				break;
 			default:

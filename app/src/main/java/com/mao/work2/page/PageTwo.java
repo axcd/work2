@@ -144,7 +144,7 @@ class DayAdapter extends ArrayAdapter<Date>
 		{
 			textView.setBackgroundColor(Color.parseColor("#FFFDDFEE"));
 
-			textView.setTextColor(Color.parseColor("#556677"));
+			textView.setTextColor(Color.parseColor("#DD666666"));
 			//是否绘制
 			textView.setDraw(true);
 			

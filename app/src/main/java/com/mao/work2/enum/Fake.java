@@ -5,7 +5,7 @@ import java.io.*;
 public enum Fake implements Serializable
 {
 	//正常出勤,事假,病假,带薪假
-	NORMAL("加班"),LEAVE("事假"),SICK("病假"),TAKEOFF("调休"),PAID("年假");
+	NORMAL("加班"),TAKEOFF("调休"),PAID("年假"),LEAVE("事假"),SICK("病假");
 	
 	private String fake;
 	private Fake(String fake){

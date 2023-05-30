@@ -145,20 +145,48 @@
 			android:background="#FFFEF3FE"
 			android:id="@+id/fakeRadioGroup">
 
-			<RadioButton
-				android:layout_height="match_parent"
-				android:layout_width="match_parent"
-				android:gravity="center"
-				android:button="@null"
-				android:background="@drawable/fake1"
-				android:text="加班"
-				android:layout_weight="1.0"
-				android:padding="5dp"
-				android:layout_marginLeft="5dp"
-				android:layout_marginRight="5dp"
-				android:layout_marginTop="10dp"
-				android:layout_marginBottom="10dp"/>
+            <RadioButton
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/fake1"
+                android:text="加班"
+                android:layout_weight="1.0"
+                android:padding="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+            
+            <RadioButton
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/fake3"
+                android:text="调休"
+                android:layout_weight="1.0"
+                android:padding="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
 
+            <RadioButton
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/fake4"
+                android:text="年假"
+                android:layout_weight="1.0"
+                android:padding="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+            
 			<RadioButton
 				android:layout_height="match_parent"
 				android:layout_width="match_parent"
@@ -180,34 +208,6 @@
 				android:button="@null"
 				android:background="@drawable/fake3"
 				android:text="病假"
-				android:layout_weight="1.0"
-				android:padding="5dp"
-				android:layout_marginLeft="5dp"
-				android:layout_marginRight="5dp"
-				android:layout_marginTop="10dp"
-				android:layout_marginBottom="10dp"/>
-
-			<RadioButton
-				android:layout_height="match_parent"
-				android:layout_width="match_parent"
-				android:gravity="center"
-				android:button="@null"
-				android:background="@drawable/fake3"
-				android:text="调休"
-				android:layout_weight="1.0"
-				android:padding="5dp"
-				android:layout_marginLeft="5dp"
-				android:layout_marginRight="5dp"
-				android:layout_marginTop="10dp"
-				android:layout_marginBottom="10dp"/>
-
-			<RadioButton
-				android:layout_height="match_parent"
-				android:layout_width="match_parent"
-				android:gravity="center"
-				android:button="@null"
-				android:background="@drawable/fake4"
-				android:text="年假"
 				android:layout_weight="1.0"
 				android:padding="5dp"
 				android:layout_marginLeft="5dp"

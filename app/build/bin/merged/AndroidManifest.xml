@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="16"
+        android:minSdkVersion="14"
         android:targetSdkVersion="28" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -30,10 +30,6 @@
         <activity
             android:name="com.mao.work2.activity.UpdateActivity"
             android:theme="@style/MyDialogTheme" />
-
-        <meta-data
-            android:name="android.support.VERSION"
-            android:value="26.0.1" />
     </application>
 
 </manifest>

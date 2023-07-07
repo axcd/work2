@@ -3,27 +3,25 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_height="50dp"
 	android:layout_width="match_parent"
-	android:gravity="bottom"
 	android:background="#05FFFF31">
 
 	<TextView
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Medium Text"
+		android:layout_height="match_parent"
+		android:text="Text"
 		android:layout_weight="1.0"
 		android:id="@+id/entryTextView1"
 		android:layout_alignParentLeft="true"
 		android:layout_marginLeft="16dp"
 		android:layout_marginBottom="5dp"
-		android:gravity="center"
+		android:gravity="bottom|center"
 		android:textSize="16sp"
-		android:typeface="serif"
 		android:textColor="#FF1E0782"
 		android:textStyle="bold"/>
 
 	<TextView
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+		android:layout_height="match_parent"
 		android:text="Text"
 		android:layout_weight="1.0"
 		android:id="@+id/entryTextView2"
@@ -32,9 +30,9 @@
 		android:layout_marginBottom="5dp"
 		android:textSize="16sp"
 		android:textStyle="normal"
-		android:typeface="serif"
-		android:paddingRight="5dp"
-		android:textColor="#FF0B0193"/>
+		android:textColor="#FF0B0193"
+		android:typeface="sans"
+		android:gravity="bottom|center"/>
 
 </RelativeLayout>
 

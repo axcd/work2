@@ -2100,11 +2100,11 @@ containing a value of this type.
         public static final int entryTextView2=0x7f0c0062;
         public static final int expand_activities_button=0x7f0c0025;
         public static final int expanded_menu=0x7f0c0035;
-        public static final int fakeRadioGroup=0x7f0c006c;
+        public static final int fakeRadioGroup=0x7f0c006e;
         public static final int home=0x7f0c0004;
         public static final int homeAsUp=0x7f0c000d;
-        public static final int hourRadioGroup=0x7f0c006e;
-        public static final int hourScrollView=0x7f0c006d;
+        public static final int hourRadioGroup=0x7f0c0070;
+        public static final int hourScrollView=0x7f0c006f;
         public static final int icon=0x7f0c0029;
         public static final int ifRoom=0x7f0c001d;
         public static final int image=0x7f0c0026;
@@ -2114,22 +2114,24 @@ containing a value of this type.
         public static final int line3=0x7f0c005c;
         public static final int listMode=0x7f0c0009;
         public static final int list_item=0x7f0c0028;
-        public static final int mainGridView=0x7f0c0068;
+        public static final int mainGridView=0x7f0c006a;
         public static final int media_actions=0x7f0c0056;
         public static final int middle=0x7f0c001a;
         public static final int multiply=0x7f0c0013;
         public static final int never=0x7f0c001e;
-        public static final int nextmonth=0x7f0c0067;
+        public static final int nextmonth=0x7f0c0068;
+        public static final int nextyear=0x7f0c0069;
         public static final int none=0x7f0c000e;
         public static final int normal=0x7f0c000a;
         public static final int pageoneListView=0x7f0c0060;
         public static final int pagethreeListView=0x7f0c0063;
         public static final int parentPanel=0x7f0c002b;
-        public static final int premonth=0x7f0c0065;
+        public static final int premonth=0x7f0c0066;
+        public static final int preyear=0x7f0c0065;
         public static final int progress_circular=0x7f0c0005;
         public static final int progress_horizontal=0x7f0c0006;
         public static final int radio=0x7f0c0038;
-        public static final int rateRadioGroup=0x7f0c006b;
+        public static final int rateRadioGroup=0x7f0c006d;
         public static final int screen=0x7f0c0014;
         public static final int scrollView=0x7f0c0030;
         public static final int search_badge=0x7f0c0042;
@@ -2143,7 +2145,7 @@ containing a value of this type.
         public static final int search_src_text=0x7f0c0047;
         public static final int search_voice_btn=0x7f0c004b;
         public static final int select_dialog_listview=0x7f0c004c;
-        public static final int shiftRadioGroup=0x7f0c006a;
+        public static final int shiftRadioGroup=0x7f0c006c;
         public static final int shortcut=0x7f0c0037;
         public static final int showCustom=0x7f0c000f;
         public static final int showHome=0x7f0c0010;
@@ -2165,13 +2167,13 @@ containing a value of this type.
         public static final int tv_one=0x7f0c004e;
         public static final int tv_three=0x7f0c0050;
         public static final int tv_two=0x7f0c004f;
-        public static final int txt_topbar=0x7f0c0069;
+        public static final int txt_topbar=0x7f0c006b;
         public static final int up=0x7f0c0008;
         public static final int useLogo=0x7f0c0012;
         public static final int vpager=0x7f0c0052;
         public static final int withText=0x7f0c001f;
         public static final int wrap_content=0x7f0c0020;
-        public static final int yyyyMM=0x7f0c0066;
+        public static final int yyyyMM=0x7f0c0067;
     }
     public static final class integer {
         public static final int abc_config_activityDefaultDur=0x7f0a0001;
@@ -2252,10 +2254,8 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f06000f;
         public static final int abc_toolbar_collapse_description=0x7f060010;
         public static final int app_name=0x7f060012;
-        public static final int last=0x7f060013;
-        public static final int next=0x7f060014;
         public static final int status_bar_notification_info_overflow=0x7f060011;
-        public static final int tip=0x7f060015;
+        public static final int tip=0x7f060013;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f08007a;

@@ -41,14 +41,17 @@ public class PageTwo
 	{
         view = inflater.inflate(R.layout.page_two, null);
 
-		TextView ptv = (TextView)view.findViewById(R.id.premonth);
-		TextView ntv = (TextView)view.findViewById(R.id.nextmonth);
+		TextView premonth = (TextView)view.findViewById(R.id.premonth);
+		TextView nextmonth = (TextView)view.findViewById(R.id.nextmonth);
+		TextView preyear = (TextView)view.findViewById(R.id.preyear);
+		TextView nextyear = (TextView)view.findViewById(R.id.nextyear);
+		
 		gv = (GridView)view.findViewById(R.id.mainGridView);
 
 		//获取View
 		getCalendarView();
 		
-		ptv.setOnClickListener(new View.OnClickListener(){
+		premonth.setOnClickListener(new View.OnClickListener(){
 				public void onClick(View view)
 				{
 					Config.getCalendar().add(Calendar.MONTH, -1);
@@ -56,7 +59,7 @@ public class PageTwo
 				}
 			});
 
-		ntv.setOnClickListener(new View.OnClickListener(){
+		nextmonth.setOnClickListener(new View.OnClickListener(){
 				public void onClick(View view)
 				{
 					Config.getCalendar().add(Calendar.MONTH, 1);
@@ -64,6 +67,23 @@ public class PageTwo
 				}
 			});
 
+
+		preyear.setOnClickListener(new View.OnClickListener(){
+				public void onClick(View view)
+				{
+					Config.getCalendar().add(Calendar.YEAR, -1);
+					updateView();
+				}
+			});
+
+		nextyear.setOnClickListener(new View.OnClickListener(){
+				public void onClick(View view)
+				{
+					Config.getCalendar().add(Calendar.YEAR, 1);
+					updateView();
+				}
+			});
+			
 		return view;
     }
 

@@ -14,8 +14,8 @@
 		android:gravity="center"
 		android:textSize="18sp"
 		android:textStyle="bold"
-		android:textColor="#33333333"
-		android:background="#48C0BDF8"/>
+		android:textColor="#22222222"
+		android:background="#66C0BDF8"/>
 
 </LinearLayout>
 

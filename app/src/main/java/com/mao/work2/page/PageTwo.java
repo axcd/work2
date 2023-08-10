@@ -162,7 +162,7 @@ class DayAdapter extends ArrayAdapter<Date>
 		//在范围之内日期设置
 		if (date.after(Config.getStartDate()) && date.before(Config.getEndDate()))
 		{
-			textView.setBackgroundColor(Color.parseColor("#FFFDDFEE"));
+			textView.setBackgroundColor(Color.parseColor("#88FFDDDD"));
 
 			textView.setTextColor(Color.parseColor("#DD666666"));
 			//是否绘制

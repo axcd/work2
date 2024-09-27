@@ -8,14 +8,14 @@
 	android:layout_gravity="center_horizontal"
 	android:paddingLeft="12dp"
 	android:paddingRight="12dp"
-	android:background="#FFFFFFFF">
+	android:background="#F0FFFFFF">
 
 	<LinearLayout
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:layout_marginTop="10dp"
 		android:layout_marginBottom="10dp">
-
+<!--
 		<TextView
 			android:id="@+id/preyear"
 			android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
 			android:textSize="17sp"
 			android:gravity="bottom|center_horizontal"
 			android:textStyle="bold"/>
-
+-->
 	</LinearLayout>
 
 	<LinearLayout
@@ -80,7 +80,7 @@
 		android:layout_width="match_parent"
 		android:gravity="center"
 		android:background="#FFF8B7F8"
-		android:paddingTop="5dp"
+		android:paddingTop="10dp"
 		android:paddingBottom="5dp"
 		android:layout_marginBottom="2dp">
 

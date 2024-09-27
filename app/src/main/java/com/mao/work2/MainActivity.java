@@ -22,6 +22,8 @@ import java.io.File;
 import android.widget.*;
 import android.os.*;
 import android.content.*;
+import java.util.*;
+import java.text.*;
 
 /**
  * Created by mao on 2020/09/28 0008.
@@ -57,9 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         initViews();
-    }
-
-
+    } 
+	
     private void initViews()
 	{
         vpager = (ViewPager) findViewById(R.id.vpager);
@@ -97,7 +98,58 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 		vpager.setOffscreenPageLimit(2);
         vpager.addOnPageChangeListener(this);
+		
+		TextView premonth = (TextView)findViewById(R.id.premonth);
+		TextView nextmonth = (TextView)findViewById(R.id.nextmonth);
+		TextView preyear = (TextView)findViewById(R.id.preyear);
+		TextView nextyear = (TextView)findViewById(R.id.nextyear);
+
+		premonth.setOnClickListener(new View.OnClickListener(){
+				public void onClick(View view)
+				{
+					Config.getCalendar().add(Calendar.MONTH, -1);
+					PageTwo.updateView();
+					setText();
+				}
+			});
+
+		nextmonth.setOnClickListener(new View.OnClickListener(){
+				public void onClick(View view)
+				{
+					Config.getCalendar().add(Calendar.MONTH, 1);
+					PageTwo.updateView();
+					setText();
+				}
+			});
+
+
+		preyear.setOnClickListener(new View.OnClickListener(){
+				public void onClick(View view)
+				{
+					Config.getCalendar().add(Calendar.YEAR, -1);
+					PageTwo.updateView();
+					setText();
+				}
+			});
+
+		nextyear.setOnClickListener(new View.OnClickListener(){
+				public void onClick(View view)
+				{
+					Config.getCalendar().add(Calendar.YEAR, 1);
+					PageTwo.updateView();
+					setText();
+				}
+			});
+		
     }
+	
+	public void setText()
+	{
+		Calendar calendar = (Calendar)Config.getCalendar().clone();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月");
+		TextView tv = (TextView)findViewById(R.id.YYYYMM);
+		tv.setText(sdf.format(calendar.getTime()));
+	}
 
     @Override
     public void onClick(View v)

@@ -202,7 +202,7 @@ public class UpdateActivity extends AppCompatActivity
 		//添加加班
 		if(shift.equals(Shift.REST))
 		{
-			hour = Hour.ZERO;
+			//hour = Hour.ZERO;
 			fake = Fake.NORMAL;
 		}
 		

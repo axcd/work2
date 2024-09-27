@@ -1,4 +1,4 @@
-# view res/layout/main_activity.xml #generated:69
+# view res/layout/main_activity.xml #generated:92
 -keep class android.support.v4.view.ViewPager { <init>(...); }
 
 # view res/layout/abc_alert_dialog_material.xml #generated:130

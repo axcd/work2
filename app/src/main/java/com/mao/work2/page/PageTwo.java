@@ -41,16 +41,16 @@ public class PageTwo
 	{
         view = inflater.inflate(R.layout.page_two, null);
 
-		TextView premonth = (TextView)view.findViewById(R.id.premonth);
-		TextView nextmonth = (TextView)view.findViewById(R.id.nextmonth);
-		TextView preyear = (TextView)view.findViewById(R.id.preyear);
-		TextView nextyear = (TextView)view.findViewById(R.id.nextyear);
-		
+	//	TextView premonth = (TextView)view.findViewById(R.id.premonth);
+	//	TextView nextmonth = (TextView)view.findViewById(R.id.nextmonth);
+	//	TextView preyear = (TextView)view.findViewById(R.id.preyear);
+	//	TextView nextyear = (TextView)view.findViewById(R.id.nextyear);
+	
 		gv = (GridView)view.findViewById(R.id.mainGridView);
 
 		//获取View
 		getCalendarView();
-		
+	/**
 		premonth.setOnClickListener(new View.OnClickListener(){
 				public void onClick(View view)
 				{
@@ -83,7 +83,7 @@ public class PageTwo
 					updateView();
 				}
 			});
-			
+**/
 		return view;
     }
 
@@ -103,9 +103,9 @@ public class PageTwo
 		//设置显示年月		
 		Calendar calendar = (Calendar)Config.getCalendar().clone();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月");
-		TextView tv = (TextView)view.findViewById(R.id.yyyyMM);
-		tv.setText(sdf.format(calendar.getTime()));
-	
+//		TextView tv = (TextView)view.findViewById(R.id.yyyyMM);
+//		tv.setText(sdf.format(calendar.getTime()));
+
 		//获取List<Date>
 		List<Date> dates = new ArrayList<Date>();
 		

@@ -177,15 +177,15 @@ public class DayView extends TextView
 					//分别绘制加班倍数下面背景颜色
 					if (day.getRate().equals(Rate.ONE_AND_HALF))
 					{
-						hour_color = Color.parseColor("#800000FF");
+						hour_color = Color.parseColor("#900000FF");
 					}
 					else if (day.getRate().equals(Rate.TWO))
 					{
-						hour_color = Color.parseColor("#80FF0000");
+						hour_color = Color.parseColor("#90FF0000");
 					}
 					else if (day.getRate().equals(Rate.THREE))
 					{
-						hour_color = Color.parseColor("#A0FF00FF");
+						hour_color = Color.parseColor("#F0FF00FF");
 					}
 
 					//如果是请假，绘制字体和背景颜色

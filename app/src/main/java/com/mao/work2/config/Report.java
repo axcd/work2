@@ -189,7 +189,7 @@ public class Report
 		//加班费基数
 //		float base = this.get("基本工资(元)") + this.get("本月绩效(元)");
 		float base = this.get("基本工资(元)") + this.get("本月绩效(元)") + this.get("岗位补贴(元)") 
-		        + this.get("夜班天数(时)") * this.get("夜班补贴(元/天)") + this.get("中班天数(天)") * this.get("中班补贴(元/天)")
+				+ this.get("夜班天数(天)") * this.get("夜班补贴(元/天)") + this.get("中班天数(天)") * this.get("中班补贴(元/天)")
 		        + this.get("交通补贴(元)")+this.get("高温补贴(元)");
 		        //+ this.get("其他补贴(元)");
 		
@@ -214,7 +214,7 @@ public class Report
 
 		//应发工资
 		this.set("本月应发(元)", MathUtil.F(this.get("基本工资(元)") + this.get("本月绩效(元)") + this.get("十三薪(元)")+ this.get("岗位补贴(元)")
-										 + this.get("夜班天数(天)") * this.get("夜班补贴(元/天)") + this.get("中班天数(天)") * this.get("中班补贴(元/天)")
+									   + this.get("夜班天数(天)") * this.get("夜班补贴(元/天)") + this.get("中班天数(天)") * this.get("中班补贴(元/天)")
 										 + this.get("交通补贴(元)") + this.get("高温补贴(元)") + this.get("其他补贴(元)")
 										 + this.get("平时加班费(元)") + this.get("周末加班费(元)") + this.get("节假日加班费(元)") , 2));
 

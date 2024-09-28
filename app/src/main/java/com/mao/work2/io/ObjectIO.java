@@ -14,7 +14,7 @@ public class ObjectIO <T>
 	
 	private final File STORAGE = Environment.getExternalStorageDirectory();
 	private final File DATA = Environment.getDataDirectory();
-	private final String mao = "com.mao.work";
+	private final String mao = "com.mao.work2";
 
 	public ObjectIO()
 	{

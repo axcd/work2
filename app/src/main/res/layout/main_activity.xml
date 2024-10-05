@@ -30,7 +30,7 @@
 		
 		<TextView
 			android:layout_height="1dp"
-			android:layout_width="200dp"
+			android:layout_width="170dp"
 			android:background="#F06F6996"/>
 
 	</LinearLayout>

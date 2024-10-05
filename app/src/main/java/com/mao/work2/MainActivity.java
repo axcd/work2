@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_three = (TextView) findViewById(R.id.tv_three);
         img_cursor = (ImageView) findViewById(R.id.img_cursor);
 
+		//设置当前年月
+		setText();
+		
         //下划线动画的相关设置：
         bmpWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.line).getWidth();// 获取图片宽度
         DisplayMetrics dm = new DisplayMetrics();

@@ -89,7 +89,8 @@ public class Month implements Serializable
 	public void readDays()
 	{
 		Day[] r_days = new ObjectIO<Day[]>().readFromFile(index+"/days");
-		if(null!=r_days) this.days = r_days;
+		if(null!=r_days) 
+			this.days = r_days;
 	}
 
 }

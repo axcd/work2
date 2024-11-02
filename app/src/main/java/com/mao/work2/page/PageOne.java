@@ -46,14 +46,15 @@ public class PageOne
 		"周末加班费(元)",
 		"节假日加班(元/时)",
 		"节假日加班费(元)",
-//		"交通补贴(元)", "高温补贴(元)", 
+//		"交通补贴(元)",
+//		"高温补贴(元)", 
 //		"养老保险(元)", "医疗保险(元)","失业保险(元)","公积金(元)", 
 //		"工会费(元)",
 //		"其他补贴(元)", "其他扣款(元)", 
 //		"调休费(元)","事假费(元)","病假费(元)",
 		"累计已休年假(天)",
 		"本月应发(元)", "本月实发(元)" ,
-		"本月5号应发(元)", "本月5号实发(元)",
+		"本月5号结算应发(元)", "本月5号结算实发(元)",
 	};
 
     public PageOne()
@@ -103,15 +104,15 @@ public class PageOne
 		
 		cal.add(Calendar.MONTH, -1);
 		Report report2 = new Report(cal);
-		
+
 		//应发工资
-		report.set("本月5号应发(元)", MathUtil.F(report1.get("基本工资(元)") + report1.get("本月绩效(元)") + report1.get("岗位补贴(元)")
+		report.set("本月5号结算应发(元)", MathUtil.F(report1.get("基本工资(元)") + report1.get("本月绩效(元)") + report1.get("岗位补贴(元)")
 										 + report1.get("夜班天数(天)") * report1.get("夜班补贴(元/天)") + report1.get("中班天数(天)") * report1.get("中班补贴(元/天)")
 										 + report1.get("交通补贴(元)") + report1.get("高温补贴(元)") + report1.get("其他补贴(元)")
 										 + report2.get("平时加班费(元)") + report2.get("周末加班费(元)") + report2.get("节假日加班费(元)") , 2));
 
 		//实发工资
-		report.set("本月5号实发(元)", MathUtil.F(report.get("本月5号应发(元)")
+		report.set("本月5号结算实发(元)", MathUtil.F(report.get("本月5号结算应发(元)")
 		                                 - report2.get("事假费(元)") - report2.get("病假费(元)")
 										 - report1.get("养老保险(元)") - report1.get("医疗保险(元)") - report1.get("失业保险(元)") 
 										 - report1.get("公积金(元)")
